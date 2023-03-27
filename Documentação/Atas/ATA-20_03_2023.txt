@@ -1,0 +1,14 @@
+Resumo -->
+
+- Data: 20/03/2023
+- Quem esteve presente: Todos
+- Quem estava ausente + justificativa: NA
+- Tópicos discutidos: Situação atual do projeto e como prosseguir, por exemplo: Definir as regras do grupo, e fazer os ajustes necessários para a execução da sprint2.
+- Decisões: Estudar os documentos do projeto criados pelo grupo anterior, estudar o tema escolhido (transporte de eletrônicos), trazer ideias para a próxima reuniâo!
+
+Plano de ação -->
+
+Atividade/             início/      entrega/        responsável/
+
+Estudar os documentos e o tema, além de preparar ideias para mudanças/ 20_03_2023/ 23_03_2023/ Todos
+
