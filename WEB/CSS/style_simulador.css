@@ -1,0 +1,33 @@
+body {
+    text-align: center;
+}
+
+h1{
+    height: 40px;
+    width: 1350px;
+    background-color: #95B0C9;
+    text-align: center;
+    font-family: Arial;
+}
+
+h4, span{
+    font-size: 17px;
+    font-family: Arial;
+}
+
+.inputs {
+    background-color: #95B0C9;
+    height: 450px;
+    width: 1350px;
+    border-radius: 20px 0 20px 0;
+    font-family: Arial;
+}
+
+button{
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+}
+

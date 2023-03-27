@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    
+    <html lang="en">
+
+        <head>
+    
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../CSS/style_simulador.css">
+            <script src="../JS/script_calculadora.js"></script>
+            <title> Calculadora Financeira - Umitech </title>
+
+        </head>
+
+        <body>
+    
+            <h1>
+                
+                <b>
+                    Simulador Financeiro
+                </b>
+
+            </h1>
+    
+            <h4> 
+                Bem vindo ao Simulador Umitech! Criamos essa interface para que você, 
+                <br>
+                cliente consiga calcular o valor do seu prejúizo e o quanto podemos te ajudar.Por favor preencha os dados abaixo: 
+            </h4>
+    
+            <div class="inputs">
+                
+                <br>
+                
+                <p> 
+                    Insira o nome de sua empresa: 
+                </p>
+                
+                <input id="input_empresa">
+                <br>
+
+                <p> 
+                    Qual produto você transporta: 
+                </p>
+
+                <input id="input_produto"> 
+                <br>
+
+                <p> 
+                    Insira o preço do produto em BRL (por unidade): 
+                </p>
+
+                <input id="input_preço" type="number"> 
+                <br>
+        
+                <p>
+                    Quantos produtos você transporta (Mês): 
+                </p>
+
+                <input id="input_qtd_produto">
+                <br>
+
+                <p> 
+                    Insira quantos produtos são perdidos (Mês): 
+                </p>
+
+                <input id="input_perda">
+                <br>
+    
+                <br>
+                <button onclick="calcular()">
+                    Calcular o Rendimento
+                </button>
+                <br>
+    
+            </div>
+
+            <br> 
+            <span id="span_mensagem">
+            </span>
+
+        </body>
+
+    </html>
