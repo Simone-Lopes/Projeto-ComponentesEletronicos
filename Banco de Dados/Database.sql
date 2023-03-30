@@ -86,3 +86,4 @@ SELECT * FROM Dados_Capturados
 	JOIN Sensores_Umidade 
 		ON idSensor = fkSensor_Umidade
 			WHERE idSensor = 2;
+            
