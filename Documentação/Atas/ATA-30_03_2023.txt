@@ -1,0 +1,32 @@
+Resumo -->
+
+- Data: 30/03/2023
+- Quem esteve presente: Guilherme, Davi, Bianca, César, Simone, Lívia
+- Quem estava ausente + justificativa: NA
+- Tópicos discutidos: 
+
+Atividades para serem concluídas -- Calculadora financeira, Terminar documentação, CSS do site, Diagrama de visão
+
+Definição do P.O e S.M
+
+- Decisões: Simone será SM e a Lívia será PO até quinta que vêm!
+
+Plano de ação -->
+
+Atividade/             			início/      	entrega/        responsável/
+
+Calculadora financeira Css		30/03/2023		06/04/2023		    Guilherme
+
+Calculadora financeira Back		30/03/2023		06/04/2023		    César
+
+Web login e cadastro Css 		30/03/2023		06/04/2023		    César e Guilherme
+
+Web Home Css				30/03/2023		06/04/2023		    Bianca e Lívia
+
+Requisitos da documentação		30/03/2023		31/03/2023		    César e Bianca
+
+Diagrama de Visão				30/03/2023		06/04/2023		    Simone
+
+Sobre nós					30/03/2023		06/04/2023		    Simone
+
+Fale Conosco				30/03/2023		06/04/2023		    Bianca
