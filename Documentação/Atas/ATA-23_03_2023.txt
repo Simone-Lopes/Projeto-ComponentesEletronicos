@@ -1,0 +1,21 @@
+- Data: 23/03/2023
+- Quem esteve presente: Bianca, Davi, Guilherme, Simone, Lívia
+- Quem estava ausente + justificativa: O membro Cézar esteve ausente por estar presencialmente na faculdade, o restante da equipe não estava em aula devido a greve metroviária.
+- Tópicos discutidos: 
+
+ Alterações no projeto -- Definição dos sensores, cliente específico, estruturação da ideia, documentação, identidade visual, criação do banco de dados e modelagem.
+
+
+- Decisões: Divisão de tarefas visando todos os membros participarem de todas as etapas possíveis. 
+
+Plano de ação -->
+
+Atividade/             			início/      	entrega/        responsável/
+
+Protótipo do site institucional	23/03/2023		30/03/2023		    Bianca
+
+Código e modelagem do BD		23/03/2023		25/03/2023		    Davi
+
+Logotipo e paleta de cores  		23/03/2023		23/03/2023		    Simone
+
+Atualização da documentação		23/03/2023		30/03/2023		    Bianca, Lívia e Cézar
