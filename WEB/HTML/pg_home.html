@@ -1,39 +1,165 @@
 <!DOCTYPE html>
-    <html lang="en">
-        
-        <head>
-            
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title> Site Institucional </title>
-            <link rel="stylesheet" href="../CSS/style_Home.css">
-            <script src="../JS/script_home.js"></script>
-        
-        </head>
-        
-        <body>
-    
-            <div class="header">
-
-                <div class="container"></div>
-
-                <div class="navBar">
-                    
-                    <ul>
-                        
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    
-                    </ul>
-                
-                </div>
-
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/style_Home.css">
+    <title>Home | SecureShip
+    </title>
+</head>
+<body>
+    <div class="header">
+        <div class="header-group">
+            <div class="container">
+                <img src="../imgs/logo (3).png" alt="Logo" class="logo">
+                <ul class="nav-bar">
+                    <li><a href="../HTML/pg_analytics.html">Solução</a></li>
+                    <li><a href="../HTML/pg_sobreNos.html">Sobre Nós</a></li>
+                    <li><a href="faleconosco.html">Fale Conosco</a></li>
+                    <li><a href="../HTML/pg_simulador.html">Calculadora Financeira</a></li>
+                    <li><a href="idioma.html">Idioma</a></li>
+                </ul>
             </div>
 
-        </body>
+            <div class="group-header-pai">
+                <div class="group-header-filhos">
+                    <div class="group-header-filho1">
+                        <h1>Segurança Climática de sua carga garantida</h1>
+                        <div id="p"> Somos uma empresa especializada em soluções IoT para monitoramento de temperatura e umidade durante o transporte de componentes eletrônicos.</div>
+                        <button class="btn-saibamais">Saiba Mais</button>
+                    </div>
+
+                    <div class="cards-header">
+                        <div class="card">
+                            <img src="../imgs/ico-user.png" alt="" width="60px" height="60px">
+                            <p>Já fez seu orçamento? Acesse sua conta.
+                            </p>
+                            <button class="btn-cards">Login</button>
+                        </div>
+
+                        <div class="card">
+                            <img src="../imgs/icon-bandeira.png" alt="" width="60px" height="60px">
+                            <p>Ainda não conhece? Comece já!</p>
+                            <button class="btn-cards">Cadastro</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="nossos-clientes">
+        <div class="foto-nc">
+            <img src="../imgs/conntainer.jpg" alt="Container">
+        </div>
+        <div class="text-nc">
+            <h1>_______</h1>
+            <h1>Nossos clientes</h1>
+            <h2>Onde nós atuamos</h2>
+            <div class ="p">Nossos clientes podem ser empresas que trabalham com a produção, distribuição ou armazenamento de componentes eletrônicos. Isso inclui, por exemplo, fabricantes de equipamentos eletrônicos, fornecedores de componentes eletrônicos, distribuidores, empresas de logística e transporte, entre outros. Nosso foco principal são os containers.</div>
+            <p id="saiba-mais">Saiba mais → </p>
+        </div>
+    </div>
+    <div class="espaco1"></div>
+    <div class="diferenciais">
+        <div class="text-diferenciais">
+            <h1>_______</h1>
+            <h1>Pensamos em cada detalhe</h1>
+            <h2>Quais são nossos diferenciais</h2>
+        </div>
+        <div class="cards-diferenciais">
+            <div class="card-dif">
+                <div class="card-dif-content">
+                    <h1>Tecnologia Avançada</h1>
+                    <p>Tecnologia avançada (IoT) para monitorar e registrar constantemente as condições ambientais durante todo o processo de transporte, permitindo que os clientes tenham controle e visibilidade em tempo real do estado de seus produtos.</p>
+                </div>
+            </div>
+
+            <div class="card-dif">
+                <div class="card-dif-content">
+                    <h1>Cloud Computing</h1>
+                    <p id="cloud">A solução já nasceu na era da computação em nuvem. Isso permite o acesso remoto através de vários dispositivos (notebook, smartphone e tablet).</p>
+                </div>
+                
+            </div>
+
+            <div class="card-dif">
+                <div class="card-dif-content">
+                    <h1>Soluções Personalizadas</h1>
+                    <p>Oferecemos soluções personalizadas para atender às necessidades específicas de cada cliente, considerando fatores como o tipo de produto, distância percorrida, tempo de transporte e outras condições.</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="espaco1"></div>
+    <div class="fale-conosco">
+        <div class="msg-fc">
+            <h1 id="linha-msg-fc">_______</h1>
+            <h1>Vamos trabalhar juntos</h1>
+        </div>
+        <div class="form-fc">
+            <form>
+                <div class="nome">
+                    <label class="label" for="nome">Nome:</label>
+                    <input class="input" type="text" id="nome" name="nome">
+                </div>
+                <div class="email">
+                    <label class="label" for="email">Email:</label>
+                    <input class="input" type="email" id="email" name="email">
+                </div>
+                <div class="telefone">
+                    <label class="label" for="phone">Telefone:</label>
+                    <input class="input" type="tel" id="phone" name="phone">
+                </div>
+                <div class="org">
+                    <label class="label" for="organizacao">Organização:</label>
+                    <input class="input" type="text" id="organizacao" name="organizacao">
+                </div>
+                <div class="msg">
+                    <label class="label" for="mensagem">Mensagem:</label>
+                    <input class="input" type="text" id="mensagem" name="mensagem">
+                </div>
+                <div class="submit">
+                    <input type="submit" value="Enviar">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="../imgs/logo (3).png" alt="logo" width="180px" height="160px">
+                <div class="icons-footer">
+                    <a href=""><i class="fa fa-twitter-square"></i></a>
+                    <a href=""><i class="fa fa-facebook-square"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-right-content">
+                    <div class="compania">
+                        <h1>Compania</h1>
+                        <a href="../HTML/pg_sobreNos.html">Sobre Nós</a>
+                        <a href="../HTML/pg_faleConosco.html">Fale Conosco</a>
+                    </div>
+                    <div class="usuario">
+                        <h1>Usuário</h1>
+                        <a href="../HTML/pg_login.html">Login</a>
+                        <a href="../HTML/pg_cadastro.html">Cadastro</a>
+                    </div>
+                    <div class="calculadora">
+                        <h1>Calculadora Financeira</h1>
+                        <a href="../HTML/pg_simulador.html">Calculadora</a>
+                        <a href="../HTML/pg_faleConosco.html">Fale Conosco</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    </html>
+</body>
+</html>
