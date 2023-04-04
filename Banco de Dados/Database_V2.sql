@@ -9,10 +9,10 @@ CREATE TABLE Empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT, -- Chave Primaria
     Nome_Fantasia VARCHAR(80), -- Nome da empresa
     Cnpj CHAR(19), -- cnpj com 19 digitos contando com pontos e traços
-    Rua VARCHAR(40), -- Conponentes do Endereço da Empresa
-    Numero VARCHAR(40), -- Conponentes do Endereço da Empresa
-    Bairro VARCHAR(40), -- Conponentes do Endereço da Empresa
-    Estado VARCHAR(40), -- Conponentes do Endereço da Empresa
+    Rua VARCHAR(40), -- Componentes do Endereço da Empresa
+    Numero VARCHAR(40), -- Componentes do Endereço da Empresa
+    Bairro VARCHAR(40), -- Componentes do Endereço da Empresa
+    Estado VARCHAR(40), -- Componentes do Endereço da Empresa
     Telefone VARCHAR(15), -- telefone com 15 digitos no Maximo
     Email VARCHAR(50) -- Email com no maximo 50 digitos 
 );
@@ -45,33 +45,32 @@ CREATE TABLE Sensores(
     Tipo VARCHAR(30), -- Tipagem do Sensor EX(Temperatura,Umidade,Luminosidade)
     FKLocal_S INT, -- Chave Estrangeira da Tabela Localizaçao
 		CONSTRAINT FKLocal_S FOREIGN KEY (FKLocal_S)
-			REFERENCES Localização(idLocal),
-    FKEmpresa_S INT, -- Chave Estrangeira da Tabela Empresa
-		CONSTRAINT FKEmpresa_S FOREIGN KEY (FKEmpresa_S)
-			REFERENCES Empresa(idEmpresa)
+			REFERENCES Localização(idLocal)
 );
 
 -- Criação da tabela onde ficara guardado os limites(min e max) dos sensores
 CREATE TABLE Limite_Parametros(
-	idLimite INT PRIMARY KEY AUTO_INCREMENT, -- Chave Primaria
-    Min_Parametros DOUBLE,
-    Max_Parametros DOUBLE,
-    FKLocal_LM INT, -- Chave Estrangeira da Tabela Localizaçao
+	idLimite INT AUTO_INCREMENT, -- Primeiro componente da Chave Primaria
+    Min_Parametros DECIMAL(4,2), -- Valor minimo que pode receber da leitura sem danificar o produto 
+    Max_Parametros DECIMAL(4,2), -- Valor maximo que pode receber da leitura sem danificar o produto 
+    FKLocal_LM INT, -- Componente da Chave Primaria Que refere a Tabela Localizaçao
 		CONSTRAINT FKLocal_LM FOREIGN KEY (FKLocal_LM)
 			REFERENCES Localização(idLocal),
-    FKSensor_LM INT, -- Chave Estrangeira da Tabela Sensores
+    FKSensor_LM INT, -- Componente da Chave Primaria que refere a Tabela Sensores
 		CONSTRAINT FKSensor_LM FOREIGN KEY (FKSensor_LM)
-			REFERENCES Sensores(idSensor)
+			REFERENCES Sensores(idSensor),
+	CONSTRAINT pkComposta PRIMARY KEY (idLimite,FKLocal_LM,FKSensor_LM) -- Chave Primaria Composta de Tres Elementos 
 );
 
 -- Criação da tabela que fara o Relacionamento dos sensores com os resultados e os clientes
 CREATE TABLE Leitura (
-	idCaptura INT PRIMARY KEY AUTO_INCREMENT, -- chave primaria 
-    Leitura DOUBLE, -- Resultado do sensor
+	idCaptura INT AUTO_INCREMENT, -- Componente da Chave Primaria 
+    Leitura DECIMAL(4,2), -- Resultado do sensor
     data_hora DATETIME, -- Data e hora em que os resultados foram computados
-    FKSensor_LE INT, -- Chave Estrangeira da Tabela Sensores
+    FKSensor_LE INT, -- Componente da Chave Primaria que refere a Tabela Sensores
 		CONSTRAINT FKSensor_LE FOREIGN KEY (FKSensor_LE)
-			REFERENCES Sensores(idSensor)
+			REFERENCES Sensores(idSensor),
+	CONSTRAINT pkComposta PRIMARY KEY (idCaptura,FKSensor_LE) -- Chave Primaria composta de Dois elementos 
 );
 
 -- Inserção de Dados FANTASIOSOS para Testes 
@@ -107,22 +106,22 @@ INSERT INTO Localização VALUES
 
 -- Inserção na tabela Sensores
 INSERT INTO Sensores VALUES 
-	(NULL, 'DHT11', 'Umidade', 1, 1),
-	(NULL, 'LM35', 'Temperatura', 1, 1),
-	(NULL, 'DHT11', 'Umidade', 2, 2),
-	(NULL, 'LM35', 'Temperatura', 2, 2),
-	(NULL, 'DHT11', 'Umidade', 3, 3),
-	(NULL, 'LM35', 'Temperatura', 3, 3),
-	(NULL, 'DHT11', 'Umidade', 4, 4),
-	(NULL, 'LM35', 'Temperatura', 4, 4),
-	(NULL, 'DHT11', 'Umidade', 5, 5),
-	(NULL, 'LM35', 'Temperatura', 5, 5),
-	(NULL, 'DHT11', 'Umidade', 6, 6),
-	(NULL, 'LM35', 'Temperatura', 6, 6),
-	(NULL, 'DHT11', 'Umidade', 7, 1),
-	(NULL, 'LM35', 'Temperatura', 7, 1),
-	(NULL, 'DHT11', 'Umidade', 8, 2),
-	(NULL, 'LM35', 'Temperatura', 8, 2);
+	(NULL, 'DHT11', 'Umidade', 1),
+	(NULL, 'LM35', 'Temperatura', 1),
+	(NULL, 'DHT11', 'Umidade', 2),
+	(NULL, 'LM35', 'Temperatura', 2),
+	(NULL, 'DHT11', 'Umidade', 3),
+	(NULL, 'LM35', 'Temperatura', 3),
+	(NULL, 'DHT11', 'Umidade', 4),
+	(NULL, 'LM35', 'Temperatura', 4),
+	(NULL, 'DHT11', 'Umidade', 5),
+	(NULL, 'LM35', 'Temperatura', 5),
+	(NULL, 'DHT11', 'Umidade', 6),
+	(NULL, 'LM35', 'Temperatura', 6),
+	(NULL, 'DHT11', 'Umidade', 7),
+	(NULL, 'LM35', 'Temperatura', 7),
+	(NULL, 'DHT11', 'Umidade', 8),
+	(NULL, 'LM35', 'Temperatura', 8);
 	
 -- Inserção na Tabela Limite_Parametros (Para limitar determinado dado)
 INSERT INTO Limite_Parametros VALUES 
@@ -176,15 +175,11 @@ SELECT * FROM
 
 SELECT * FROM 
 	Localização JOIN Limite_Parametros
-		ON idLocal = FKLocal_LM;
+		ON idLocal = FKLocal_LM ORDER BY idLocal ASC;
         
 SELECT * FROM 
 	Sensores JOIN Limite_Parametros
 		ON idSensor = FKSensor_LM;
-
-SELECT * FROM 
-	Empresa JOIN Sensores
-		ON idEmpresa = FKEmpresa_S;
 
 SELECT * FROM 
 	Localização JOIN Sensores
@@ -199,4 +194,4 @@ SELECT * FROM
 	Leitura JOIN Sensores
 		ON idSensor = FKSensor_LE
 			WHERE Sensores.Tipo = 'Umidade';
-
+            
