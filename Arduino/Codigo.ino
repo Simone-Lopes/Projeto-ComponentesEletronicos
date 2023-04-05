@@ -1,18 +1,23 @@
 
 // inclusão da bliblioteca do sensor DHT11
 #include <DHT.h>
+#include <Adafruit_Sensor.h>
+#include <DHT_U.h>
+#include "DHT.h"
+
 
 // Definição dos pinos para entrada de dados 
-#define DHTPIN A1;
-#define LM35PIN A0;
+#define DHTPIN A1
+#define LMPIN A0
+
+DHT dht(DHTPIN, DHT11);
 
 // inicialização Do monitor serial, das entradas(pins)
-void setup()
-{
+void setup(){
 
     //Definindo que os pinos serão de entrada de Dados
-    pinMode(DHTPIN, INPUT);
-    pinMode(LM35PIN, INPUT);
+    pinMode(DHTPIN ,INPUT);
+    pinMode(LMPIN ,INPUT);
 
     //Iniciando o Monitor Serial e a Biblioteca do DHT11
     Serial.begin(9600);
@@ -27,7 +32,7 @@ void loop()
     // Definição das Variaveis
     float umidade_dht11 = dht.readHumidity();
     float temperatura_dht11 = dht.readTemperature();
-    float temperatura_lm35 = analogRead(LM35PIN);
+    float temperatura_lm35 = analogRead(A0);
 
     //Transformando o dado do LM35 em um numero inteiro
     temperatura_lm35 = (temperatura_lm35 * 0.00488) * 100;
@@ -36,7 +41,7 @@ void loop()
     float Media_Temp = (temperatura_lm35 + temperatura_dht11) / 2;
 
     // Verificação do funcionamento dos sensores
-    if(isnan umidade_dht11 or isnan Media_Temp)
+    if(isnan (umidade_dht11) or isnan (Media_Temp))
     {
 
         // mensagem de erro caso não consiga captar qualquer informação
@@ -53,7 +58,7 @@ void loop()
         Serial.println(";");
 
     }
-  
+  delay(2000);
 }
 
 // FIM DO CODIGO
