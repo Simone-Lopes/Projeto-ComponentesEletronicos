@@ -8,77 +8,8 @@ body {
     background-color: #E7E7E9;
 }
 
-.container1 {
-    display: flex;
-    width: 100%;
-    margin: auto;
-}
-
-.imagem img {
-    position: absolute;
-    width: 550px;
-    height: 650px;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px;
-
-}
-
-.container1 .logo img {
-    display: flex;
-    align-self: baseline;
-    height: 143px;
-    width: 160px;
-    left: 0px;
-    top: 25px;
-    border-radius: 0px;
-}
-
-h1 {
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-    margin-left: 45%;
-    height: 28px;
-    width: 174px;
-}
-
-.container2 .card {
-    background-color: #E7E7E9;
-    display: flex;
-    height: 300px;
-    width: 85%;
-    border-radius: nullpx;
-    justify-content: space-around;
-    align-items: end;
-    flex-direction: column;
-    margin-top: 90px;
-}
-
-.container2 .card .email {
-    height: 0px;
-    width: 355px;  
-
-}
-
-.container2 .card .senha{
-    height: 15px;
-    width: 355px;
-}
-
-.container2 .card button {
-    background-color: #AAAAAA;
-    color: white;
-    height: 40px;
-    width: 356px;
-    left: 714px;
-    top: 504px;
-    border-radius: 10px;
-    border-color: #E7E7E9;
-
-}
-
 input {
+
     width: 350px;
     background-color: #E7E7E9;
     border-style: none;
@@ -89,9 +20,62 @@ h5 {
     display: flex;
     color: #505050;
     align-self: end;
-    width: 345px;
+    width: 90%;
 }
 
 .container2 .card .cadastro {
     color: #E295BA;
+}
+
+.pagina {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.container1 {
+    height: 100vh;
+    width: 44%;
+    background-image: url('../imgs/conntainer.jpg');
+    background-size: cover;
+    background-position: 100%;
+}
+
+.container2 {
+    height: 100vh;
+    width: 55%;
+    align-self: baseline;
+    background-color: #E7E7E9;
+   display: flex;
+  justify-content: center;
+
+}
+
+.card {
+    display: flex;
+     width: 80%;
+     flex-direction: column;
+     align-self: center;
+     justify-content: space-around;
+     margin-top: 10%;
+}
+
+.btn-login {
+    background-color: #AAAAAA;
+    color: white;
+    height: 30px;
+    width: 60%;
+    border-radius: 10px;
+    border-style: none;
+    margin-left: 10%;
+}
+
+input, button{
+    margin: 10px;
+}
+
+.titulo{
+    margin-top: 10%;
+    margin-left: 10%;
 }
