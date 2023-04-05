@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/style.login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../CSS/style.login.css" />
     <script src="../JS/script_login.js"></script>
-    <title> Login </title>
+    <title>Login</title>
+  </head>
 
-</head>
-
-<body>
-    <div class="container1">
+  <body>
+    <!-- <div class="container1">
         <div class="imagem">
             <img src="../imgs/conntainer.jpg" alt="conntainer">
             <div class="logo">
@@ -35,8 +32,30 @@
             </button>
             <h5>Não tem uma conta? <span class="cadastro" id="id_cadastro"> Cadastre-se</span></h5>
         </div>
+    </div> -->
+
+    <div class="pagina">
+      <div class="container1"></div>
+      <div class="container2">
+        <h1 class="titulo">Login</h1>
+        <div class="card">
+          <form>
+            <div class="email">
+              <label class="label" for="email">Email</label>
+              <input class="input" type="email" id="email" name="email" />
+            </div>
+            <div class="senha">
+              <label class="label" for="senha">Senha</label>
+              <input class="input" type="password" id="senha" name="senha" />
+            </div>
+            <button class="btn-login">Login</button>
+          </form>
+          <h5>
+            Não tem uma conta?
+            <span class="cadastro" id="id_cadastro"> Cadastre-se</span>
+          </h5>
+        </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

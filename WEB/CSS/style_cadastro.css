@@ -1,6 +1,7 @@
 .pagina{
     display: flex;
     flex-direction: row;
+    margin: auto;
     width: 100%;
     height: 100%;
 }
@@ -8,17 +9,18 @@
 .container_img {
     width: 50%;
     height: 100%;
-    background-image: url(../imgs/conntainer.jpg);
+    /* background-image: url(../imgs/conntainer.jpg); */
+    background-color: aqua;
 }
 
-.container {
+/* .container {
     position: absolute;
     top: 204px;
     left: 1100px;
     width: 393px;
     height: 600px;
     background-color: white;
-}
+} */
 
 .cadastro {
     position: absolute;
