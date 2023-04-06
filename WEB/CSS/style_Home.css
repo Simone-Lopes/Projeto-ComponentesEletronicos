@@ -32,7 +32,7 @@ body{
     color: #ffffff;
     display: flex;
     list-style: none;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: 100px;
 }
 .logo {
@@ -80,8 +80,18 @@ a{
     color: white;
     border: solid 2px rgb(255, 255, 255);
     border-radius: 5px;
+    cursor: pointer;
+}
 
+#saiba-mais:hover{
+    transition: 0.15s ease-in-out;
+    color: #322271;
+}
 
+.btn-saibamais:hover{
+    background-color: white;
+    color: #009EA3;
+    transition: 0.15s ease-in-out;
 }
 .btn-cards{
     width: 100px;
@@ -92,6 +102,12 @@ a{
     color: #2F91E0;
     border: solid 1.5px #2F91E0;
     border-radius: 5px;
+    cursor: pointer;
+}
+.btn-cards:hover{
+    background-color: #2F91E0;
+    color: white;
+    transition: 0.15s ease-in-out;
 }
 .cards-header{
     display: flex;

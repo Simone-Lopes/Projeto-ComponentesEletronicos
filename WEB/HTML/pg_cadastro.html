@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/style_cadastro.css">
+    <link rel="shortcut icon" href="../imgs/favicon.ico" type="image/x-icon">
     <script src="../JS/script_cadastro.js"></script>
     <title> Cadastro </title>
 
@@ -15,15 +16,34 @@
 
 <body>
     <div class="pagina">
-        <div class="container_img"></div>
-        <div class="container">
-            <div class="cadastro">Cadastre-se</div>
-            <div></div>
+        <div class="container1">
+            <a href="pg_home.html"><img src="../imgs/logo (3).png" alt="Logo" width="120px" height="100px"></a>
         </div>
-    </div>
-
-
-
+        <div class="container2">
+          <div class="card">
+            <form>
+              <h1 class="titulo">Cadastre-se</h1>
+              <div class="nome">
+                <label class="label" for="nome">Nome Completo</label>
+                <input class="input" type="text" id="nome" name="nome" />
+              </div>
+              <div class="email">
+                <label class="label" for="email">Email</label>
+                <input class="input" type="email" id="email" name="email" />
+              </div>
+              <div class="senha">
+                <label class="label" for="senha">Senha</label>
+                <input class="input" type="password" id="senha" name="senha" />
+              </div>
+            </form>
+            <button class="btn-login">Login</button>
+            <h5>
+              Já tem uma conta?
+              <a href="pg_login.html"><span class="cadastro" id="id_cadastro"> Login</span></a>
+            </h5>
+          </div>
+        </div>
+      </div>
 </body>
 
 </html>

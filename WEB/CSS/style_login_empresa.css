@@ -21,6 +21,12 @@ h5 {
     align-self: baseline;
 }
 
+
+#id_cadastro {
+    margin-left: 15%;
+}
+
+
 .container2 .card .cadastro {
     color: #E295BA;
 }
@@ -32,7 +38,7 @@ h5 {
     flex-direction: row;
 }
 
-.container1 {
+.container2 {
     height: 100vh;
     width: 44%;
     background-image: url('../imgs/conntainer.jpg');
@@ -40,7 +46,7 @@ h5 {
     background-position: 100%;
 }
 
-.container2 {
+.container1 {
     height: 100vh;
     width: 45%;
     background-color: #E7E7E9;
@@ -68,7 +74,7 @@ h5 {
 }
 
 input, button{
-    margin-bottom: 15%;
+    margin-bottom: 10%;
 }
 
 
@@ -77,11 +83,13 @@ input, button{
     transition: 0.15s ease-in-out;
 }
 .titulo{
-    margin-bottom: 10%;
+    margin-top: 10%;
     font-size: 160%;
+    margin-bottom: 10%;
 }
 
-a {
-    text-decoration: none;
+.container2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
 }
-
