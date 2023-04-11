@@ -46,7 +46,11 @@ body{
 a{
     text-decoration: none;
     color: #ffffff;
-    
+}
+
+.nav-bar a:hover{
+    border-bottom: #ffffff solid 1px;
+    transition: 0.15s ease;
 }
 .header .container{
     justify-content: space-between;
@@ -129,6 +133,11 @@ a{
     align-items: center;
     height: 170px;
     box-shadow: 0 -0.5rem 1rem rgba(0 0 0 / 0.10);
+}
+
+.card:hover{
+    transform: scale(1.05);
+    transition: 0.15s ease;
 }
 .group-header-filhos{
     display: flex;
@@ -255,11 +264,6 @@ a{
     height: 50px;
     background-color: white;
     margin-bottom: -10px;
-}
-
-.nav-bar a:hover{
-    color: #000000;
-    transition: 0.15s ease;
 }
 
 .fale-conosco{
