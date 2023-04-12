@@ -15,6 +15,10 @@ input {
     border-bottom: solid 1px black;
 }
 
+input:focus {
+    outline: none;
+}
+
 h5 {
     display: flex;
     color: #505050;
