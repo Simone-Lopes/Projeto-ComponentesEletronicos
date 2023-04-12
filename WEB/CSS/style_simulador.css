@@ -1,33 +1,174 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 body {
-    text-align: center;
+   margin: 0px;
 }
 
-h1{
-    height: 40px;
-    width: 1350px;
-    background-color: #95B0C9;
-    text-align: center;
-    font-family: Arial;
+.container{
+    display: flex;
+    height: 120px;
+    width: 90%;
+    margin: auto;
 }
 
-h4, span{
-    font-size: 17px;
-    font-family: Arial;
+.header .header-group{
+    margin: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #009EA3;
+}
+.nav-bar {
+    width: 50%;
+    height: 45px;
+    color: #ffffff;
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 5%;
+}
+.logo {
+    color: rgb(0, 173, 173);
+    display: flex;
+    align-self: center;
+    width: 125px;
+    height: 120px;
+    margin-left: 5%;
 }
 
-.inputs {
-    background-color: #95B0C9;
-    height: 450px;
-    width: 1350px;
-    border-radius: 20px 0 20px 0;
-    font-family: Arial;
+a{
+    text-decoration: none;
+    color: #ffffff;
 }
 
-button{
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .container .login a{
+    display: flex;
+    color: #262526;   
+}
+
+.login_icon{
+    height: 25px;
+    width: 30px;
+    margin-left: 15%;
+}
+
+/* Inicio card */
+
+.container2{
+    width: 100%;
+    height: 500px;
+    display: flex;
+}
+
+.container2 .card {
+    background:#EBE8E8;
+    color:  #757575;
+    width: 90%;
+    height: 600px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding: 1%;
+    margin-top: 3%;
+    margin-left: 4%;
+}
+
+.container2 .card h1 {
     color: black;
-    background-color: white;
-    border-radius: 20px;
-    width: 200px;
-    height: 50px;
+    font-size: 30px;
+    /* margin-left: 35%; */
 }
 
+.container2 .card .formulario {
+    display: flex;
+    flex-direction: column;
+    width: 90%;       
+    justify-content: center;
+    align-items: center;
+}
+
+.container2 .card .formulario .NomeEmp {
+    display: flex;
+    flex-direction: column;
+    width: 50%;    
+    margin: 1%;
+    /* align-items: center; */
+    
+}
+
+.container2 .card .formulario .ProdutosP {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1%;
+    /* align-items: center; */
+    
+}
+
+.container2 .card .formulario .VidaUtil {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1%;
+    /* align-items: center; */
+    
+}
+
+.container2 .card .formulario .Preco {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 1%;
+     /* align-items: center; */
+   
+}
+
+.container2 .card .formulario button {
+    margin-right: 2%;
+    background: #009EA3;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+    height: 50px;
+    width: 20%;
+    align-self: center;
+    cursor: pointer;
+}
+
+.container2 .card .formulario input {
+    width: 70%;
+    height: 30px;
+    padding: 10px 15px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1%;
+}
+
+.part1{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 5%;
+    margin-left: 15%;
+}
+
+.part2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
