@@ -74,16 +74,17 @@ a{
 .container2 .card {
     background:#EBE8E8;
     color:  #757575;
-    width: 90%;
+    width: 85%;
     height: 600px;    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 20px;
     padding: 1%;
     margin-top: 3%;
-    margin-left: 4%;
+    margin-left: 6%;
+    box-shadow: 35px 45px 40px rgb(217, 220, 213);
 }
 
 .container2 .card h1 {
