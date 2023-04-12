@@ -1,0 +1,263 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    margin: 0%;
+    padding: 0%;
+    background-color: #E7E7E9;
+}
+
+.container{
+    display: flex;
+    height: 120px;
+    width: 90%;
+    margin: auto;
+}
+
+.header .header-group{
+    margin: 0;
+    width: 100%;
+    height: 120px;
+    background-color: #009EA3;
+}
+.nav-bar {
+    width: 50%;
+    height: 45px;
+    color: #ffffff;
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 5%;
+}
+.logo {
+    color: rgb(0, 173, 173);
+    display: flex;
+    align-self: center;
+    width: 140px;
+    height: 120px;
+    margin-left: 5%;
+}
+
+a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .container .login a{
+    display: flex;
+    color: #262526;   
+}
+
+.login_icon{
+    height: 25px;
+    width: 30px;
+    margin-left: 15%;
+}
+
+
+.nav-bar li:hover{
+    border-bottom: rgb(255, 253, 253) 1px solid;
+}
+
+
+.principal {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    width: 60%;
+}
+
+.mapa {
+    width: 40%;
+    margin-top: 2.5%;
+    margin-right: 2.5%;
+}
+
+.imagem {
+    background-image: url(../imgs/imagem_2023-03-29_102652164\ 1.png);
+    height: 90vh;
+    background-size: cover;
+    width: 100%;
+}
+
+
+
+
+.inicial {
+    margin-top: 0%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 0%;
+}
+
+.titulo {
+    margin-top: 50px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.par1 {
+    color: black;
+}
+
+.part2 {
+    color: rgb(81, 167, 167);
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.subtitulo {
+    font-size: 20px;
+    color: grey;
+}
+
+
+
+
+
+.dados {
+    margin-top: 0%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+}
+
+.dados input {
+    width: 80%;
+    height: 6vh;
+    border: 1px solid rgb(173, 175, 177);
+    border-radius: 5px;
+    text-align: start;
+}
+
+.dados button {
+    margin-top: 10px;
+    background: #009EA3;
+    color: #fff;
+    width: 81%;
+    height: 6vh;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.enviar:hover {
+    color: #009EA3;
+    background-color: #ffffff00;
+    border: 2px solid #009EA3;
+    transition: 0.15s ease-in-out;
+}
+
+.contato {
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon {
+    width: 5vh;
+    height: 5vh;
+    margin-right: 1vh;
+}
+
+.telefone {
+    display: flex;
+}
+.endereço {
+    display: flex;
+}
+.email {
+    display: flex;
+}
+.title {
+    font-weight:bold;
+}
+
+
+
+
+
+.footer {
+    width: 100%;
+    background-color: #009EA3;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-right {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-left: 10%;
+}
+
+.footer-right-content {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+
+}
+
+.footer-right-content a {
+    margin-bottom: 15px;
+}
+
+.footer-right-content a:hover {
+    color: black;
+    transition: 0.15s ease;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-left a:hover {
+    color: black;
+    transition: 0.15s ease;
+}
+
+.icons-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.compania,
+.usuario,
+.calculadora {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-right-content h1 {
+    font-size: 16px;
+    color: white;
+}
