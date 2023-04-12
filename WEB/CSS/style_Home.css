@@ -49,8 +49,7 @@ a{
 }
 
 .nav-bar a:hover{
-    border-bottom: #ffffff solid 1px;
-    transition: 0.15s ease;
+    border-bottom: #ffffff solid 1.5px;
 }
 .header .container{
     justify-content: space-between;
