@@ -42,6 +42,9 @@ a{
     text-decoration: none;
     color: #ffffff;
 }
+.nav-bar a:hover{
+    border-bottom: #ffffff solid 1.5px;
+}
 
 .header .container{
     display: flex;
