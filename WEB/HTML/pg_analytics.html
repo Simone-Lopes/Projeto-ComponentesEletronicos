@@ -9,7 +9,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="shortcut icon" href="../imgs/favicon.ico" type="image/x-icon">
             <link rel="stylesheet" href="../CSS/style_analytics.css">
-            <script src="../JS/script_analytics.js"></script>
+            <!-- <script src="./js/funcoes.js"></script> -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <title> Analytics </title>
 
         </head>
@@ -32,10 +33,33 @@
                         
                             <ul class="opções_visualização">
                             
-                                <li>Geral</li>
-                                <li>Containers</li>
-                                <li>Activies</li>
-                                <li>Reports</li>
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../imgs/home_icom.png" alt="">
+                                        Geral
+                                    </div>
+                                </li>
+                                    
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../imgs/grafico_icon.png" alt="">
+                                        Containers
+                                    </div>
+                                </li>
+                                
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../imgs/icon-bandeira.png" alt="">
+                                        Activies
+                                    </div>
+                                </li>
+                                
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../imgs/ico-user.png" alt="">
+                                        Reports
+                                    </div>
+                                </li>
                             
                             </ul>
                         
@@ -74,10 +98,10 @@
                         <div class="graficos">
 
                             <div class="card-1">
-                                <img class="img-graficos" src="../imgs/modelo_grafico_temp.png" alt="Grafico Temperatura">
+                                <canvas id="myChart_Temp"></canvas>
                             </div>
                             <div class="card-2">
-                                <img class="img-graficos" src="../imgs/modelo_grafico_umi.png" alt="Grafico de Umidade">
+                                <canvas id="myChart_Umi"></canvas>
                             </div>
                             
                         </div>
@@ -120,3 +144,51 @@
         </body>
 
     </html>
+
+    <script>
+        const ctx_temp = document.getElementById('myChart_Temp');
+
+            new Chart(ctx_temp, {
+                type: 'bar',
+                data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+
+<script>
+    const ctx_umi = document.getElementById('myChart_Umi');
+
+        new Chart(ctx_umi, {
+            type: 'line',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+    },
+    
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
