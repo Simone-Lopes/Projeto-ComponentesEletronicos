@@ -1,7 +1,35 @@
-- Data:
-- Quem esteve presente:
-- Quem estava ausente + justificativa:
-- Tópicos discutidos: 
-- Decisões:
-- Atualização da ferramenta de gestão:
-- Responsáveis pelas novas tarefas e prazos:
+- Data: 13/04/2023
+- Quem esteve presente: Todos os membros (Bianca, Cézar, Davi, Guilherme, Livia e Simone)
+- Quem estava ausente + justificativa: Todos estavam presentes.
+- Tópicos discutidos: Atualizar premissas e restrições, definir entregas da próxima sprint, funcionalidades de API's 
+- Decisões: César será o SM dessa Sprint e Guilherme o PO. Além disso definimos as atividades da semana!
+
+
+Atividade/                          			início/           entrega/        responsável/
+
+
+Atuaização do simulador	           			      13/04/2023       17/04/2023         Guilherme
+          
+
+Tabela requisitos Petry e backlog sprints             13/04/2023       20/04/2023         Bianca
+
+
+Diagrama de Negócio						13/04/2023		20/04/2023		Simone
+
+
+Validação dos campos nas páginas do site			13/04/2023		20/04/2023		Bianca
+
+
+Criação do email do projeto					13/04/2023       20/04/2023         César
+
+
+Dashboards usuário e adm 					13/04/2023       20//04/2023        Davi
+
+
+Arrumar css o site 						13/04/2023	     20/04/2023         Livia/Bianca/Simone
+
+
+Enviar Fotos 							13/04/2023       20/04/2023         Todos   
+
+
+
