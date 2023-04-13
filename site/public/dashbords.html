@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+    
+    <html lang="en">
+
+        <head>
+            
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="shortcut icon" href="../public/assets/icon/favicon.ico" type="image/x-icon">
+            <link rel="stylesheet" href="../public/css/style_analytics.css">
+            <script src="./js/funcoes.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <title> Analytics </title>
+
+        </head>
+
+        <body>
+
+            <div class="geral">
+                
+                <div class="side-bar">
+
+                    <div class="container">
+
+                        <span class="container-logo">
+                            
+                            <img src="../public/assets/imgs/logo (3).png" alt="Logo" class="logo" />
+                        
+                        </span>
+                    
+                        <span class="container-opçoes">
+                        
+                            <ul class="opções_visualização">
+                            
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../public/assets/icon/home_icom.png" alt="">
+                                        Geral
+                                    </div>
+                                </li>
+                                    
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../public/assets/icon/grafico_icon.png" alt="">
+                                        Containers
+                                    </div>
+                                </li>
+                                
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../public/assets/icon/icon-bandeira.png" alt="">
+                                        Activies
+                                    </div>
+                                </li>
+                                
+                                <li class="lista">
+                                    <div>
+                                        <img class="icons" src="../public/assets/icon/ico-user.png" alt="">
+                                        Reports
+                                    </div>
+                                </li>
+                            
+                            </ul>
+                        
+                        </span>
+                    
+                    </div>
+                
+                </div>
+
+                <div class="dashbords">
+                    
+                    <div class="header">
+
+                        <div class="select">
+
+                            <strong>Relatorios:</strong>
+                            <select name="Realtorios" id="select_relatorios">
+                                <option value="Diario">Diario</option>
+                                <option value="semanal">Semanal</option>
+                                <option value="Mensal">Mensal</option>
+                            </select>
+
+                        </div>
+
+                        <div class="icon">
+
+                            <img id="icone_sino" src="../public/assets/icon/sino_icon.png" alt="Icone de Sinalização">
+                                                        
+                        </div>
+
+
+                    </div>
+
+                    <div class="container">
+                        
+                        <div class="graficos">
+
+                            <div class="card-1">
+                                <canvas id="myChart_Temp"></canvas>
+                            </div>
+                            <div class="card-2">
+                                <canvas id="myChart_Umi"></canvas>
+                            </div>
+                            
+                        </div>
+
+                        <div class="kpis">
+
+                            <div class="card">
+                                <!-- <div class="kpi-header">
+                                    <p> 
+                                        Maior Temperatura Registrada
+                                    </p>
+                                </div>
+                                <div class="kpi-body">
+                                    <p> 
+                                        <strong>
+                                            5°C
+                                        </strong>
+                                    </p>
+                                </div>
+                                <div class="kpi-footer">
+                                    <p>
+                                        19/04/2023 12:00
+                                    </p>
+                                </div> -->
+                            </div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            
+                        </div>
+
+
+
+                    </div>
+                
+                </div>
+            
+            </div>
+
+        </body>
+
+    </html>
+
+    <script>
+        const ctx_temp = document.getElementById('myChart_Temp');
+
+            new Chart(ctx_temp, {
+                type: 'bar',
+                data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+
+<script>
+    const ctx_umi = document.getElementById('myChart_Umi');
+
+        new Chart(ctx_umi, {
+            type: 'line',
+            data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+    },
+    
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>

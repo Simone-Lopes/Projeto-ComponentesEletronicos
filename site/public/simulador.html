@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style_simulador.css">
+    <script src="../public/js/funcoes.js"></script>
+    <title> Calculadora Financeira - Umitech </title>
+
+</head>
+
+<body>
+    <!--Inicio Header-->
+    <div class="header">
+        <div class="header-group">
+            <div class="container">
+                <img src="../assets/imgs/logo (3).png" alt="Logo" class="logo">
+                <ul class="nav-bar">
+                    <li><a href="sobreNos.html">Sobre Nós</a></li>
+                    <li><a href="../HTML/pg_faleConosco.html">Fale Conosco</a></li>
+                    <li><a href="simulador.html">Calculadora Financeira</a></li>
+                    <li><a href="loginEmpresa.html">Área do Cliente</a></li>
+                    <li>Idioma</li>
+                </ul>
+                <img src="../assets/icon/login_icon_151220.png" alt="login" class="login_icon">
+                <span class="login"><a href="login.html">Login/register</a></span>
+            </div>
+        </div>
+    </div>
+    <!--FIm Header-->
+
+    <!--Inicio Card-->
+    <div class="container2">
+        <div class="card">
+
+
+            <div class="formulario">
+                <h1>
+                    Calculadora Financeira
+                </h1>
+                <h3>
+                    Bem vindo ao Simulador Secure Ship! Criamos essa interface para que você, cliente, consiga calcular
+                    o valor dos benefícios de contratar nossos serviços. Calcule de forma gratuita!
+                </h3>
+                <div class="part1">
+                    <div class="NomeEmp">
+                        Nome da sua empresa:
+                        <input id="input_nome" placeholder="Nome da empresa">
+                    </div>
+                    <div class="ProdutosP">
+                        Insira quantos produtos são perdidos em um container (Mês):
+                        <input id="input_perda" placeholder="Perda mensal">
+                    </div>
+                </div>
+                <div class="part2">
+                    <div class="VidaUtil">
+                        Insira a vida útil dos seus produtos após o transporte (em %):
+                        <input id="input_vida_util" placeholder="Vida útil">
+                    </div>
+                    <div class="Preco">
+                        Insira o preço do produto (em R$):
+                        <input id="input_preco_produto" placeholder="Preço">
+                    </div>
+                </div>
+                <button onclick="calcular()">
+                    Enviar
+                </button>
+            </div>
+
+            <span id="span_mensagem"></span>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function calcular() {
+            
+            var nome = input_nome.value
+            var perda = Number(input_perda.value)    
+            var vida_util = Number(input_vida_util.value)
+            var preco = Number(input_preco_produto.value)
+            
+            var vida_util_aumentada = 90
+            var perda_reduzida = perda*0.95
+            var valor_salvo = perda_reduzida*preco
+                span_mensagem.innerHTML = `${nome}, com nosso monitoramento suas perdas serão reduzidas em <b>${perda_reduzida}</b> unidades e a vida útil será mantida em torno de ${vida_util_aumentada}% nos containers que haviam problemas com monitoramento de temperatura e umidade.
+                Salvando até <b>R$${valor_salvo}!</b>`
+    
+    }
+
+</script>
