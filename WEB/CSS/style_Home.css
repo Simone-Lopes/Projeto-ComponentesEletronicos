@@ -227,23 +227,9 @@ a{
     width: 80%; 
     margin: auto;
     flex-direction: row;
-    position: relative;
-    animation-name: move;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
     
 }
 
-@keyframes move {
-    from {
-      left: 0;
-    }
-    to {
-      left: 30px;
-    }
-  }
-  
 
 .card-dif{
     display: flex;
@@ -263,8 +249,8 @@ a{
     font-weight: bold;
     font-size: 20px;
     color: #ffffff;
-    align-self: baseline;
     text-transform: capitalize;
+    text-align: center;
 }
 
 .card-dif-content{
@@ -282,87 +268,81 @@ a{
 
 .fale-conosco{
     background-color: #E7E7E9;
-    height: 400px;
+    height: fit-content;
     display: flex;
-    flex-direction: column;
-    align-items: center;    
-    margin-bottom: 150px;
+    align-items: center;   
+    justify-content: center; 
+    margin-bottom: 5%;
+    width: 100%;
 }
 
-.msg-fc h1{
+.steps{
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+}
+
+
+
+.img-step{
+    margin-right: 2%;
+}
+.content-fc{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 17px;
+}
+
+.steps h2{
+    margin: 0%;
+}
+
+.msg-fc{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.msg-fc h2 {
+    margin-top: 5%;
     text-transform: uppercase;
     font-weight: lighter;
-    font-size: 25px;
+    font-size: 24px;
     color: #5F41D9;
+    margin-bottom: 3%;  
+    text-align: center;
 }
 
-.form-fc{
-    display: flex;
-    width: 80%;
-    justify-content: center; 
-    align-items: center;
+.text-step p{
+    text-align: start;
 }
 
-.form-fc form{
-    display: flex;
+.text-step h2{
+    font-weight: lighter;
+}
+
+
+.msg-fc p{
+    margin-bottom: 3%;  
+    text-align: center;
+  }
+
+.newsletter{
+    height: 14vh;
     width: 100%;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-form input{
-    width: 100px;
-    background-color: #E7E7E9;
-    border-style: none;
-    border-bottom: solid 1px black;
-    width: 100%;
-}
-
-form input:focus {
-    outline: none;
-}
-
-.form-fc form div{
+    background-color: #f3f3f3;
+    border: black 1px solid;
     display: flex;
-    flex-direction: column;
-    margin: 15px;
+}
+
+.news-content{
     width: 80%;
-}
-
-#linha-msg-fc{
-    justify-content: center;
-    align-items: center;
     display: flex;
-}
-
-.submit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.submit input{
-    width: 100px;
-    height: 30px;
-    margin-top: 20px;
-    background-color: rgba(128, 128, 128, 0);
-    border-style: none;
-    color: #5F41D9;
-    border: solid 1.5px #5F41D9;
-    border-radius: 5px;
-}
-
-.submit input:hover{
-    width: 100px;
-    height: 30px;
-    margin-top: 20px;
-    background-color: rgba(128, 128, 128, 0);
-    border-style: none;
-    color: #000000;
-    border: solid 1.5px #000000;
-    border-radius: 5px;
-    transform: scale(1.05);
-    transition: 0.15s ease;
+        
 }
 
 .footer{

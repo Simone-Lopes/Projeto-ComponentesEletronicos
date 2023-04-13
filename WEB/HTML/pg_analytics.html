@@ -146,15 +146,17 @@
     </html>
 
     <script>
+
+        var CONTADOR = 0;
         const ctx_temp = document.getElementById('myChart_Temp');
 
             new Chart(ctx_temp, {
                 type: 'bar',
                 data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '# Umidade',
+                data: [65, 59, 63, 65, 62, 63, 65, 59, 63, 65, 62, 63],
                 borderWidth: 1
             }]
         },
@@ -175,10 +177,10 @@
         new Chart(ctx_umi, {
             type: 'line',
             data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '#Temperatura',
+            data: [17, 19, 23, 25, 22, 23, 19, 19, 23, 25, 22, 23],
             borderWidth: 1
         }]
     },

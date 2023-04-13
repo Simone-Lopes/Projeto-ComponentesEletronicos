@@ -33,7 +33,7 @@ body {
     color: rgb(0, 173, 173);
     display: flex;
     align-self: center;
-    width: 125px;
+    width: 140px;
     height: 120px;
     margin-left: 5%;
 }
@@ -69,28 +69,37 @@ a{
     width: 100%;
     height: 500px;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container2 .card {
     background:#EBE8E8;
     color:  #757575;
-    width: 85%;
-    height: 600px;    
+    width: 70%;
+    height: 70vh;    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
     padding: 1%;
-    margin-top: 3%;
-    margin-left: 6%;
-    box-shadow: 35px 45px 40px rgb(217, 220, 213);
+    /* margin-top: 3%; */
+    /* box-shadow: 35px 45px 40px rgb(0, 0, 0); */
 }
 
 .container2 .card h1 {
     color: black;
-    font-size: 30px;
+    font-size: 20px;
+    margin: auto;
     /* margin-left: 35%; */
+}
+
+.container2 .card h3 {
+    color: #757575;
+    font-size: 15px;
+    /* margin-left: 35%; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .container2 .card .formulario {
@@ -104,7 +113,8 @@ a{
 .container2 .card .formulario .NomeEmp {
     display: flex;
     flex-direction: column;
-    width: 50%;    
+    width: 50%;   
+    height: 10vh; 
     margin: 1%;
     /* align-items: center; */
     
@@ -112,8 +122,10 @@ a{
 
 .container2 .card .formulario .ProdutosP {
     display: flex;
+    font-size: 13px;
     flex-direction: column;
     width: 50%;
+    height: 10vh;
     margin: 1%;
     /* align-items: center; */
     
@@ -124,12 +136,15 @@ a{
     flex-direction: column;
     width: 50%;
     margin: 1%;
+    font-size: 13px;
+    height: 10vh;
     /* align-items: center; */
     
 }
 
 .container2 .card .formulario .Preco {
     display: flex;
+    height: 10vh;
     flex-direction: column;
     width: 50%;
     margin: 1%;
@@ -141,12 +156,12 @@ a{
     margin-right: 2%;
     background: #009EA3;
     color: #fff;
-    padding: 10px 15px;
     border: none;
     border-radius: 10px;
-    font-size: 25px;
-    height: 50px;
+    font-size: 15px;
+    height: 7vh;
     width: 20%;
+    text-align: center;
     align-self: center;
     cursor: pointer;
 }
@@ -155,7 +170,6 @@ a{
     width: 70%;
     height: 30px;
     padding: 10px 15px;
-    text-align: center;
     border: none;
     border-radius: 5px;
     margin-top: 1%;
@@ -166,6 +180,7 @@ a{
     display: flex;
     flex-direction: row;
     margin: 5%;
+    margin-top: 1%;
     margin-left: 15%;
 }
 
@@ -175,4 +190,70 @@ a{
     flex-direction: row;
     margin-bottom: 5%;
     margin-left: 10%;
+}
+
+.footer{
+    width: 100%;
+    background-color: #009EA3;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-right{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-left: 10%;
+}
+.footer-right-content{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+
+}
+
+.footer-right-content a{
+   margin-bottom: 15px;
+}
+
+.footer-right-content a:hover{
+    color: black;
+    transition: 0.15s ease;
+ }
+
+.footer-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-left a:hover{
+    color: black;
+    transition: 0.15s ease;
+}
+
+.icons-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.compania, .usuario, .calculadora {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-right-content h1{
+    font-size: 16px;
+    color: white;
 }
