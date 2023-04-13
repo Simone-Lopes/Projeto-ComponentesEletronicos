@@ -25,7 +25,7 @@ body {
 }
 .nav-bar {
     width: 50%;
-    height: 45px;
+    height: 45px; 
     color: #ffffff;
     display: flex;
     list-style: none;  
@@ -89,7 +89,8 @@ a{
 .text {
     width: 50%;
     margin: auto;
-    height: 80vh;
+    height: auto;
+    margin-bottom: 5%;
 }
 .titulo{
     display: flex;
@@ -107,13 +108,16 @@ a{
 .text span{
     color: #3B3538;
 }
+.text a{
+    color: #009EA3;
+}
 
 /* Iniciando parte da equipe */
 
 .equipe h1{
     color: #3B3538;
     text-align: center;
-    margin: 80px;
+    margin: 70px;
 }
 .cor-divisao{
     background-color: #009EA3;
@@ -122,17 +126,18 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 20px;
 }
 .cor-divisao h1{
     color: white;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 /*Cards da equipe*/
 
 .card{
     background-color: rgb(255, 255, 255);
-    margin: 20px;
+    margin: 30px;
     width: 20%;
     height: 50vh;
     border-radius: 10px;
