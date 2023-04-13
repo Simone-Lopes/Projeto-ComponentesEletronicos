@@ -28,7 +28,7 @@ body {
     height: 45px;
     color: #ffffff;
     display: flex;
-    list-style: none;
+    list-style: none;  
     justify-content: space-evenly;
     align-items: center;
     margin-right: 5%;
