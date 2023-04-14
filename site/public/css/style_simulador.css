@@ -41,6 +41,11 @@ body {
 a{
     text-decoration: none;
     color: #ffffff;
+    
+}
+
+.nav-bar a:hover{
+    border-bottom: #ffffff solid 1.5px;
 }
 
 .header .container{
@@ -71,22 +76,22 @@ a{
 .container2 .card {
     background:#EBE8E8;
     color:  #757575;
-    width: 90%;
-    height: 600px;    
+    width: 83%;
+    height: 435px;    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
-    padding: 1%;
-    margin-top: 3%;
-    margin-left: 4%;
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 1%;
+    margin-left: 7%;
+    box-shadow: 5px 15px 40px #757575 ;
 }
 
 .container2 .card h1 {
     color: black;
-    font-size: 30px;
-    /* margin-left: 35%; */
+    font-size: 25px;
 }
 
 .container2 .card .formulario {
@@ -101,55 +106,47 @@ a{
     display: flex;
     flex-direction: column;
     width: 50%;    
-    margin: 1%;
-    /* align-items: center; */
-    
+    margin: 1%;     
 }
 
 .container2 .card .formulario .ProdutosP {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: 1%;
-    /* align-items: center; */
-    
+    margin: 1%; 
 }
 
 .container2 .card .formulario .VidaUtil {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: 1%;
-    /* align-items: center; */
-    
+    margin: 1%;    
 }
 
 .container2 .card .formulario .Preco {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: 1%;
-     /* align-items: center; */
-   
+    margin: 1%;       
 }
 
 .container2 .card .formulario button {
     margin-right: 2%;
     background: #009EA3;
-    color: #fff;
-    padding: 10px 15px;
+    color: #fff;   
     border: none;
     border-radius: 10px;
-    font-size: 25px;
-    height: 50px;
-    width: 20%;
+    font-size: 20px;
+    height: 35px;
+    width: 10%;
     align-self: center;
     cursor: pointer;
+    margin-top: 1%;
 }
 
 .container2 .card .formulario input {
     width: 70%;
-    height: 30px;
+    height: 20px;
     padding: 10px 15px;
     text-align: center;
     border: none;
@@ -161,17 +158,25 @@ a{
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin: 5%;
-    margin-left: 15%;
+    margin: 2%;
+    margin-left: 10%;
 }
 
 .part2{
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-bottom: 5%;
-    margin-left: 10%;
+    margin-bottom: 2%;
+    margin-left: 8%;
 }
 
-/* #span_mensagem{  
-} */
+.container2 .card .mensagem {
+    margin: 1%;
+    font-size: 20px;
+}
+
+.container2 .card .mensagem span{
+    color: black;
+    font-style: italic;
+    font-size: 25px;
+}
