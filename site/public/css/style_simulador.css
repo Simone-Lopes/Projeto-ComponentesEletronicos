@@ -33,7 +33,7 @@ body {
     color: rgb(0, 173, 173);
     display: flex;
     align-self: center;
-    width: 125px;
+    width: 140px;
     height: 120px;
     margin-left: 5%;
 }
@@ -173,6 +173,5 @@ a{
     margin-left: 10%;
 }
 
-#span_mensagem{
-        
-}
+/* #span_mensagem{  
+} */
