@@ -41,7 +41,7 @@ h5 {
 .container1 {
     height: 100vh;
     width: 44%;
-    background-image: url('../assets/imgs2/conntainer.jpg');
+    background-image: url('../assets/img/conntainer.jpg');
     background-size: cover;
     background-position: 100%;
 }
@@ -107,6 +107,11 @@ a {
     border: #e6005a 3px solid;
     padding: 10px;
     margin-right: 10%;
+}
+#login{
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
   
 .card_erro #mensagem_erro{
