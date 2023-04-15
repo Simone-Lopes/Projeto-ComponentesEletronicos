@@ -17,7 +17,7 @@ body {
 
 .header .header-group{
     margin: 0;
-    width: 100%;
+    width: 100vw;
     height: 120px;
     background-color: #009EA3;
 }
@@ -59,7 +59,11 @@ a{
 .login_icon{
     height: 25px;
     width: 30px;
-    margin-left: 15%;
+    margin-left: 20%;
+}
+
+.login a:hover{
+    border-bottom: rgb(0, 0, 0) 1px solid;
 }
 
 
@@ -85,7 +89,7 @@ a{
 }
 
 .imagem {
-    background-image: url('../assets/imgs2/imagem_2023-03-29_102652164\ 1.png');
+    background-image: url('../assets/img/imagem_2023-03-29_102652164\ 1.png');
     height: 90vh;
     background-size: cover;
     width: 100%;

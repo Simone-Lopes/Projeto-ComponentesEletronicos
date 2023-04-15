@@ -1,9 +1,11 @@
-*{
+* {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
-   margin: 0px;
+    margin: 0%;
+    padding: 0%;
+    background-color: #E7E7E9;
 }
 
 .container{
@@ -15,7 +17,7 @@ body {
 
 .header .header-group{
     margin: 0;
-    width: 100%;
+    width: 100vw;
     height: 120px;
     background-color: #009EA3;
 }
@@ -41,11 +43,6 @@ body {
 a{
     text-decoration: none;
     color: #ffffff;
-    
-}
-
-.nav-bar a:hover{
-    border-bottom: #ffffff solid 1.5px;
 }
 
 .header .container{
@@ -62,14 +59,30 @@ a{
 .login_icon{
     height: 25px;
     width: 30px;
-    margin-left: 15%;
+    margin-left: 20%;
+}
+
+.login a:hover{
+    border-bottom: rgb(0, 0, 0) 1px solid;
+}
+
+
+.nav-bar li:hover{
+    border-bottom: rgb(255, 253, 253) 1px solid;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
 }
 
 /* Inicio card */
 
 .container2{
     width: 100%;
-    height: 500px;
+    height: auto;
+    margin-bottom: 50px;
     display: flex;
 }
 
@@ -179,4 +192,75 @@ a{
     color: black;
     font-style: italic;
     font-size: 25px;
+}
+
+/* Iniciando footer */
+
+.footer {
+    width: 100%;
+    background-color: #009EA3;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-right {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-left: 10%;
+}
+
+.footer-right-content {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+
+}
+
+.footer-right-content a {
+    margin-bottom: 15px;
+}
+
+.footer-right-content a:hover {
+    color: black;
+    transition: 0.15s ease;
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-left a:hover {
+    color: black;
+    transition: 0.15s ease;
+}
+
+.icons-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.compania,
+.usuario,
+.calculadora {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-right-content h1 {
+    font-size: 16px;
+    color: white;
 }
