@@ -162,9 +162,9 @@ a{
     justify-content: center;
 }
 .card img{
-    width: 40%;
-    height: 160px;
-    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
 }
 .card a{
     color: #009EA3;
