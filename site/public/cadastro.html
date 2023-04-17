@@ -88,6 +88,30 @@
 
             finalizarAguardar();
             return false;
+        } else if (emailVar.indexOf("@") < 0 || email.indexOf(".") < 0) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um email válido!";
+
+            finalizarAguardar();
+            return false;
+        } else if (tellVar.lenght != 11){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um telefone válido!";
+
+            finalizarAguardar();
+            return false;
+        } else if (senhaVar.lenght < 8){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira uma senha de ao menos 8 dígitos!";
+
+            finalizarAguardar();
+            return false;
+        } else if (senhaVar != confirmacaoSenhaVar){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "As senhas não coincidem.";
+
+            finalizarAguardar();
+            return false;
         }
         else {
             setInterval(sumirMensagem, 5000)
