@@ -45,14 +45,15 @@
                     Para dúvidas, sugestões, reclamações ou orçamento, entre em contato conosco abaixo:
                 </div>
             </div>
-
-            <div class="dados">
-                <p><input id="ipt_nome" type="text" placeholder="Nome"></p>
-                <p><input id="ipt_email" type="email" placeholder="E-mail"></p>
-                <p><input id="ipt_telcel" type="number" placeholder="Numero do telefone"></p>
-                <p><input id="ipt_mensagem" type="text" placeholder="Mensagem"></p>
-                <button class="enviar">ENVIAR</button>
-            </div>
+            <form action="">
+                <div class="dados">
+                    <p><input id="ipt_nome" type="text" placeholder="Nome"></p>
+                    <p><input id="ipt_email" type="email" placeholder="E-mail"></p>
+                    <p><input id="ipt_telcel" type="number" placeholder="Numero do telefone"></p>
+                    <p><input id="ipt_mensagem" type="text" placeholder="Mensagem"></p>
+                    <button onclick="enviar()" class="enviar">ENVIAR</button>
+                </div>
+            </form>        
             <div class="contato">
                 <div class="telefone">
                     <span class="icon"><img class="icon" src="./assets/img/chamada-telefonica.png"
@@ -66,14 +67,14 @@
                     <span class="icon"><img class="icon" src="./assets/img/cartas.png" alt=""></span>
                     <div class="conteudo">
                         <div class="title">E-MAIL</div>
-                        <div>secureship@email.com</div>
+                        <div>secure_ship@hotmail.com</div>
                     </div>
                 </div>
                 <div class="endereço">
-                    <span class="icon"><img class="icon" src="../public/assets/img/predio-comercial.png" alt=""></span>
+                    <span class="icon"><img class="icon" src="./assets/img/predio-comercial.png" alt=""></span>
                     <div class="conteudo">
                         <DIV class="title">ENDEREÇO</DIV>
-                        <div>Rua Haddock Lobo, 595 - São Paulo</div>
+                        <div>Rua Haddock Lobo, 595 - SP</div>
                     </div>
                 </div>
 
@@ -122,3 +123,12 @@
 </body>
 
 </html>
+
+<script>
+    function enviar() {
+        var email = "secure_ship@hotmail.com";
+        var assunto = `Olá, meu nome é ` + ipt_nome.value;
+        var corpo = ipt_mensagem.value;
+        window.open("mailto:" + email + "?subject=" + assunto + "&body=" + corpo);
+}
+</script>
