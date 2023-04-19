@@ -88,19 +88,13 @@
 
             finalizarAguardar();
             return false;
-        } else if (emailVar.indexOf("@") < 0 || email.indexOf(".") < 0) {
+        } else if (emailVar.indexOf("@") < 0) {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Insira um email válido!";
 
             finalizarAguardar();
             return false;
-        } else if (tellVar.lenght != 11){
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Insira um telefone válido!";
-
-            finalizarAguardar();
-            return false;
-        } else if (senhaVar.lenght < 8){
+        } else if (senhaVar.length < 8){
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Insira uma senha de ao menos 8 dígitos!";
 
@@ -116,6 +110,15 @@
         else {
             setInterval(sumirMensagem, 5000)
         }
+
+        // else if (tellVar.length != 15){
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "Insira um telefone válido!";
+
+        //     finalizarAguardar();
+        //     return false;
+        // }
+
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {

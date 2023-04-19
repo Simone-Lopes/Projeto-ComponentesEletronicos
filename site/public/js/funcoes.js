@@ -1,6 +1,6 @@
 // sessão
 function validarSessao() {
-    // aguardar();
+    aguardar();
 
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
@@ -8,20 +8,20 @@ function validarSessao() {
     var b_usuario = document.getElementById("b_usuario");
 
     if (email != null && nome != null) {
-        // window.alert(`Seja bem-vindo, ${nome}!`);
+        window.alert(`Seja bem-vindo, ${nome}!`);
         b_usuario.innerHTML = nome;
 
-        // finalizarAguardar();
+        finalizarAguardar();
     } else {
         window.location = "../login.html";
     }
 }
 
 function limparSessao() {
-    // aguardar();
+    aguardar();
     sessionStorage.clear();
-    // finalizarAguardar();
-    window.location = "../login.html";
+    finalizarAguardar();
+    window.location = "../../API_MARISE_DashBords/index.html";
 }
 
 // carregamento (loading)

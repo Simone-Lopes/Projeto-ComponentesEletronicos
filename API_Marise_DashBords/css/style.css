@@ -1,0 +1,187 @@
+
+
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body{
+    margin: 0%;
+    padding: 0%;
+    background-color: #E7E7E9;
+}
+
+.geral{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.side-bar{
+    display: flex;
+    width: 25%;
+    height: 100vh;
+    background-color: #009EA3;
+}
+
+.opções_visualização li{
+    list-style: none;
+}
+
+.opções_visualização .icons{
+    width: 18px;
+    height: 18px;
+    margin: 1%;
+}
+
+.dashbords{
+    display: flex;
+    width: 75%;
+    height: 100vh;
+    background-color: #E7E7E9;
+    flex-direction: column;
+}
+
+.side-bar .container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container-logo{
+    display: flex;
+    justify-content: center;
+}
+
+.side-bar .container .logo{
+    width: 78%;
+    height: 90%;
+}
+
+.container-opçoes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.opções_visualização{
+    color: white;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    margin-left: 20%;
+}
+
+.container-opçoes .lista{
+    margin: 2%;
+}
+
+.dashbords .header{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    border-bottom: solid 2px black;
+}
+
+.header .icon{
+    display: flex;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: end;
+}
+
+#icone_sino{
+    display: flex;
+    width: 8%;
+    height: 50%;
+    justify-self: end;
+    margin: 4%;
+}
+
+.select{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: start;
+    margin-left: 2%;
+}
+
+.dashbords .container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.graficos{
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+.container .graficos .card-1{
+    display: flex;
+    width: 45%;
+    margin: 25px;
+    height: 100%;
+}
+
+.container .graficos .card-2{
+    display: flex;
+    margin: 25px;
+    width: 45%;
+    height: 100%;
+}
+
+.kpis{
+    display: flex;
+    height: 7%;
+    width: 100%;
+    margin-top: 6%;
+}
+
+.kpis .card{
+    display: flex;
+    margin: 2%;
+    border: 2px solid black;
+    height: 25vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+.kpi-header{
+    width: 100%;
+    height: 25%;
+    border-bottom: solid 2px black;
+    display: flex;
+}
+
+.kpi-body{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
+.kpi-footer{
+    width: 100%;
+    height: 25%;
+    border-top: solid 2px black;
+    display: flex;
+}
+
+.kpi-header p{
+    text-align: center;
+}
+
+.kpi-body p strong{
+    text-align: center;
+    text-decoration: solid;
+}
+
+.kpi-footer p{
+    align-items: center;
+    justify-content: center;
+}
