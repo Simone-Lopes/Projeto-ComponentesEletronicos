@@ -1,0 +1,22 @@
+- Data: 13/04/2023
+- Quem esteve presente: Bianca, Cézar, Davi, Guilherme, Livia e Simone
+- Quem estava ausente + justificativa: NA
+- Tópicos discutidos: Atualizar premissas e restrições, definir entregas da próxima sprint, funcionalidades de API's.
+- Decisões: Decidimos como será a apresentação, além disso, quem irá efetuar os ajustes finais do projeto.
+
+
+Atividade/                          		      início/          entrega/          responsável/
+
+Slides								20/04/2023       23/04/2023        Simone/Lívia
+
+
+Tela dashboard/cadastro usuario				20/04/2023       23/04/2023        Bianca
+
+
+Trello								20/04/2023	     23/04/2023        Lívia
+
+
+Atualizar Fotos 							13/04/2023       24/04/2023        Todos   
+
+
+
