@@ -29,33 +29,37 @@
           
           <div class="card">
             <form>
-              <h1 class="titulo">Cadastre-se</h1>
+              <h1 class="titulo">Cadastre sua empresa</h1>
               <div class="nome">
-                <label class="label" for="nome">Nome Completo</label>
-                <input class="input" type="text" id="nome" name="nome" />
+                <label class="label" for="nome">Nome Fantasia</label>
+                <input class="input" type="text" id="nomeFantasia" name="nome" />
               </div>
-              <div class="nome">
-                <label class="label" for="telefone">telefone</label>
-                <input class="input" type="email" id="telefone" name="email" />
+              <div class="cnpj">
+                <label class="label" for="cnpj">CNPJ</label>
+                <input class="input" type="number" id="cnpj" name="cnpj" />
+              </div>
+              <div class="endereco">
+                <label class="label" for="endereco">Endereço</label>
+                <input class="input" type="text" id="endereco" name="endereco" />
+              </div>
+              <div class="telefone">
+                <label class="label" for="telefone">Telefone</label>
+                <input class="input" type="number" id="telefone" name="telefone" />
               </div>
               <div class="email">
                 <label class="label" for="email">Email</label>
-                <input class="input" type="email" id="email" name="email" />
+                <input class="input" type="text" id="email" name="senha" />
               </div>
-              <div class="senha">
+              <!-- <div class="senha">
                 <label class="label" for="senha">Senha</label>
                 <input class="input" type="password" id="senha" name="senha" />
-              </div>
-              <div class="senha">
-                <label class="label" for="senha">Confirmar Senha</label>
-                <input class="input" type="password" id="Confirmarsenha" name="senha" />
-              </div>
+              </div> -->
             </form>
-            <button onclick="cadastrar()" class="btn-login">Cadastre-se</button>
+            <button onclick="cadastrar()" class="btn-login">Cadastrar</button>
             <div id="login">
             <h5>
               Já tem uma conta?
-              <a href="login.html"><span class="cadastro" id="id_cadastro"> Login</span></a>
+              <a href="loginEmpresa.html"><span class="cadastro" id="id_cadastro"> Login</span></a>
             </h5></div>
           </div>
           <!-- <div id="div_aguardar" class="loading-div">

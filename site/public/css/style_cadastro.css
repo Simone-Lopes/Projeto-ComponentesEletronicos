@@ -61,7 +61,7 @@ h5 {
     width: 70%;
     flex-direction: column;
     align-self: center;
-    margin-top: 10%;
+    margin-top: 3%;
 }
 
 .btn-login {
@@ -74,7 +74,7 @@ h5 {
 }
 
 input, button{
-    margin-bottom: 10%;
+    margin-bottom: 7%;
 }
 
 
@@ -111,7 +111,12 @@ a {
 #login{
     display: flex;
     width: 100%;
+    margin-top: 0%;
     justify-content: center;
+}
+
+#login h5{
+    margin-top: 0%;
 }
   
 .card_erro #mensagem_erro{
