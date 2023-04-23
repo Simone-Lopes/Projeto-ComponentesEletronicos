@@ -39,9 +39,27 @@
                 <input class="input" type="number" id="cnpj" name="cnpj" />
               </div>
               <div class="endereco">
-                <label class="label" for="endereco">Endereço</label>
-                <input class="input" type="text" id="endereco" name="endereco" />
-              </div>
+                <div class="divisoria logradouro">
+                  <div class="divisoria label">
+                    <label class="label" for="endereco" id="label_logradouro">Logradouro</label>
+                    <label class="label" for="endereco" id="label_numero">Numero</label>
+                  </div>
+                  <div class="divisoria input">
+                    <input class="input" type="text" id="rua" name="endereco" />
+                    <input class="input" type="text" id="numero" name="endereco" />
+                  </div>  
+                </div>
+                <div class="divisoria logradouro">
+                  <div class="divisoria label">
+                    <label class="label" for="endereco" id="label_bairro">Bairro</label>
+                    <label class="label" for="endereco" id="label_estado">Estado</label>
+                  </div>
+                  <div class="divisoria input">
+                    <input class="input" type="text" id="bairro" name="endereco" />
+                    <input class="input" type="text" id="estado" name="endereco" />
+                  </div>  
+                </div>
+                
               <div class="telefone">
                 <label class="label" for="telefone">Telefone</label>
                 <input class="input" type="number" id="telefone" name="telefone" />
@@ -84,6 +102,10 @@
         var tellVar = telefone.value;
         var cnpjVar = cnpj.value
         var emailVar = email.value;
+        var logradouroVar = rua.value;
+        var numeroVar = numero.value; 
+        var bairroVar = bairro.value;
+        var estadoVar = estado.value;
         // var senhaVar = senha.value;
         // var confirmacaoSenhaVar = Confirmarsenha.value;
 
@@ -93,21 +115,21 @@
 
             finalizarAguardar();
             return false;
-        } else if (emailVar.indexOf("@") < 0) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Insira um email válido!";
-
-            finalizarAguardar();
-            return false;
         } else if (cnpjVar.length < 14){
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Insira um CNPJ válido.";
 
             finalizarAguardar();
             return false;
-        } else if (tellVar.length < 9){
+        }else if (tellVar.length < 9){
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Insira um número de telefone válido.";
+
+            finalizarAguardar();
+            return false;
+        } else if (emailVar.indexOf("@") < 0 || emailVar.indexOf(".com") < 0 && emailVar.indexOf(".br") < 0 && emailVar.indexOf(".org") < 0 ) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um email válido!";
 
             finalizarAguardar();
             return false;
@@ -138,7 +160,11 @@
                 nomeServer: nomeVar,
                 cnpjServer: cnpjVar,
                 tellServer: tellVar,
-                emailServer: emailVar
+                emailServer: emailVar,
+                logradouruServer: logradouroVar,
+                numeroServer: numeroVar,
+                bairroServer: bairroVar,
+                estadoServer: estadoVar
                
             })
         }).then(function (resposta) {

@@ -21,6 +21,55 @@ h5 {
     align-self: baseline;
 }
 
+.divisoria .logradouro{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.divisorio .label{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.divisoria .input{
+    display: flex;
+}
+
+#label_logradouro{
+    margin-right: 3%;
+    margin-left: 15%;
+}
+
+#label_numero{
+    margin-left: 35%;
+}
+
+#rua{
+    margin-right: 3%;    
+}
+
+#numero{
+    margin-left: 3%; 
+}
+
+#label_bairro{
+    margin-right: 3%;
+    margin-left: 18%;
+}
+
+#label_estado{
+    margin-left: 43%;
+}
+
+#bairro{
+    margin-right: 3%;    
+}
+
+#estado{
+    margin-left: 3%; 
+}
+
 
 #id_cadastro {
     margin-left: 15%;
