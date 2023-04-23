@@ -1,0 +1,555 @@
+<!doctype html>
+
+<head>
+    <title>Containers | Dashboard</title>
+    <link rel="stylesheet" href="css/style_analytics.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="geral">
+        <div class="side-bar">
+            <div class="container">
+                <span class="container-logo">
+                    <img src="assets/img/logo (3).png" alt="Logo" class="logo" />
+                </span>
+                <span class="container-opçoes">
+                
+                    <ul class="opções_visualização">
+                    
+                        <li class="lista">
+                            <a href="dashbords.html">
+                                <img class="icons" src="assets/img/icons8-casa-16.png" alt="">
+                            
+                        </a>
+                        </li>
+                            
+                        <li class="lista">
+                            <a href="containers.html">
+                                <img class="icons" src="assets/img/icons8-cardápio-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="#">
+                                <img class="icons" src="assets/img/icons8-configurações-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="permissoes.html">
+                                <img class="icons" src="assets/img/icons8-desbloquear-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                    
+                    </ul>
+                
+                </span>
+            </div>
+        </div>
+        <div class="dashbords">
+            <div class="header">
+
+                <div class="select">
+                    Dashboards/<b>Containers</b>
+                </div>
+
+                <div class="icon">
+
+                    <img id="icone_sino" src="assets/img/icons8-lembrete-de-compromissos-32.png" alt="Icone de Sinalização">
+                    <img src="assets/img/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p> 
+                                                
+                </div>
+
+            </div>
+            <div class="container">
+                <h1 class="h1-container">Bem vindo de volta, Fernando Brandão!</h1>
+                <p id="p-container">Resumo dos Containers</p>
+                <div class="graficos">
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 1</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        <canvas id="dht11Umidade"></canvas>
+                    </div>
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 1</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        
+                        <canvas id="mediaTemp"></canvas>
+                    </div>
+                </div>
+                <div class="graficos">
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 2</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        <canvas id="gráfico_exemplo1"></canvas>
+                    </div>
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 2</h1>
+                            <p id="situação-container-atencao">Atenção!</p>
+                        </div>
+                        
+                        <canvas id="grafico_exemplo2"></canvas>
+                    </div>
+                </div>
+                <div class="graficos">
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 3</h1>
+                            <p id="situação-container-atencao">Atenção!</p>
+                        </div>
+                        <canvas id="grafico_exemplo3"></canvas>
+                    </div>
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 3</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        
+                        <canvas id="grafico_exemplo4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+     /* -- dht11Umidade -- */
+     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+        contextoDht11Umidade.canvas.width = 900;
+        contextoDht11Umidade.canvas.height = 500;
+        var dht11Umidade = new Chart(
+            contextoDht11Umidade,
+            {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'bar',
+                        borderColor: ['#45b3e7'],
+                        backgroundColor: [
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                        ],
+
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- MediaTemperatura -- */
+        var contextoMediaTemp = document.getElementById('mediaTemp').getContext('2d');
+        contextoMediaTemp.canvas.width = 900;
+        contextoMediaTemp.canvas.height = 500;
+        var mediaTemp = new Chart(
+            contextoMediaTemp,
+            {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: "Temperatura",
+                        type: 'bar',
+                        borderColor: ['#ff3232'],
+                        backgroundColor: [
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        // );
+        // /* -- luminosidade -- */
+        // var contextoLuminosidade = document.getElementById('luminosidade').getContext('2d');
+        // contextoLuminosidade.canvas.width = 1000;
+        // contextoLuminosidade.canvas.height = 300;
+        // var luminosidade = new Chart(
+        //     contextoLuminosidade,
+        //     {
+        //         type: 'line',
+        //         data: {
+        //             datasets: [{
+        //                 label: 'Luminosidade',
+        //                 type: 'line',
+        //                 borderColor: ['#ffd902'],
+        //                 backgroundColor: ['#ffe135']
+        //             }]
+        //         },
+        //         options: {
+        //             scales: {
+        //                 xAxes: [{
+        //                     distribution: 'series',
+        //                     ticks: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }],
+        //                 yAxes: [{
+        //                     scaleLabel: {
+        //                         display: true,
+        //                         labelString: 'Luminosidade'
+        //                     },
+        //                     ticks: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }]
+        //             },
+        //             animation: {
+        //                 duration: 0
+        //             }
+        //         }
+        //     }
+        // );
+        // /* -- lm35Temperatura */
+        // var contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
+        // contextoLm35Temperatura.canvas.width = 1000;
+        // contextoLm35Temperatura.canvas.height = 300;
+        // var lm35Temperatura = new Chart(
+        //     contextoLm35Temperatura,
+        //     {
+        //         type: 'line',
+        //         data: {
+        //             datasets: [{
+        //                 label: 'Temperatura',
+        //                 type: 'line',
+        //                 borderColor: ['#ffd902'],
+        //                 backgroundColor: ['#ffe135']
+        //             }]
+        //         },
+        //         options: {
+        //             scales: {
+        //                 xAxes: [{
+        //                     distribution: 'series',
+        //                     ticks: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }],
+        //                 yAxes: [{
+        //                     scaleLabel: {
+        //                         display: true,
+        //                         labelString: 'Temperatura'
+        //                     },
+        //                     ticks: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }]
+        //             },
+        //             animation: {
+        //                 duration: 0
+        //             }
+        //         }
+        //     }
+        // );
+        // /* -- chave */
+        // var contextoChave = document.getElementById('chave').getContext('2d');
+        // contextoChave.canvas.width = 1000;
+        // contextoChave.canvas.height = 300;
+        // var chave = new Chart(
+        //     contextoChave,
+        //     {
+        //         type: 'line',
+        //         data: {
+        //             datasets: [{
+        //                 label: 'Chave',
+        //                 type: 'line',
+        //                 borderColor: ['#ffd902'],
+        //                 backgroundColor: ['#ffe135']
+        //             }]
+        //         },
+        //         options: {
+        //             scales: {
+        //                 xAxes: [{
+        //                     distribution: 'series',
+        //                     ticks: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }],
+        //                 yAxes: [{
+        //                     scaleLabel: {
+        //                         display: true,
+        //                         labelString: 'Chave'
+        //                     },
+        //                     ticks: {
+        //                         beginAtZero: true
+        //                     }
+        //                 }]
+        //             },
+        //             animation: {
+        //                 duration: 0
+        //             }
+        //         }
+        //     }
+        // );
+
+        var paginacao = {};
+        var tempo = {};
+        function obterDados(grafico, endpoint) {
+            var http = new XMLHttpRequest();
+            http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+            http.send(null);
+            var valores = JSON.parse(http.responseText);
+            if (paginacao[endpoint] == null) {
+                paginacao[endpoint] = 0;
+            }
+            if (tempo[endpoint] == null) {
+                tempo[endpoint] = 0;
+            }
+            // Exibir à partir do último elemento exibido anteriormente
+            var ultimaPaginacao = paginacao[endpoint];
+            paginacao[endpoint] = valores.length;
+            var valores = valores.slice(ultimaPaginacao);
+            valores.forEach((valor) => {
+                //Máximo de 60 itens exibidos no gráfico
+                if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                    grafico.data.labels.shift();
+                    grafico.data.datasets[0].data.shift();
+                }
+
+                grafico.data.labels.push(tempo[endpoint]++);
+                grafico.data.datasets[0].data.push(parseFloat(valor));
+                grafico.update();
+            })
+        }
+
+        setInterval(() => {
+            obterDados(dht11Umidade, 'dht11/umidade');
+            obterDados(mediaTemp, 'MediaTemperatura');
+            obterDados(luminosidade, 'luminosidade');
+            obterDados(chave, 'chave');
+        }, 1000);
+
+
+        // grafico de exemplo 1
+        const ctx = document.getElementById('gráfico_exemplo1');
+        new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [22, 22, 22, 22, 22, 22],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                        ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+    // grafico de exemplo 2
+    const ctx2 = document.getElementById('grafico_exemplo2');
+        new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [24, 24, 24, 24, 24, 24],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // grafico de exemplo 3
+  const ctx3 = document.getElementById('grafico_exemplo3');
+        new Chart(ctx3, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [22, 22, 22, 22, 22, 22],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                        ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // grafico de exemplo 4
+  const ctx4 = document.getElementById('grafico_exemplo4');
+        new Chart(ctx4, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [24, 24, 24, 24, 24, 24],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // grafico de exemplo 5
+  const ctx5 = document.getElementById('grafico_exemplo5');
+        new Chart(ctx5, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
