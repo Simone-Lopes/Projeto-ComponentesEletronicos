@@ -1,194 +1,243 @@
-<!DOCTYPE html>
-    
-    <html lang="en">
+<!doctype html>
+<html>
 
-        <head>
+<head>
+    <title>Home | Dashboard</title>
+    <link rel="stylesheet" href="css/style_analytics.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="geral">
+                
+        <div class="side-bar">
+
+            <div class="container">
+
+                <span class="container-logo">
+                    
+                    <img src="assets/img/logo (3).png" alt="Logo" class="logo" />
+                
+                </span>
             
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="shortcut icon" href="../public/assets/icon/favicon.ico" type="image/x-icon">
-            <link rel="stylesheet" href="./css/style_analytics.css">
-            <script src="./js/funcoes.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <title> Analytics </title>
-
-        </head>
-
-        <body>
-
-            <div class="geral">
+                <span class="container-opçoes">
                 
-                <div class="side-bar">
-
-                    <div class="container">
-
-                        <span class="container-logo">
-                            
-                            <img src="../public/assets/img/logo (3).png" alt="Logo" class="logo" />
-                        
-                        </span>
+                    <ul class="opções_visualização">
                     
-                        <span class="container-opçoes">
-                        
-                            <ul class="opções_visualização">
+                        <li class="lista">
+                            <a href="index.html">
+                                <img class="icons" src="assets/img/icons8-casa-16.png" alt="">
                             
-                                <li class="lista">
-                                    <div>
-                                        <img class="icons" src="../public/assets/icon/home_icom.png" alt="">
-                                        Geral
-                                    </div>
-                                </li>
-                                    
-                                <li class="lista">
-                                    <div>
-                                        <img class="icons" src="../public/assets/icon/grafico_icon.png" alt="">
-                                        Containers
-                                    </div>
-                                </li>
+                        </a>
+                        </li>
+                            
+                        <li class="lista">
+                            <a href="containers.html">
+                                <img class="icons" src="assets/img/icons8-cardápio-16.png" alt="">
                                 
-                                <li class="lista">
-                                    <div>
-                                        <img class="icons" src="../public/assets/icon/icon-bandeira.png" alt="">
-                                        Activies
-                                    </div>
-                                </li>
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="#">
+                                <img class="icons" src="assets/img/icons8-configurações-16.png" alt="">
                                 
-                                <li class="lista">
-                                    <div>
-                                        <img class="icons" src="../public/assets/icon/ico-user.png" alt="">
-                                        Reports
-                                    </div>
-                                </li>
-                            
-                            </ul>
+                            </a>
+                        </li>
                         
-                        </span>
+                        <li class="lista">
+                            <a href="permissoes.html">
+                                <img class="icons" src="assets/img/icons8-desbloquear-16.png" alt="">
+                                
+                            </a>
+                        </li>
                     
-                    </div>
+                    </ul>
                 
-                </div>
-
-                <div class="dashbords">
-                    
-                    <div class="header">
-
-                        <div class="select">
-
-                            <strong>Relatorios:</strong>
-                            <select name="Realtorios" id="select_relatorios">
-                                <option value="Diario">Diario</option>
-                                <option value="semanal">Semanal</option>
-                                <option value="Mensal">Mensal</option>
-                            </select>
-
-                        </div>
-
-                        <div class="icon">
-
-                            <img id="icone_sino" src="../public/assets/icon/sino_icon.png" alt="Icone de Sinalização">
-                                                        
-                        </div>
-
-
-                    </div>
-
-                    <div class="container">
-                        
-                        <div class="graficos">
-
-                            <div class="card-1">
-                                <canvas id="myChart_Temp"></canvas>
-                            </div>
-                            <div class="card-2">
-                                <canvas id="myChart_Umi"></canvas>
-                            </div>
-                            
-                        </div>
-
-                        <div class="kpis">
-
-                            <div class="card">
-                                <!-- <div class="kpi-header">
-                                    <p> 
-                                        Maior Temperatura Registrada
-                                    </p>
-                                </div>
-                                <div class="kpi-body">
-                                    <p> 
-                                        <strong>
-                                            5°C
-                                        </strong>
-                                    </p>
-                                </div>
-                                <div class="kpi-footer">
-                                    <p>
-                                        19/04/2023 12:00
-                                    </p>
-                                </div> -->
-                            </div>
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            
-                        </div>
-
-
-
-                    </div>
-                
-                </div>
+                </span>
             
             </div>
+        
+        </div>
 
-        </body>
+        <div class="dashbords">
+            
+            <div class="header">
 
-    </html>
+                <div class="select">
+                    Home/<b>Dashboards</b>
+                </div>
+
+                <div class="icon">
+
+                    <img id="icone_sino" src="assets/img/icons8-lembrete-de-compromissos-32.png">
+                    <img src="assets/img/icons8-usuário-32 (1).png">Admin</p> 
+                                                
+                </div>
+
+            </div>
+
+            <div class="container">
+                <h1 class="h1-container">Bem vindo de volta, Fernando Brandão!</h1>
+                <p id="p-container">Resumo Geral</p>
+    
+                <div class="kpis">
+                    <div class="kpi">
+                        <div class="conteudo-kpi">
+                            <div class="indicador-kpi">
+                                <p>Maior Temperatura</p>
+                                <p id="indi-big">30°C</p>
+                            </div>
+                            <div class="icon-kpi">
+                                <img src="assets/img/icons8-termômetro-32.png" alt="">
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="kpi">
+                        <div class="conteudo-kpi">
+                            <div class="indicador-kpi">
+                                <p>Menor Temperatura</p>
+                                <p id="indi-big">15°C</p>
+                            </div>
+                            <div class="icon-kpi">
+                                <img src="assets/img/icons8-termômetro-32.png" alt="">
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="kpi">
+                        <div class="conteudo-kpi">
+                            <div class="indicador-kpi">
+                                <p>Maior Umidade</p>
+                                <p id="indi-big">70%</p>
+                            </div>
+                            <div class="icon-kpi">
+                                <img src="assets/img/icons8-molhado-32.png" alt="">
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="kpi">
+                        <div class="conteudo-kpi">
+                            <div class="indicador-kpi">
+                                <p>Menor Umidade</p>
+                                <p id="indi-big">43%</p>
+                            </div>
+                            <div class="icon-kpi">
+                                <img src="assets/img/icons8-molhado-32.png" alt="">
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                <div class="graficos">
+
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 1</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        <canvas id="gráfico_exemplo1"></canvas>
+                    </div>
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 1</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        
+                        <canvas id="grafico_exemplo2"></canvas>
+                    </div>
+                    
+
+                </div>
+               
+                
+            </div>
+        
+        </div>
+    
+    </div>
+
+    <div>
+        
+    </div>
 
     <script>
-        const ctx_temp = document.getElementById('myChart_Temp');
-
-            new Chart(ctx_temp, {
-                type: 'bar',
-                data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    </script>
-
-<script>
-    const ctx_umi = document.getElementById('myChart_Umi');
-
-        new Chart(ctx_umi, {
-            type: 'line',
-            data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
+      // grafico de exemplo 1
+      const ctx = document.getElementById('gráfico_exemplo1');
+        new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [22, 22, 22, 22, 22, 22],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                        ],
+      }]
     },
-    
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      scales: {
+        y: {
+          beginAtZero: true
         }
+      }
     }
-});
-</script>
+  });
+
+    // grafico de exemplo 2
+    const ctx2 = document.getElementById('grafico_exemplo2');
+        new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [40, 40, 40, 40, 40, 40],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+    </script>
+</body>
+
+</html>
