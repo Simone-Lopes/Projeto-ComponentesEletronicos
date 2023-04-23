@@ -48,7 +48,7 @@
               </div>
               <div class="email">
                 <label class="label" for="email">Email</label>
-                <input class="input" type="text" id="email" name="senha" />
+                <input class="input" type="email" id="email" name="senha" />
               </div>
               <!-- <div class="senha">
                 <label class="label" for="senha">Senha</label>
@@ -80,15 +80,16 @@
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = nome.value;
+        var nomeVar = nomeFantasia.value;
         var tellVar = telefone.value;
+        var cnpjVar = cnpj.value
         var emailVar = email.value;
-        var senhaVar = senha.value;
-        var confirmacaoSenhaVar = Confirmarsenha.value;
+        // var senhaVar = senha.value;
+        // var confirmacaoSenhaVar = Confirmarsenha.value;
 
-        if (nomeVar == "" || tellVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        if (nomeVar == "" || tellVar == "" || emailVar == "" || cnpjVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Por favor, preencha todos os campos.";
 
             finalizarAguardar();
             return false;
@@ -98,19 +99,19 @@
 
             finalizarAguardar();
             return false;
-        } else if (senhaVar.length < 8){
+        } else if (cnpjVar.length < 14){
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Insira uma senha de ao menos 8 dígitos!";
+            mensagem_erro.innerHTML = "Insira um CNPJ válido.";
 
             finalizarAguardar();
             return false;
-        } else if (senhaVar != confirmacaoSenhaVar){
+        } else if (tellVar.length < 9){
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "As senhas não coincidem.";
+            mensagem_erro.innerHTML = "Insira um número de telefone válido.";
 
             finalizarAguardar();
             return false;
-        }
+        } 
         else {
             setInterval(sumirMensagem, 5000)
         }
@@ -133,10 +134,12 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
+
                 nomeServer: nomeVar,
+                cnpjServer: cnpjVar,
                 tellServer: tellVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
+                emailServer: emailVar
+               
             })
         }).then(function (resposta) {
 
