@@ -1,10 +1,9 @@
 <!doctype html>
-<html>
 
 <head>
-    <title>Home | Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+    <title>Containers | Dashboard</title>
+    <link rel="stylesheet" href="../css/style_analytics.css">
+    <link rel="shortcut icon" href="../imgs/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
@@ -18,47 +17,40 @@
 </head>
 
 <body>
-
     <div class="geral">
-                
         <div class="side-bar">
-
             <div class="container">
-
                 <span class="container-logo">
-                    
-                    <img src="imgs/logo (3).png" alt="Logo" class="logo" />
-                
+                    <img src="../assets/img/logo (3).png" alt="Logo" class="logo" />
                 </span>
-            
                 <span class="container-opçoes">
                 
                     <ul class="opções_visualização">
                     
                         <li class="lista">
-                            <a href="index.html">
-                                <img class="icons" src="imgs/icons8-casa-16.png" alt="">
+                            <a href="dashbords.html">
+                                <img class="icons" src="../assets/img/icons8-casa-16.png" alt="">
                             
                         </a>
                         </li>
                             
                         <li class="lista">
                             <a href="containers.html">
-                                <img class="icons" src="imgs/icons8-cardápio-16.png" alt="">
+                                <img class="icons" src="../assets/img/icons8-cardápio-16.png" alt="">
                                 
                             </a>
                         </li>
                         
                         <li class="lista">
                             <a href="#">
-                                <img class="icons" src="imgs/icons8-configurações-16.png" alt="">
+                                <img class="icons" src="../assets/img/icons8-configurações-16.png" alt="">
                                 
                             </a>
                         </li>
                         
                         <li class="lista">
                             <a href="permissoes.html">
-                                <img class="icons" src="imgs/icons8-desbloquear-16.png" alt="">
+                                <img class="icons" src="../assets/img/icons8-desbloquear-16.png" alt="">
                                 
                             </a>
                         </li>
@@ -66,81 +58,27 @@
                     </ul>
                 
                 </span>
-            
             </div>
-        
         </div>
-
         <div class="dashbords">
-            
             <div class="header">
 
                 <div class="select">
-                    Home/<b>Dashboards</b>
+                    Dashboards/<b>Containers</b>
                 </div>
 
                 <div class="icon">
 
-                    <img id="icone_sino" src="imgs/icons8-lembrete-de-compromissos-32.png" alt="Icone de Sinalização">
-                    <img src="imgs/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p> 
+                    <img id="icone_sino" src="../assets/img/icons8-lembrete-de-compromissos-32.png" alt="Icone de Sinalização">
+                    <img src="../assets/img/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p> 
                                                 
                 </div>
 
             </div>
-
             <div class="container">
                 <h1 class="h1-container">Bem vindo de volta, Fernando Brandão!</h1>
-                <p id="p-container">Resumo Geral</p>
-    
-                <div class="kpis">
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Maior Temperatura</p>
-                                <p id="indi-big">21°C</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-termômetro-32.png" alt="">
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Menor Temperatura</p>
-                                <p id="indi-big">17.5°C</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-termômetro-32.png" alt="">
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Maior Umidade</p>
-                                <p id="indi-big">49.2%</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-molhado-32.png" alt="">
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Menor Umidade</p>
-                                <p id="indi-big">45.2%</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-molhado-32.png" alt="">
-                            </div>
-                        </div>  
-                    </div>
-                </div>
-
+                <p id="p-container">Resumo dos Containers</p>
                 <div class="graficos">
-
                     <div class="card-1">
                         <div class="header-canvas">
                             <h1 class="h1-card">Container 1</h1>
@@ -156,24 +94,51 @@
                         
                         <canvas id="mediaTemp"></canvas>
                     </div>
-                    
-
                 </div>
-               
-                
+                <div class="graficos">
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 2</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        <canvas id="gráfico_exemplo1"></canvas>
+                    </div>
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 2</h1>
+                            <p id="situação-container-atencao">Atenção!</p>
+                        </div>
+                        
+                        <canvas id="grafico_exemplo2"></canvas>
+                    </div>
+                </div>
+                <div class="graficos">
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 3</h1>
+                            <p id="situação-container-atencao">Atenção!</p>
+                        </div>
+                        <canvas id="grafico_exemplo3"></canvas>
+                    </div>
+                    <div class="card-1">
+                        <div class="header-canvas">
+                            <h1 class="h1-card">Container 3</h1>
+                            <p id="situação-container">Estável</p>
+                        </div>
+                        
+                        <canvas id="grafico_exemplo4"></canvas>
+                    </div>
+                </div>
             </div>
-        
         </div>
-    
     </div>
+</body>
 
-    <div>
-        
-    </div>
+</html>
 
-    <script>
-        /* -- dht11Umidade -- */
-        var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
+<script>
+     /* -- dht11Umidade -- */
+     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
         contextoDht11Umidade.canvas.width = 900;
         contextoDht11Umidade.canvas.height = 500;
         var dht11Umidade = new Chart(
@@ -430,11 +395,159 @@
         setInterval(() => {
             obterDados(dht11Umidade, 'dht11/umidade');
             obterDados(mediaTemp, 'MediaTemperatura');
-            obterDados(luminosidade, 'luminosidade');
-            obterDados(chave, 'chave');
         }, 1000);
 
-    </script>
-</body>
 
-</html>
+        // grafico de exemplo 1
+        const ctx = document.getElementById('gráfico_exemplo1');
+        new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [22, 22, 22, 22, 22, 22],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                        ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+    // grafico de exemplo 2
+    const ctx2 = document.getElementById('grafico_exemplo2');
+        new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [24, 24, 24, 24, 24, 24],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // grafico de exemplo 3
+  const ctx3 = document.getElementById('grafico_exemplo3');
+        new Chart(ctx3, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Umidade',
+        data: [22, 22, 22, 22, 22, 22],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                            '#89cff0',
+                        ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // grafico de exemplo 4
+  const ctx4 = document.getElementById('grafico_exemplo4');
+        new Chart(ctx4, {
+    type: 'bar',
+    data: {
+      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+      datasets: [{
+        label: 'Temperatura',
+        data: [24, 24, 24, 24, 24, 24],
+        borderWidth: 1,
+        backgroundColor: [
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                            '#ff7f7f',
+                        ]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // grafico de exemplo 5
+  const ctx5 = document.getElementById('grafico_exemplo5');
+        new Chart(ctx5, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

@@ -21,7 +21,7 @@ function limparSessao() {
     aguardar();
     sessionStorage.clear();
     finalizarAguardar();
-    window.location = "../../API_MARISE_DashBords/index.html";
+    window.location = "DashBords/dashbords.html";
 }
 
 // carregamento (loading)

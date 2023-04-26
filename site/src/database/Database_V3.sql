@@ -4,6 +4,9 @@ CREATE DATABASE Secure_Ship;
 
 USE Secure_Ship;
 
+DROP TABLE limite_parametros;
+DROP TABLE empresa;
+
 -- Criação da tabela onde ficara armazenado os dados da Empresa
 CREATE TABLE Empresa (
 	idEmpresa INT PRIMARY KEY AUTO_INCREMENT, -- Chave Primaria
@@ -95,6 +98,10 @@ INSERT INTO Sensores VALUES
 	(NULL, 'DHT11', 'Umidade', 1),
 	(NULL, 'LM35', 'Temperatura', 1);
   
+  
 SELECT * FROM Leitura;
+
+INSERT INTO Usuario VALUES
+	(NULL, 'Davi Rodrigues', 'davirodrigues@gmail.com', '959164441', '123456789123456789', 1, NULL);
 
 SELECT * FROM Empresa;

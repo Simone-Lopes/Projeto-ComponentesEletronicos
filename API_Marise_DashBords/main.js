@@ -4,13 +4,11 @@ const mysql = require('mysql2');
 
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3000;
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 const serial = async (
     valoresDht11Umidade,
     valoresMediaTemperatura
-    // valoresLuminosidade,
-    // valoresChave
 ) => {
     const poolBancoDados = mysql.createPool(
         {
@@ -18,7 +16,7 @@ const serial = async (
             port: 3306,
             user: 'aluno',
             password: 'sptech',
-            database: 'Arduino'
+            database: 'Secure_Ship'
         }
     ).promise();
 
@@ -50,8 +48,15 @@ const serial = async (
 
         if (HABILITAR_OPERACAO_INSERIR) {
             await poolBancoDados.execute(
-                'INSERT INTO sensores (dht11_umidade, mediaTemp) VALUES (?, ?)',
-                [dht11Umidade, mediaTemp]
+                'INSERT INTO Leitura (Leitura, FKSensor_LE) VALUES (?, ?)',
+                [dht11Umidade, 1],
+            );
+        }
+
+        if (HABILITAR_OPERACAO_INSERIR){
+            await poolBancoDados.execute(
+                'INSERT INTO Leitura (Leitura, FKSensor_LE) VALUES (?, ?)',
+                [mediaTemp, 2]
             );
         }
 
@@ -63,7 +68,7 @@ const serial = async (
 
 const servidor = (
     valoresDht11Umidade,
-    valoresMediaTemperatura
+    valoresMediaTemperatura,
     // valoresLuminosidade,
     // valoresChave
 ) => {
@@ -82,6 +87,7 @@ const servidor = (
     app.get('/sensores/MediaTemperatura', (_, response) => {
         return response.json(valoresMediaTemperatura);
     });
+
     // app.get('/sensores/luminosidade', (_, response) => {
     //     return response.json(valoresLuminosidade);
     // });
@@ -97,13 +103,13 @@ const servidor = (
     // const valoresChave = [];
     await serial(
         valoresDht11Umidade,
-        valoresMediaTemperatura,
+        valoresMediaTemperatura
         // valoresLuminosidade,
         // valoresChave
     );
     servidor(
         valoresDht11Umidade,
-        valoresMediaTemperatura,
+        valoresMediaTemperatura
         // valoresLuminosidade,
         // valoresChave
     );

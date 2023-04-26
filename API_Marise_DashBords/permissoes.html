@@ -1,0 +1,113 @@
+<!doctype html>
+
+<head>
+    <title>Permissões | Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="geral">
+        <div class="side-bar">
+            <div class="container">
+                <span class="container-logo">
+                    <img src="imgs/logo (3).png" alt="Logo" class="logo" />
+                </span>
+                <span class="container-opçoes">
+                
+                    <ul class="opções_visualização">
+                    
+                        <li class="lista">
+                            <a href="index.html">
+                                <img class="icons" src="imgs/icons8-casa-16.png" alt="">
+                            
+                        </a>
+                        </li>
+                            
+                        <li class="lista">
+                            <a href="#">
+                                <img class="icons" src="imgs/icons8-cardápio-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="#">
+                                <img class="icons" src="imgs/icons8-configurações-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="permissoes.html">
+                                <img class="icons" src="imgs/icons8-desbloquear-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                    
+                    </ul>
+                
+                </span>
+            </div>
+        </div>
+        <div class="dashbords">
+            <div class="header">
+
+                <div class="select">
+                    Dashboards/<b>Permissões</b>
+                </div>
+
+                <div class="icon">
+
+                    <img id="icone_sino" src="imgs/icons8-lembrete-de-compromissos-32.png" alt="Icone de Sinalização">
+                    <img src="imgs/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p> 
+                                                
+                </div>
+
+            </div>
+            <div class="container">
+                <h1 class="h1-container">Bem vindo de volta, Fernando Brandão!</h1>
+                <p id="p-container">Permissões de Usuários</p>
+
+                <div class="users-pesquisa">
+                    <label for="input_pesquisa">Pesquisar por email:</label>
+                    <input type="text" class="input_pesquisa">
+                    <button class="btn-per">Adicionar Usuário</button>
+                    <button class="btn-per">Remover Usuário</button>
+                </div>
+                <p class="h1-perm">Users</p>
+                <div class="lista-users">
+                    <ul>
+                        <li>Simone Lopes | simone@email.com</li>
+                        <li>Davi Rodrigues | davi@email.com</li>
+                        <li>Lívia Lanes | livia@email.com</li>
+                        <li>Guilherme Gonsalves | guilherme@email.com</li>
+                    </ul>
+                </div>
+                <p class="h1-perm">Permissões</p>
+                <div class="tipos-perm">
+                    <ul>
+                        <li>Visão Geral da Empresa</li>
+                        <li>Tela de Visão Geral dos Containers</li>
+                        <li>Visualização de Leitura Individual</li>
+                        <li>Configurações</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

@@ -28,7 +28,6 @@
           </div>
           
           <div class="card">
-            <form>
               <h1 class="titulo">Cadastre sua empresa</h1>
               <div class="nome">
                 <label class="label" for="nome">Nome Fantasia</label>
@@ -72,7 +71,6 @@
                 <label class="label" for="senha">Senha</label>
                 <input class="input" type="password" id="senha" name="senha" />
               </div> -->
-            </form>
             <button onclick="cadastrar()" class="btn-login">Cadastrar</button>
             <div id="login">
             <h5>
@@ -80,9 +78,8 @@
               <a href="loginEmpresa.html"><span class="cadastro" id="id_cadastro"> Login</span></a>
             </h5></div>
           </div>
-          <!-- <div id="div_aguardar" class="loading-div">
-            <img src="./assets/circle-loading.gif" id="loading-gif">
-          </div> -->
+          <div id="div_aguardar" class="loading-div">
+          </div>
 
         <div id="div_erros_login"></div>
         </div>
@@ -94,18 +91,18 @@
 <script>
 
   function cadastrar() {
-        // aguardar();
+        aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nomeFantasia.value;
-        var tellVar = telefone.value;
         var cnpjVar = cnpj.value
-        var emailVar = email.value;
         var logradouroVar = rua.value;
         var numeroVar = numero.value; 
         var bairroVar = bairro.value;
         var estadoVar = estado.value;
+        var tellVar = telefone.value;
+        var emailVar = email.value;
         // var senhaVar = senha.value;
         // var confirmacaoSenhaVar = Confirmarsenha.value;
 
@@ -159,13 +156,12 @@
 
                 nomeServer: nomeVar,
                 cnpjServer: cnpjVar,
-                tellServer: tellVar,
-                emailServer: emailVar,
-                logradouruServer: logradouroVar,
+                logradouroServer: logradouroVar,
                 numeroServer: numeroVar,
                 bairroServer: bairroVar,
-                estadoServer: estadoVar
-               
+                estadoServer: estadoVar,
+                tellServer: tellVar,
+                emailServer: emailVar
             })
         }).then(function (resposta) {
 

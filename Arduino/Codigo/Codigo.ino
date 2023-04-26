@@ -8,8 +8,8 @@
 
 #include "DHT.h"
  
-#define DHTPIN A1
-#define LM35PIN A0
+#define DHTPIN A0
+#define LM35PIN A1
 //#define LUMIPIN A2
 //#define CHAVPIN 7
  
@@ -28,8 +28,6 @@ void loop()
 {
   float dht11_umidade = dht.readHumidity();
   float dht11_temperatura = dht.readTemperature();
-  Serial.print(dht11_umidade);
-  Serial.print(";");
 
 //  float luminosidade =  analogRead(LUMIPIN);
 //  Serial.print(luminosidade);
@@ -40,7 +38,9 @@ void loop()
   lm35_temperatura = lm35_temperatura * 100;
   
   float media_Temp = (dht11_temperatura + lm35_temperatura) / 2;
-  
+
+  Serial.print(dht11_umidade);
+  Serial.print(";");
   Serial.print(media_Temp);
   Serial.print(";");
 
