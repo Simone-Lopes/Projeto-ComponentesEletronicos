@@ -85,6 +85,8 @@ SELECT * FROM
 	Empresa JOIN Local
 		ON idEmpresa = FKEmpresa_L;
 
+
+
 SELECT * FROM 
 	Local JOIN Limite_Parametros
 		ON FKLimite_L = idLimite ORDER BY idLimite ASC;
@@ -92,12 +94,33 @@ SELECT * FROM
 INSERT INTO Usuario VALUES
 	(NULL, 'Davi Rodrigues', 'davirodrigues0506@gmail.com', '11959164441', 'myLOVEisthe0506', NULL, NULL);
   
+INSERT INTO Limite_Parametros VALUES 
+	(NULL, -4, 40, 'Temperatura', NULL),
+	(NULL, 20, 80, 'Umidade', NULL);
+  
 INSERT INTO Localização VALUES
-	(NULL, 'Container 1', NULL, NULL);
+	(1, 'Container 1', NULL, 1),
+	(1, 'Container 1', NULL, 2);
+  
+SELECT * FROM Sensores;
   
 INSERT INTO Sensores VALUES
 	(NULL, 'DHT11', 'Umidade', 1),
 	(NULL, 'LM35', 'Temperatura', 1);
+  
+INSERT INTO Leitura VALUES
+	(NULL, 20, DEFAULT, 3),
+	(NULL, 21, DEFAULT, 3),
+	(NULL, 22, DEFAULT, 3),
+	(NULL, 23, DEFAULT, 3),
+	(NULL, 24, DEFAULT, 3),
+	(NULL, 25, DEFAULT, 3),
+    (NULL, 55, DEFAULT, 4),
+    (NULL, 56, DEFAULT, 4),
+    (NULL, 57, DEFAULT, 4),
+    (NULL, 58, DEFAULT, 4),
+    (NULL, 59, DEFAULT, 4),
+    (NULL, 60, DEFAULT, 4);
   
 SELECT * FROM Leitura;
 
