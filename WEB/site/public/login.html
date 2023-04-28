@@ -14,6 +14,8 @@
 
 <body>
   <div class="pagina">
+
+    
     <div class="container1">
       <a href="index.html"><img src="./assets/img/logo (3).png" alt="Logo" width="120px" height="100px"></a>
     </div>
@@ -38,13 +40,17 @@
           </h5>
         </div> -->
 
-        <div id="div_erros_login"></div>
+        <div id="div_erros_login">
+          <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="div_aguardar" class="loading-div">
       </div>
 
-      <a href="../../../API_Marise_DashBords/index.html"></a>
-      <div id="div_erros_login"></div>
     </div>
   </div>
 </body>
@@ -96,7 +102,7 @@
           sessionStorage.ID_USUARIO = json.id;
 
           setTimeout(function () {
-            window.open = "DashBords/dashbords.html";
+            window.location = "DashBords/dashbords.html";
           }, 1000); // apenas para exibir o loading
 
         });
@@ -119,6 +125,6 @@
   }
 
   function sumirMensagem() {
-    cardErro.style.display = "none";
+    cardErro.style.display ="none"
   }
 </script>
