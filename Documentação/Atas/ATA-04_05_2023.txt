@@ -1,0 +1,22 @@
+- Data: 04-05-2023
+- Quem esteve presente: Todos
+- Quem estava ausente + justificativa: Ninguém  
+- Tópicos discutidos: 
+	- Daily - Pessoalmente (15:45 as 16:00)
+	- Melhor Organização de Tarefas Como um Todo
+	- ideia de Nova Regra de Negocio 
+- Decisões:
+	- PO Desta Semana - Guilherme Gonçalves
+	- Scrum-Master Desta Semana - Bianca Cavalcante
+- Atualização da ferramenta de gestão: 
+	- Bianca Cavalcante
+- Responsáveis pelas novas tarefas e prazos:
+	- Manutenção no Site
+		- Dados Mais relevantes pros usuarios - SP3
+	- Pesquisa de Ferramenta de Help Desk - Cesar
+	- Fluxograma do Processo
+		- Problemas - Guilherme Gonçalves
+		- Incidentes - Simone
+		- Requisições - Bianca
+		- Geral - Livia
+	- Continuação da Conexão da API com Banco - Davi

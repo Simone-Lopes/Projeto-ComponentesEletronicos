@@ -19,7 +19,7 @@ function entrar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, cnpj, logradouro, numero, bairro, estado, tell, email) {
+function cadastrar_empresa(nome, cnpj, logradouro, numero, bairro, estado, tell, email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cnpj, logradouro, numero, bairro, estado, tell, email);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -40,6 +40,6 @@ function cadastrar(nome, cnpj, logradouro, numero, bairro, estado, tell, email) 
 
 module.exports = {
     entrar,
-    cadastrar,
+    cadastrar_empresa,
     listar,
 };

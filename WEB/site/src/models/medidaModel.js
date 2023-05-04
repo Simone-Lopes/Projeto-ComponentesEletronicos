@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidas(idLocal, limite_linhas) {
 
     instrucaoSql = ''
 
@@ -14,7 +14,13 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     where fk_aquario = ${idAquario}
                     order by id desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select Leitura as umidade, Data_Hora, DATE_FORMAT(Data_Hora,'%H:%i:%s') as momento_grafico from Leitura where FKSensor_LE = 4`;
+        instrucaoSql = `SELECT Leitura AS medida, 
+                        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+                        FROM Leitura JOIN Sensores 
+                        ON FKSensor_LE = idSensor 
+                        JOIN Localização 
+                        ON FKLocal_S = idLocal 
+                        WHERE idSensor = 1;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -24,9 +30,9 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function buscarMedidasEmTempoReal(idLocal) {
 
-    instrucaoSql = ''
+    instrucaoSql = '';
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top 1
@@ -38,7 +44,13 @@ function buscarMedidasEmTempoReal(idAquario) {
                     order by id desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select Leitura as umidade, Data_Hora, DATE_FORMAT(Data_Hora,'%H:%i:%s') as momento_grafico from Leitura where FKSensor_LE = 4`;
+        instrucaoSql = `SELECT Leitura AS medida, 
+                        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+                        FROM Leitura JOIN Sensores 
+                        ON FKSensor_LE = idSensor 
+                        JOIN Localização 
+                        ON FKLocal_S = idLocal 
+                        WHERE idSensor = 1;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

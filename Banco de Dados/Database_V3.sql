@@ -1,4 +1,6 @@
 
+DROP DATABASE Secure_Ship;
+
 -- Criação do Banco de Dados
 CREATE DATABASE Secure_Ship;
 
@@ -67,7 +69,7 @@ CREATE TABLE Sensores(
 -- Criação da tabela que fara o Relacionamento dos sensores com os resultados e os clientes
 CREATE TABLE Leitura (
 	idLeitura INT AUTO_INCREMENT, -- Componente da Chave Primaria 
-    Leitura FLOAT,-- Resultado do sensor
+    Leitura FLOAT, -- Resultado dos sensores 
     Data_Hora DATETIME DEFAULT CURRENT_TIMESTAMP, -- Data e hora em que os resultados foram computados
     FKSensor_LE INT, -- Componente da Chave Primaria que refere a Tabela Sensores
 		CONSTRAINT FKSensor_LE FOREIGN KEY (FKSensor_LE)
@@ -109,19 +111,23 @@ INSERT INTO Sensores VALUES
 	(NULL, 'LM35', 'Temperatura', 1);
   
 INSERT INTO Leitura VALUES
-	(NULL, 20, DEFAULT, 3),
-	(NULL, 21, DEFAULT, 3),
-	(NULL, 22, DEFAULT, 3),
-	(NULL, 23, DEFAULT, 3),
-	(NULL, 24, DEFAULT, 3),
-	(NULL, 25, DEFAULT, 3),
-    (NULL, 55, DEFAULT, 4),
-    (NULL, 56, DEFAULT, 4),
-    (NULL, 57, DEFAULT, 4),
-    (NULL, 58, DEFAULT, 4),
-    (NULL, 59, DEFAULT, 4),
-    (NULL, 60, DEFAULT, 4);
+	(NULL, 20, DEFAULT, 2),
+	(NULL, 21, DEFAULT, 2),
+	(NULL, 22, DEFAULT, 2),
+	(NULL, 23, DEFAULT, 2),
+	(NULL, 24, DEFAULT, 2),
+	(NULL, 25, DEFAULT, 2),
+    (NULL, 55, DEFAULT, 1),
+    (NULL, 56, DEFAULT, 1),
+    (NULL, 57, DEFAULT, 1),
+    (NULL, 58, DEFAULT, 1),
+    (NULL, 59, DEFAULT, 1),
+    (NULL, 60, DEFAULT, 1);
   
 SELECT * FROM Leitura;
 
 SELECT * FROM Empresa;
+
+SELECT * FROM Usuario;
+
+SELECT Leitura AS medida, DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico FROM Leitura JOIN Sensores ON FKSensor_LE = idSensor JOIN Localização ON FKLocal_S = idLocal WHERE idLocal = 1 AND idSensor = 1;

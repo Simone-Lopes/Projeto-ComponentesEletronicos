@@ -60,15 +60,15 @@ function entrar(req, res) {
 
 }
 
-function cadastrar(req, res) {
+function cadastrar_empresa(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var cnpj = req.body.cnpjServer;
-    var logradouro = req.body.logradouroServer;
-    var numero = req.body.numeroServer;
-    var bairro = req.body.bairroServer;
-    var estado = req.body.estadoServer;
-    var tell = req.body.tellServer;
+    // var logradouro = req.body.logradouroServer;
+    // var numero = req.body.numeroServer;
+    // var bairro = req.body.bairroServer;
+    // var estado = req.body.estadoServer;
+    // var tell = req.body.tellServer;
     var email = req.body.emailServer;
     // var senha = req.body.senhaServer;
 
@@ -92,7 +92,7 @@ function cadastrar(req, res) {
     } else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, cnpj, logradouro, numero, bairro, estado, tell, email)
+        usuarioModel.cadastrar_empresa(nome, cnpj, logradouro, numero, bairro, estado, tell, email)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -112,7 +112,7 @@ function cadastrar(req, res) {
 
 module.exports = {
     entrar,
-    cadastrar,
+    cadastrar_empresa,
     listar,
     testar
 }
