@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script src="../js/funcoes.js"></script>
     <style>
         canvas {
             -moz-user-select: none;
@@ -16,7 +16,7 @@
     </style>
 </head>
 
-<body>
+<body onload="atualizarGrafico()">
     <div class="geral">
         <div class="side-bar">
             <div class="container">
@@ -78,55 +78,62 @@
             <div class="container">
                 <h1 class="h1-container">Bem vindo de volta, Fernando Brandão!</h1>
                 <p id="p-container">Resumo dos Containers</p>
-                <div class="graficos">
-                    <div class="card-1">
-                        <div class="header-canvas">
-                            <h1 class="h1-card">Container 1</h1>
-                            <p id="situação-container">Estável</p>
-                        </div>
-                        <canvas id="dht11Umidade"></canvas>
-                    </div>
-                    <div class="card-1">
-                        <div class="header-canvas">
-                            <h1 class="h1-card">Container 1</h1>
-                            <p id="situação-container">Estável</p>
-                        </div>
-                        
-                        <canvas id="mediaTemp"></canvas>
-                    </div>
+                
+                
+                <div class="escolha_local">
+                    <button class="btn-chart" onclick="exibirlocal(1)" id="btnAquario1">Container 1</button>
+                    <button class="btn-chart" onclick="exibirlocal(2)" id="btnAquario2">Container 2</button>
+                    <button class="btn-chart" onclick="exibirlocal(3)" id="btnAquario3">Container 3</button>
+                    <button class="btn-chart" onclick="exibirlocal(4)" id="btnAquario4">Container 4</button>
                 </div>
-                <div class="graficos">
-                    <div class="card-1">
-                        <div class="header-canvas">
-                            <h1 class="h1-card">Container 2</h1>
-                            <p id="situação-container">Estável</p>
+                
+                <div id="graficos">
+                    <div id="grafico1" class="display-block">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloLocal1"></span>
+                        </h3>
+                        <div class="graph">
+                            <canvas id="myChartCanvas1"></canvas>
                         </div>
-                        <canvas id="gráfico_exemplo1"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura1" style="color: white"></p>
+                        </div>
                     </div>
-                    <div class="card-1">
-                        <div class="header-canvas">
-                            <h1 class="h1-card">Container 2</h1>
-                            <p id="situação-container-atencao">Atenção!</p>
+    
+                    <div id="grafico2" class="display-none">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloLocal2"></span>
+                        </h3>
+                        <div class="graph">
+                            <canvas id="myChartCanvas2"></canvas>
                         </div>
-                        
-                        <canvas id="grafico_exemplo2"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura2" style="color: white"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="graficos">
-                    <div class="card-1">
-                        <div class="header-canvas">
-                            <h1 class="h1-card">Container 3</h1>
-                            <p id="situação-container-atencao">Atenção!</p>
+    
+                    <div id="grafico3" class="display-none">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloLocal3"></span>
+                        </h3>
+                        <div class="graph">
+                            <canvas id="myChartCanvas3"></canvas>
                         </div>
-                        <canvas id="grafico_exemplo3"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura3" style="color: white"></p>
+                        </div>
                     </div>
-                    <div class="card-1">
-                        <div class="header-canvas">
-                            <h1 class="h1-card">Container 3</h1>
-                            <p id="situação-container">Estável</p>
+    
+                    <div id="grafico4" class="display-none">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloLocal4"></span>
+                        </h3>
+                        <div class="graph">
+                            <canvas id="myChartCanvas4"></canvas>
                         </div>
-                        
-                        <canvas id="grafico_exemplo4"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura4" style="color: white"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -137,419 +144,368 @@
 </html>
 
 <script>
-     /* -- dht11Umidade -- */
-     var contextoDht11Umidade = document.getElementById('dht11Umidade').getContext('2d');
-        contextoDht11Umidade.canvas.width = 900;
-        contextoDht11Umidade.canvas.height = 500;
-        var dht11Umidade = new Chart(
-            contextoDht11Umidade,
-            {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        label: 'Umidade',
-                        type: 'bar',
-                        borderColor: ['#45b3e7'],
-                        backgroundColor: [
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                        ],
 
-                    }]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Umidade'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0
-                    }
-                }
-            }
-        );
-        /* -- MediaTemperatura -- */
-        var contextoMediaTemp = document.getElementById('mediaTemp').getContext('2d');
-        contextoMediaTemp.canvas.width = 900;
-        contextoMediaTemp.canvas.height = 500;
-        var mediaTemp = new Chart(
-            contextoMediaTemp,
-            {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        label: "Temperatura",
-                        type: 'bar',
-                        borderColor: ['#ff3232'],
-                        backgroundColor: [
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                        ]
-                    }]
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Temperatura'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0
-                    }
-                }
-            }
-        );
-        // );
-        // /* -- luminosidade -- */
-        // var contextoLuminosidade = document.getElementById('luminosidade').getContext('2d');
-        // contextoLuminosidade.canvas.width = 1000;
-        // contextoLuminosidade.canvas.height = 300;
-        // var luminosidade = new Chart(
-        //     contextoLuminosidade,
-        //     {
-        //         type: 'line',
-        //         data: {
-        //             datasets: [{
-        //                 label: 'Luminosidade',
-        //                 type: 'line',
-        //                 borderColor: ['#ffd902'],
-        //                 backgroundColor: ['#ffe135']
-        //             }]
-        //         },
-        //         options: {
-        //             scales: {
-        //                 xAxes: [{
-        //                     distribution: 'series',
-        //                     ticks: {
-        //                         beginAtZero: true
-        //                     }
-        //                 }],
-        //                 yAxes: [{
-        //                     scaleLabel: {
-        //                         display: true,
-        //                         labelString: 'Luminosidade'
-        //                     },
-        //                     ticks: {
-        //                         beginAtZero: true
-        //                     }
-        //                 }]
-        //             },
-        //             animation: {
-        //                 duration: 0
-        //             }
-        //         }
-        //     }
-        // );
-        // /* -- lm35Temperatura */
-        // var contextoLm35Temperatura = document.getElementById('lm35Temperatura').getContext('2d');
-        // contextoLm35Temperatura.canvas.width = 1000;
-        // contextoLm35Temperatura.canvas.height = 300;
-        // var lm35Temperatura = new Chart(
-        //     contextoLm35Temperatura,
-        //     {
-        //         type: 'line',
-        //         data: {
-        //             datasets: [{
-        //                 label: 'Temperatura',
-        //                 type: 'line',
-        //                 borderColor: ['#ffd902'],
-        //                 backgroundColor: ['#ffe135']
-        //             }]
-        //         },
-        //         options: {
-        //             scales: {
-        //                 xAxes: [{
-        //                     distribution: 'series',
-        //                     ticks: {
-        //                         beginAtZero: true
-        //                     }
-        //                 }],
-        //                 yAxes: [{
-        //                     scaleLabel: {
-        //                         display: true,
-        //                         labelString: 'Temperatura'
-        //                     },
-        //                     ticks: {
-        //                         beginAtZero: true
-        //                     }
-        //                 }]
-        //             },
-        //             animation: {
-        //                 duration: 0
-        //             }
-        //         }
-        //     }
-        // );
-        // /* -- chave */
-        // var contextoChave = document.getElementById('chave').getContext('2d');
-        // contextoChave.canvas.width = 1000;
-        // contextoChave.canvas.height = 300;
-        // var chave = new Chart(
-        //     contextoChave,
-        //     {
-        //         type: 'line',
-        //         data: {
-        //             datasets: [{
-        //                 label: 'Chave',
-        //                 type: 'line',
-        //                 borderColor: ['#ffd902'],
-        //                 backgroundColor: ['#ffe135']
-        //             }]
-        //         },
-        //         options: {
-        //             scales: {
-        //                 xAxes: [{
-        //                     distribution: 'series',
-        //                     ticks: {
-        //                         beginAtZero: true
-        //                     }
-        //                 }],
-        //                 yAxes: [{
-        //                     scaleLabel: {
-        //                         display: true,
-        //                         labelString: 'Chave'
-        //                     },
-        //                     ticks: {
-        //                         beginAtZero: true
-        //                     }
-        //                 }]
-        //             },
-        //             animation: {
-        //                 duration: 0
-        //             }
-        //         }
-        //     }
-        // );
+// b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        var paginacao = {};
-        var tempo = {};
-        function obterDados(grafico, endpoint) {
-            var http = new XMLHttpRequest();
-            http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
-            http.send(null);
-            var valores = JSON.parse(http.responseText);
-            if (paginacao[endpoint] == null) {
-                paginacao[endpoint] = 0;
-            }
-            if (tempo[endpoint] == null) {
-                tempo[endpoint] = 0;
-            }
-            // Exibir à partir do último elemento exibido anteriormente
-            var ultimaPaginacao = paginacao[endpoint];
-            paginacao[endpoint] = valores.length;
-            var valores = valores.slice(ultimaPaginacao);
-            valores.forEach((valor) => {
-                //Máximo de 60 itens exibidos no gráfico
-                if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                    grafico.data.labels.shift();
-                    grafico.data.datasets[0].data.shift();
+let proximaAtualizacao;
+
+window.onload = obterDadosGraficos();
+
+function obterDadosGraficos() {
+    obterDadosGrafico(1)
+    obterDadosGrafico(2)
+    obterDadosGrafico(3)
+    obterDadosGrafico(4)
+}
+
+validarSessao();
+
+function alterarTitulo(idLocal, id) {
+    var tituloLocal = document.getElementById(`tituloLocal${idLocal}`)
+    tituloLocal.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Container " + idLocal + "</span>"
+}
+
+function exibirlocal(idLocal) {
+    let todosOsGraficos = document.getElementById("graficos")
+
+    for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+        // exibindo - ou não - o gráfico
+        let elementoAtual = document.getElementById(`grafico${i}`)
+        if (elementoAtual.classList.contains("display-block")) {
+            elementoAtual.classList.remove("display-block")
+        }
+        elementoAtual.classList.add("display-none")
+        
+        // alterando estilo do botão
+        let btnAtual = document.getElementById(`btnAquario${i}`)
+        if (btnAtual.classList.contains("btn-pink")) {
+            btnAtual.classList.remove("btn-pink")
+        }
+        btnAtual.classList.add("btn-white")
+    }
+    
+    // exibindo - ou não - o gráfico
+    let graficoExibir = document.getElementById(`grafico${idLocal}`)
+    graficoExibir.classList.remove("display-none")
+    graficoExibir.classList.add("display-block")
+    
+    // alterando estilo do botão
+    let btnExibir = document.getElementById(`btnAquario${idLocal}`)
+    btnExibir.classList.remove("btn-white")
+    btnExibir.classList.add("btn-pink")
+}
+
+// O gráfico é construído com três funções:
+// 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+// 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+// 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+// Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+// para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+// A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+function obterDadosGrafico(idLocal) {
+
+    alterarTitulo(idLocal);
+
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimas/${idLocal}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                plotarGrafico(resposta, idLocal);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+// A função *plotarGrafico* também invoca a função *atualizarGrafico*
+function plotarGrafico(resposta, idLocal) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = {
+        labels: labels,
+        datasets: [{
+            label: 'Umidade',
+            data: [],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        },
+        // {
+        //     label: 'Temperatura',
+        //     data: [],
+        //     fill: false,
+        //     borderColor: 'rgb(199, 52, 52)',
+        //     tension: 0.1
+        // }
+    ]
+    };
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labels.push(registro.momento_grafico);
+        dados.datasets[0].data.push(registro.umidade);
+        // dados.datasets[1].data.push(registro.temperatura);
+    }
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+        type: 'line',
+        data: dados,
+    };
+
+    // Adicionando gráfico criado em div na tela
+    let myChart = new Chart(
+        document.getElementById(`myChartCanvas${idLocal}`),
+        config
+    );
+
+    setTimeout(() => atualizarGrafico(idLocal, dados, myChart), 2000);
+}
+
+
+// Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+// buscando a última medida inserida em tabela contendo as capturas, 
+
+//     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+//     Para ajustar o "select", ajuste o comando sql em src/models
+function atualizarGrafico(idLocal, dados, myChart) {
+
+
+
+    fetch(`/medidas/tempo-real/${idLocal}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+                let avisoCaptura = document.getElementById(`avisoCaptura${idLocal}`)
+                avisoCaptura.innerHTML = ""
+
+
+                if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                    avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento_grafico)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dados.labels[dados.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+                    // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                    // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                    myChart.update();
                 }
 
-                grafico.data.labels.push(tempo[endpoint]++);
-                grafico.data.datasets[0].data.push(parseFloat(valor));
-                grafico.update();
-            })
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idLocal, dados, myChart), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idLocal, dados, myChart), 2000);
         }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
 
-        setInterval(() => {
-            obterDados(dht11Umidade, 'dht11/umidade');
-            obterDados(mediaTemp, 'MediaTemperatura');
-            obterDados(luminosidade, 'luminosidade');
-            obterDados(chave, 'chave');
-        }, 1000);
+}
 
+//     // grafico de exemplo 1
+//     const ctx = document.getElementById('gráfico_exemplo1');
+//     new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//       labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+//       datasets: [{
+//         label: 'Umidade',
+//         data: [22, 22, 22, 22, 22, 22],
+//         borderWidth: 1,
+//         backgroundColor: [
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                         ],
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
 
-        // grafico de exemplo 1
-        const ctx = document.getElementById('gráfico_exemplo1');
-        new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
-      datasets: [{
-        label: 'Umidade',
-        data: [22, 22, 22, 22, 22, 22],
-        borderWidth: 1,
-        backgroundColor: [
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                        ],
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+//     // grafico de exemplo 2
+//     const ctx2 = document.getElementById('grafico_exemplo2');
+//         new Chart(ctx2, {
+//     type: 'bar',
+//     data: {
+//       labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+//       datasets: [{
+//         label: 'Temperatura',
+//         data: [24, 24, 24, 24, 24, 24],
+//         borderWidth: 1,
+//         backgroundColor: [
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                         ]
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
 
-    // grafico de exemplo 2
-    const ctx2 = document.getElementById('grafico_exemplo2');
-        new Chart(ctx2, {
-    type: 'bar',
-    data: {
-      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
-      datasets: [{
-        label: 'Temperatura',
-        data: [24, 24, 24, 24, 24, 24],
-        borderWidth: 1,
-        backgroundColor: [
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                        ]
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+//   // grafico de exemplo 3
+//   const ctx3 = document.getElementById('grafico_exemplo3');
+//         new Chart(ctx3, {
+//     type: 'bar',
+//     data: {
+//       labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+//       datasets: [{
+//         label: 'Umidade',
+//         data: [22, 22, 22, 22, 22, 22],
+//         borderWidth: 1,
+//         backgroundColor: [
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                             '#89cff0',
+//                         ],
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
 
-  // grafico de exemplo 3
-  const ctx3 = document.getElementById('grafico_exemplo3');
-        new Chart(ctx3, {
-    type: 'bar',
-    data: {
-      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
-      datasets: [{
-        label: 'Umidade',
-        data: [22, 22, 22, 22, 22, 22],
-        borderWidth: 1,
-        backgroundColor: [
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                            '#89cff0',
-                        ],
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+//   // grafico de exemplo 4
+//   const ctx4 = document.getElementById('grafico_exemplo4');
+//         new Chart(ctx4, {
+//     type: 'bar',
+//     data: {
+//       labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
+//       datasets: [{
+//         label: 'Temperatura',
+//         data: [24, 24, 24, 24, 24, 24],
+//         borderWidth: 1,
+//         backgroundColor: [
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                             '#ff7f7f',
+//                         ]
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
 
-  // grafico de exemplo 4
-  const ctx4 = document.getElementById('grafico_exemplo4');
-        new Chart(ctx4, {
-    type: 'bar',
-    data: {
-      labels: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00'],
-      datasets: [{
-        label: 'Temperatura',
-        data: [24, 24, 24, 24, 24, 24],
-        borderWidth: 1,
-        backgroundColor: [
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                            '#ff7f7f',
-                        ]
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-
-  // grafico de exemplo 5
-  const ctx5 = document.getElementById('grafico_exemplo5');
-        new Chart(ctx5, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
+//   // grafico de exemplo 5
+//   const ctx5 = document.getElementById('grafico_exemplo5');
+//         new Chart(ctx5, {
+//     type: 'bar',
+//     data: {
+//       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//       datasets: [{
+//         label: '# of Votes',
+//         data: [12, 19, 3, 5, 2, 3],
+//         borderWidth: 1
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           beginAtZero: true
+//         }
+//       }
+//     }
+//   });
 </script>

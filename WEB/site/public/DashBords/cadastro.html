@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style_cadastro.css">
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <script src="../js/funcoes.js"></script>
+    <title> Cadastro </title>
+
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="container1">
+            <a href="permissoes.html"><img src="../assets/img/logo (3).png" alt="Logo" width="120px" height="100px"></a>
+        </div>
+        <div class="container2">
+          
+          <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+          </div>
+          
+            <div class="card">
+                <h1 class="titulo">Adicione Seu usuario</h1>
+                <div class="nome">
+                  <label class="label" for="nome">Nome Completo</label>
+                  <input class="input" type="text" id="nome" name="nome" />
+                </div>
+                <div class="email">
+                  <label class="label" for="email">Email</label>
+                  <input class="input" type="email" id="email" name="senha" />
+                </div>
+                <div class="telefone">
+                  <label class="label" for="telefone">Telefone</label>
+                  <input class="input" type="number" id="telefone" name="telefone" />
+                </div>
+                <div class="senha">
+                  <label class="label" for="senha">Senha</label>
+                  <input class="input" type="password" id="senha" name="senha" />
+                </div>
+                <div class="senha">
+                  <label class="label" for="senha">Confirmar Senha</label>
+                  <input class="input" type="password" id="Confirmar_senha" name="senha" />
+                </div>
+
+                <button onclick="cadastrar()" class="btn-login">Cadastrar</button>
+
+                <div id="div_aguardar" class="loading-div">
+                </div>
+      
+                <div id="div_erros_login"></div>
+                </div>
+    
+            </div>
+</body>
+
+</html>
+
+<script>
+
+  function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome.value;
+        var emailVar = email.value;
+        var tellVar = telefone.value;
+        var senhaVar = senha.value;
+        var confirmacaoSenhaVar = Confirmar_senha.value;
+
+        if (nomeVar == "" || tellVar == "" || emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Por favor, preencha todos os campos.";
+
+            finalizarAguardar();
+            return false;
+        } else if (senha.length > 20){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um CNPJ válido.";
+
+            finalizarAguardar();
+            return false;
+        }else if (tellVar.length < 9){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um número de telefone válido.";
+
+            finalizarAguardar();
+            return false;
+        } else if (emailVar.indexOf("@") < 0 || emailVar.indexOf(".com") < 0 && emailVar.indexOf(".br") < 0 && emailVar.indexOf(".org") < 0 ) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um email válido!";
+
+            finalizarAguardar();
+            return false;
+        } 
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // else if (tellVar.length != 15){
+        //     cardErro.style.display = "block"
+        //     mensagem_erro.innerHTML = "Insira um telefone válido!";
+
+        //     finalizarAguardar();
+        //     return false;
+        // }
+
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                tellServer: tellVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+
+                setTimeout(() => {
+                    window.location = "permissoes.html";
+                }, "2000")
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

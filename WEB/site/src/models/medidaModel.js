@@ -19,7 +19,7 @@ function buscarUltimasMedidas(idLocal, limite_linhas) {
                         FROM Leitura JOIN Sensores 
                         ON FKSensor_LE = idSensor 
                         JOIN Localização 
-                        ON FKLocal_S = idLocal 
+                        ON FKLocal_S = 1 
                         WHERE idSensor = 1;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -49,7 +49,7 @@ function buscarMedidasEmTempoReal(idLocal) {
                         FROM Leitura JOIN Sensores 
                         ON FKSensor_LE = idSensor 
                         JOIN Localização 
-                        ON FKLocal_S = idLocal 
+                        ON FKLocal_S = 1 
                         WHERE idSensor = 1;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");

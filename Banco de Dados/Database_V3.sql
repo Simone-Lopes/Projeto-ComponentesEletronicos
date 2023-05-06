@@ -130,4 +130,6 @@ SELECT * FROM Empresa;
 
 SELECT * FROM Usuario;
 
+SELECT Nome FROM Usuario;
+
 SELECT Leitura AS medida, DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico FROM Leitura JOIN Sensores ON FKSensor_LE = idSensor JOIN Localização ON FKLocal_S = idLocal WHERE idLocal = 1 AND idSensor = 1;

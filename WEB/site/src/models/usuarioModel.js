@@ -9,6 +9,15 @@ function listar() {
     return database.executar(instrucao);
 }
 
+function mostrarNome() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+        SELECT Nome FROM Usuario;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function entrar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `
@@ -19,8 +28,8 @@ function entrar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar_empresa(nome, cnpj, logradouro, numero, bairro, estado, tell, email) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, cnpj, logradouro, numero, bairro, estado, tell, email);
+function cadastrar(nome, email, tell, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, tell, senha);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
@@ -32,7 +41,7 @@ function cadastrar_empresa(nome, cnpj, logradouro, numero, bairro, estado, tell,
     // `;
 
     var instrucao = `
-        INSERT INTO Empresa (Nome_Fantasia, Cnpj, Rua, Numero, Bairro, Estado, Telefone, Email) VALUES ('${nome}', '${cnpj}', '${logradouro}', '${numero}', '${bairro}', '${estado}', '${tell}', '${email}');
+        INSERT INTO Usuario (Nome, Email, Telefone, Senha) VALUES ('${nome}', '${email}', '${tell}', '${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -40,6 +49,7 @@ function cadastrar_empresa(nome, cnpj, logradouro, numero, bairro, estado, tell,
 
 module.exports = {
     entrar,
-    cadastrar_empresa,
+    cadastrar,
+    mostrarNome,
     listar,
 };

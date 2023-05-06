@@ -90,7 +90,7 @@ h5 {
 .container1 {
     height: 100vh;
     width: 44%;
-    background-image: url('../assets/img/conntainer.jpg');
+    background-image: url('../../assets/img/conntainer.jpg');
     background-size: cover;
     background-position: 100%;
 }
