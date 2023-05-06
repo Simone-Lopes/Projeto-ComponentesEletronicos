@@ -7,18 +7,11 @@
     <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <!-- <script src="http://www.chartjs.org/samples/latest/utils.js"></script> -->
     <script src="../js/funcoes.js"></script>
-    <style>
-        canvas {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
 </head>
 
-<body onload="validarSessao(), alertar()">
+<body onload="validarSessao(), alertar_temp(), atualizacaoPeriodica_temp(), atualizacaoPeriodica_umi(), alertar_umi()">
 
     <div class="geral">
                 
@@ -81,10 +74,8 @@
                 </div>
 
                 <div class="icon">
-
                     <img id="icone_sino" src="imgs/icons8-lembrete-de-compromissos-32.png" alt="Icone de Sinalização">
-                    <img src="imgs/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p> 
-                                                
+                    <img src="imgs/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p>                                
                 </div>
 
             </div>
@@ -93,51 +84,62 @@
                 <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
                 <p id="p-container">Resumo Geral</p>
     
-                <div class="kpis">
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Maior Temperatura</p>
-                                <p id="indi-big">21°C</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-termômetro-32.png" alt="">
-                            </div>
-                        </div>  
+                <div class="dash">
+                    <div class="regua">
+                        <div class="item-regua perigo-frio">
+                            <h4>Perigo</h4>
+                            <h2>0°C</h2>
+                        </div>
+                        <div class="item-regua alerta-frio">
+                            <h4>Alerta</h4>
+                            <h2>0°C</h2>
+                        </div>
+                        <div class="item-regua ideal">
+                            <h4>Ideal</h4>
+                            <h2>0°C</h2>
+                        </div>
+                        <div class="item-regua alerta-quente">
+                            <h4>Alerta</h4>
+                            <h2>0°C</h2>
+                        </div>
+                        <div class="item-regua perigo-quente">
+                            <h4>Perigo</h4>
+                            <h2>0°C</h2>
+                        </div>
                     </div>
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Menor Temperatura</p>
-                                <p id="indi-big">17.5°C</p>
+        
+                    <div class="cards">
+                        <div class="card">
+                            <h1>Container 1</h1>
+                            <div class="temperatura">
+                                <p id="temp_local_1">-°C</p>
                             </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-termômetro-32.png" alt="">
+                            <div class="cor-alerta" id="card_1"></div>
+                        </div>
+                        <div class="card">
+                            <h1>Container 1</h1>
+                            <div class="temperatura">
+                                <p id="temp_local_2">-°C</p>
                             </div>
-                        </div>  
+                            <div class="cor-alerta" id="card_2"></div>
+                        </div>
+                        <div class="card">
+                            <h1>Container 1</h1>
+                            <div class="temperatura">
+                                <p id="temp_local_3">-°C</p>
+                            </div>
+                            <div class="cor-alerta ideal" id="card_3"></div>
+                        </div>
+                        <div class="card">
+                            <h1>Container 1</h1>
+                            <div class="temperatura">
+                                <p id="temp_local_4">-°C</p>
+                            </div>
+                            <div class="cor-alerta" id="card_4"></div>
+                        </div>
+        
                     </div>
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Maior Umidade</p>
-                                <p id="indi-big">49.2%</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-molhado-32.png" alt="">
-                            </div>
-                        </div>  
-                    </div>
-                    <div class="kpi">
-                        <div class="conteudo-kpi">
-                            <div class="indicador-kpi">
-                                <p>Menor Umidade</p>
-                                <p id="indi-big">45.2%</p>
-                            </div>
-                            <div class="icon-kpi">
-                                <img src="imgs/icons8-molhado-32.png" alt="">
-                            </div>
-                        </div>  
-                    </div>
+        
                 </div>
                 
             </div>
@@ -155,7 +157,95 @@
 
 <script>
 
-    function alertar(temperatura, idAquario) {
+    function atualizacaoPeriodica_umi() {
+        obterdados_umi(1);
+        obterdados_umi(2);
+        obterdados_umi(3);
+        obterdados_umi(4);
+
+        function sendData() {
+			var http = new XMLHttpRequest();
+			http.open('POST', 'http://localhost:3000/api/sendData', false);
+			http.send(null);
+		}
+
+        setInterval(() => {
+			sendData();
+		}, 2000);
+        setTimeout(atualizacaoPeriodica_umi, 5000);
+    }
+
+    function atualizacaoPeriodica_temp() {
+        obterdados_temp(1);
+        obterdados_temp(2);
+        obterdados_temp(3);
+        obterdados_temp(4);
+
+        function sendData() {
+			var http = new XMLHttpRequest();
+			http.open('POST', 'http://localhost:3000/api/sendData', false);
+			http.send(null);
+		}
+
+        setInterval(() => {
+			sendData();
+		}, 2000);
+        setTimeout(atualizacaoPeriodica_temp, 5000);
+    }
+
+    function obterdados_umi(idLocal) {
+        fetch(`/medidas/tempo-real_umi/${idLocal}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            umidade: resposta[0].umidade,
+                        }
+
+                        alertar(resposta[0].umidade, idLocal);
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function obterdados_temp(idLocal) {
+        fetch(`/medidas/tempo-real_temp/${idLocal}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            temperatura: resposta[0].temperatura,
+                        }
+
+                        alertar(resposta[0].temperatura, idLocal);
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function alertar_temp(temperatura, idLocal) {
         var limites = {
             muito_quente: 23,
             quente: 22,
@@ -189,17 +279,17 @@
 
         var card;
 
-        if (idAquario == 1) {
-            temp_aquario_1.innerHTML = temperatura + "°C";
+        if (idLocal == 1) {
+            temp_local_1.innerHTML = temperatura + "°C";
             card = card_1
-        } else if (idAquario == 2) {
-            temp_aquario_2.innerHTML = temperatura + "°C";
+        } else if (idLocal == 2) {
+            temp_local_2.innerHTML = temperatura + "°C";
             card = card_2
-        } else if (idAquario == 3) {
-            temp_aquario_3.innerHTML = temperatura + "°C";
+        } else if (idLocal == 3) {
+            temp_local_3.innerHTML = temperatura + "°C";
             card = card_3
-        } else if (idAquario == 4) {
-            temp_aquario_4.innerHTML = temperatura + "°C";
+        } else if (idLocal == 4) {
+            temp_local_4.innerHTML = temperatura + "°C";
             card = card_4
         }
 

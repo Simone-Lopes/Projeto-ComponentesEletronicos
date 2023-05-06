@@ -135,6 +135,30 @@ body{
     justify-content: space-evenly;
 }
 
+.cor-alerta {
+    width: 13%;
+    height: 30%;
+    border-radius: 50px;
+    margin-top: 6%;
+    /* background-color: #c7c7c7; */
+  }
+
+  .label-captura {
+    height: 80px;
+  }
+  
+  .display-none {
+    display: none;
+  }
+  
+  .display-flex {
+    display: flex;
+  }
+  
+  .display-block {
+    display: block;
+  }
+
 .container .graficos .card-1{
     display: flex;
     width: 45%;
@@ -147,6 +171,90 @@ body{
     flex-direction: column;
 }
 
+
+.dash {
+    width: 100%;
+    top: 0;
+    left: 20%;
+    background-color: #ffffff;
+    height: 100vh;
+    overflow: auto;
+  }
+  
+  .regua {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .perigo-frio {
+    background-color: #5c6bc0;
+  }
+  
+  .perigo-quente {
+    background-color: #ff7043;
+  }
+  
+  .alerta-frio {
+    background-color: #42a5f5;
+  }
+  
+  .alerta-quente {
+    background-color: #ffee58;
+  }
+  
+  .ideal {
+    background-color: #9ccc65;
+  }
+  
+  .item-regua {
+    padding: 5px;
+    width: 15%;
+    margin: 5px;
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 450px;
+    width: 100%;
+    align-items: center;
+    color: black;
+  }
+  
+  .card {
+    margin: 2%;
+    width: 40%;
+    flex-wrap: wrap;
+    display: flex;
+    text-align: center;
+    height: 180px;
+    justify-content: right;
+    /* background-color: #009EA3; */
+    border-color: #009EA3;
+    font-size: 20px;
+  }
+  
+  .card p {
+    margin: 0;
+    font-size: 50px;
+    font-weight: lighter;
+    text-align: left;
+  }
+  
+  .cards h1 {
+    font-size: 22px;
+    width: 100%;
+    border-bottom: solid white 1px;
+    text-align: left;
+    font-weight: lighter;
+    margin: 20px;
+  }
 
 .card-1 .h1-card{
     font-size: 17px;
@@ -228,6 +336,88 @@ body{
     color: #4a4a4a;
     margin-right: 5%;
 }
+
+.temperatura,
+.umidade {
+  margin: 5px;
+  margin-left: 20px;
+  width: 75%;
+}
+
+.escolha_local{
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+.graficos{
+    display: flex;
+    flex-direction: row;
+}
+
+.graph_umi {
+    width: 80%;
+    margin: auto;
+    padding-top: 10px;
+  }
+  
+  .graph_temp {
+    width: 80%;
+    margin: auto;
+    padding-top: 10px;
+  }
+
+  .tituloGraficos {
+    color: rgb(216, 216, 216);
+    display: flex;
+    justify-content: center;
+  }
+
+.btn-chart {
+    /* font-family: "Exo 2", sans-serif; */
+    /* font-weight: 600;
+    font-size: 18px; */
+    padding: 10px 15px;
+    color: #009EA3;
+    border-color: solid 3px rgb(0, 0, 0);
+    margin: 5px;
+    border-radius: 3px;
+    width: 15%;
+    height: 100%;
+  }
+  
+  
+  .btn-blue {
+      color: white;
+      background-color: #009EA3;
+  }
+  
+  .btn-white {
+      color: #009EA3;
+      background-color: white;
+      
+  }
+  
+  .label-captura {
+    height: 80px;
+  }
+  
+  .display-none {
+    display: none;
+  }
+  
+  .display-flex {
+    display: flex;
+  }
+  
+  .display-block {
+    display: block;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
 
 /* pagina de permissoes */
 

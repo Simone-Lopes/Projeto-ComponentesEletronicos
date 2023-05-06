@@ -87,8 +87,6 @@ SELECT * FROM
 	Empresa JOIN Local
 		ON idEmpresa = FKEmpresa_L;
 
-
-
 SELECT * FROM 
 	Local JOIN Limite_Parametros
 		ON FKLimite_L = idLimite ORDER BY idLimite ASC;
@@ -102,14 +100,26 @@ INSERT INTO Limite_Parametros VALUES
   
 INSERT INTO Localização VALUES
 	(1, 'Container 1', NULL, 1),
-	(1, 'Container 1', NULL, 2);
+	(1, 'Container 1', NULL, 2),
+	(2, 'Container 2', NULL, 1),
+	(2, 'Container 2', NULL, 2),
+    (3, 'Container 3', NULL, 1),
+	(3, 'Container 3', NULL, 2),
+    (4, 'Container 4', NULL, 1),
+	(4, 'Container 4', NULL, 2);
   
 SELECT * FROM Sensores;
   
 INSERT INTO Sensores VALUES
 	(NULL, 'DHT11', 'Umidade', 1),
-	(NULL, 'LM35', 'Temperatura', 1);
-  
+	(NULL, 'LM35', 'Temperatura', 1),
+	(NULL, 'DHT11', 'Umidade', 2),
+	(NULL, 'LM35', 'Temperatura', 2),
+	(NULL, 'DHT11', 'Umidade', 3),
+	(NULL, 'LM35', 'Temperatura', 3),
+    (NULL, 'DHT11', 'Umidade', 4),
+	(NULL, 'LM35', 'Temperatura', 4);
+    
 INSERT INTO Leitura VALUES
 	(NULL, 20, DEFAULT, 2),
 	(NULL, 21, DEFAULT, 2),
@@ -123,8 +133,52 @@ INSERT INTO Leitura VALUES
     (NULL, 58, DEFAULT, 1),
     (NULL, 59, DEFAULT, 1),
     (NULL, 60, DEFAULT, 1);
-  
+
+INSERT INTO Leitura VALUES
+	(NULL, 20, DEFAULT, 4),
+	(NULL, 21, DEFAULT, 4),
+	(NULL, 22, DEFAULT, 4),
+	(NULL, 23, DEFAULT, 4),
+	(NULL, 24, DEFAULT, 4),
+	(NULL, 25, DEFAULT, 4),
+    (NULL, 55, DEFAULT, 3),
+    (NULL, 56, DEFAULT, 3),
+    (NULL, 57, DEFAULT, 3),
+    (NULL, 58, DEFAULT, 3),
+    (NULL, 59, DEFAULT, 3),
+    (NULL, 60, DEFAULT, 3);
+    
+INSERT INTO Leitura VALUES
+	(NULL, 20, DEFAULT, 6),
+	(NULL, 21, DEFAULT, 6),
+	(NULL, 22, DEFAULT, 6),
+	(NULL, 23, DEFAULT, 6),
+	(NULL, 24, DEFAULT, 6),
+	(NULL, 25, DEFAULT, 6),
+    (NULL, 55, DEFAULT, 5),
+    (NULL, 56, DEFAULT, 5),
+    (NULL, 57, DEFAULT, 5),
+    (NULL, 58, DEFAULT, 5),
+    (NULL, 59, DEFAULT, 5),
+    (NULL, 60, DEFAULT, 5);
+    
+INSERT INTO Leitura VALUES
+	(NULL, 20, DEFAULT, 8),
+	(NULL, 21, DEFAULT, 8),
+	(NULL, 22, DEFAULT, 8),
+	(NULL, 23, DEFAULT, 8),
+	(NULL, 24, DEFAULT, 8),
+	(NULL, 25, DEFAULT, 8),
+    (NULL, 55, DEFAULT, 7),
+    (NULL, 56, DEFAULT, 7),
+    (NULL, 57, DEFAULT, 7),
+    (NULL, 58, DEFAULT, 7),
+    (NULL, 59, DEFAULT, 7),
+    (NULL, 60, DEFAULT, 7);
+    
 SELECT * FROM Leitura;
+
+SELECT * FROM Sensores;
 
 SELECT * FROM Empresa;
 
@@ -132,4 +186,26 @@ SELECT * FROM Usuario;
 
 SELECT Nome FROM Usuario;
 
-SELECT Leitura AS medida, DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico FROM Leitura JOIN Sensores ON FKSensor_LE = idSensor JOIN Localização ON FKLocal_S = idLocal WHERE idLocal = 1 AND idSensor = 1;
+SELECT Leitura AS medida, 
+		DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+        FROM Leitura JOIN Sensores 
+			ON FKSensor_LE = idSensor 
+				JOIN Localização 
+					ON FKLocal_S = idLocal 
+						WHERE idLocal = 1 AND idSensor = 1;
+                        
+SELECT Leitura AS medida, 
+                        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+                        FROM Leitura JOIN Sensores 
+                        ON FKSensor_LE = idSensor 
+                        JOIN Localização 
+                        ON FKLocal_S = 1
+                        WHERE idSensor = 1;
+                        
+SELECT Leitura AS medida, 
+                        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+                        FROM Leitura JOIN Sensores 
+                        ON FKSensor_LE = idSensor 
+                        JOIN Localização 
+                        ON FKLocal_S = idLocal 
+                        WHERE idLocal = 1 AND FKSensor_LE = 1;
