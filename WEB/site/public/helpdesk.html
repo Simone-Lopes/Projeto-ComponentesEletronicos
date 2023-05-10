@@ -49,44 +49,50 @@
 
 
             <div class="card">
-                <img src="./assets/img/icons8-contrato-50.png" alt="icon de contrato">
+                <img class="icon-helpdesk" src="./assets/img/icons8-contrato-50.png" alt="icon de contrato">
                 <div class="card-text">
                     <h2>Contrato...</h2>
-                    <a href="./helpdesk.html">link para texto de solução</a>
-                    <a href="./helpdesk.html">link para texto de solução</a>
-                    <a href="#">...</a>
+                    <button class="button-problem" onclick="helpdeskContrato1()">Renovação do contrato</button>
+                    <button class="button-problem" onclick="helpdeskContrato2()">Preciso de uma segunda via</button>
                 </div>
             </div>
 
             <div class="card">
-                <img src="./assets/img/icons8-notebook-50.png" alt="icon da plataforma">
+                <img class="icon-helpdesk" src="./assets/img/icons8-notebook-50.png" alt="icon da plataforma">
                 <div class="card-text">
                     <h2>Plataforma...</h2>
-                    <a href="./helpdesk.html">link para texto de solução</a>
-                    <a href="./helpdesk.html">link para texto de solução</a>
-                    <a href="#">...</a>
+                    <button class="button-problem" onclick="helpdeskPlataforma1()">Erro no login/cadastro</button>
+                    <button class="button-problem" onclick="helpdeskPlataforma2()">Problema nos gráficos</button>
                 </div>
             </div>
 
             <div class="card">
-                <img src="./assets/img/icons8-manutenção-50.png" alt="icon de manutenção">
+                <img class="icon-helpdesk" src="./assets/img/icons8-manutenção.png" alt="icon de manutenção">
                 <div class="card-text">
                     <h2>Manutenção...</h2>
-                    <a href="./helpdesk.html">link para texto de solução</a>
-                    <a href="./helpdesk.html">link para texto de solução</a>
-                    <a href="#">...</a>
+                    <button class="button-problem" onclick="helpdeskManutencao1()">Novos sensores</button>
+                    <button class="button-problem" onclick="helpdeskManutencao2()">Manutenção de sensores (troca)</button>
                 </div>
             </div>
+            
         </div>
     </div>
 
     <div class="container">
-        <div class="helpdesk">
-            <h1>Nos deixe te ajudar!</h1>
-            <h3>email.empresa@gmail.com</h3>
+        <div class="msg-problema" id="msg_problema">
+
+            <!-- Dentro dessa div vai aparecer o texto solucionando o problema -->
+
         </div>
     </div>
 
+
+    <div class="container">
+        <div class="helpdesk">
+            <h1>Nos deixe te ajudar!</h1>
+            <h3>aqui não vai ficar assim, temos que pensar em estilização</h3>
+        </div>
+    </div>
 
 
     <!-- Iniciando footer -->
@@ -124,3 +130,62 @@
 </body>
 
 </html>
+
+<script>
+    function helpdeskContrato1() {
+        msg_problema.innerHTML=`<div class="titulo-problema">
+                                    <img src="./assets/img/icons8-contrato-50.png" alt="">
+                                    <h1>Renovação do contrato</h1>
+                                </div>
+                                <div class="texto-problema">
+                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                </div>`;
+    }
+
+    function helpdeskContrato2() {
+        msg_problema.innerHTML=`<div class="titulo-problema">
+                                    <img src="./assets/img/icons8-contrato-50.png" alt="">
+                                    <h1>Preciso de uma segunda via</h1>
+                                </div>
+                                <div class="texto-problema">
+                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                </div>`;
+    }
+
+        function helpdeskPlataforma1() {
+        msg_problema.innerHTML=`<div class="titulo-problema">
+                                    <img src="./assets/img/icons8-notebook-50.png" alt="">
+                                    <h1>Erro no login/cadastro</h1>
+                                </div>
+                                <div class="texto-problema">
+                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                </div>`;
+    }
+    function helpdeskPlataforma2() {
+        msg_problema.innerHTML=`<div class="titulo-problema">
+                                    <img src="./assets/img/icons8-notebook-50.png" alt="">
+                                    <h1>Problema nos gráficos</h1>
+                                </div>
+                                <div class="texto-problema">
+                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                </div>`;
+    }
+    function helpdeskManutencao1() {
+        msg_problema.innerHTML=`<div class="titulo-problema">
+                                    <img src="./assets/img/icons8-manutenção.png" alt="">
+                                    <h1>Novos sensores</h1>
+                                </div>
+                                <div class="texto-problema">
+                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                </div>`;
+    }
+    function helpdeskManutencao2() {
+        msg_problema.innerHTML=`<div class="titulo-problema">
+                                    <img src="./assets/img/icons8-manutenção.png" alt="">
+                                    <h1>Manutenção de sensores (troca)</h1>
+                                </div>
+                                <div class="texto-problema">
+                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                </div>`;
+    }
+</script>
