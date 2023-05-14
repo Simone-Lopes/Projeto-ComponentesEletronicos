@@ -9,19 +9,28 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function mostrarNome() {
+function buscarID(nome, email) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-        SELECT Nome FROM Usuario;
+        SELECT idUsuario FROM Usuario WHERE Nome = '${nome}' AND email = '${email};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function entrar(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
+function entrar(nome, email, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", nome, email, senha)
     var instrucao = `
-        SELECT * FROM Usuario WHERE Email = '${email}' AND Senha = '${senha}';
+        SELECT * FROM Usuario WHERE Nome = '${nome}' AND Email = '${email}' AND Senha = '${senha}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletar(idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", idUsuario)
+    var instrucao = `
+        DELETE FROM Usuario WHERE idUsuario = '${idUsuario}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -33,13 +42,6 @@ function cadastrar(nome, email, tell, senha) {
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-
-
-
-    // var instrucao = `
-    //     INSERT INTO Usuario (Nome, Telefone, Email, Senha) VALUES ('${nome}', '${tell}', '${email}', '${senha}');
-    // `;
-
     var instrucao = `
         INSERT INTO Usuario (Nome, Email, Telefone, Senha) VALUES ('${nome}', '${email}', '${tell}', '${senha}');
     `;
@@ -50,6 +52,7 @@ function cadastrar(nome, email, tell, senha) {
 module.exports = {
     entrar,
     cadastrar,
-    mostrarNome,
+    buscarID,
+    deletar,
     listar,
 };

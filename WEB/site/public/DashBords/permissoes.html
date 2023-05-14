@@ -69,14 +69,14 @@
 
             </div>
             <div class="container">
-                <h1 class="h1-container">Bem vindo de volta, Fernando Brandão!</h1>
+                <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
                 <p id="p-container">Permissões de Usuários</p>
 
                 <div class="users-pesquisa">
                     <label for="input_pesquisa">Pesquisar por email:</label>
                     <input type="text" class="input_pesquisa">
                     <button class="btn-per" onclick="ir_cadastrar()">Adicionar Usuário</button>
-                    <button class="btn-per">Remover Usuário</button>
+                    <button class="btn-per" onclick="ir_deletar()">Remover Usuário</button>
                 </div>
                 <p class="h1-perm">Users</p>
                 <div class="lista-users">
@@ -109,5 +109,9 @@
     function ir_cadastrar() {
         window.location = "cadastro.html";
     }
+
+    function ir_deletar() {
+            window.location = "deletar.html";
+        }
 
 </script>

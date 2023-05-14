@@ -1,5 +1,5 @@
 
-DROP DATABASE Secure_Ship;
+
 
 -- Criação do Banco de Dados
 CREATE DATABASE Secure_Ship;
@@ -68,13 +68,14 @@ CREATE TABLE Sensores(
 
 -- Criação da tabela que fara o Relacionamento dos sensores com os resultados e os clientes
 CREATE TABLE Leitura (
-	idLeitura INT AUTO_INCREMENT, -- Componente da Chave Primaria 
-    Leitura FLOAT, -- Resultado dos sensores 
+	idLeitura INT PRIMARY KEY AUTO_INCREMENT, -- Componente da Chave Primaria 
+    Leitura_Temp FLOAT, -- Resultado dos sensores
+    Leitura_Umi FLOAT, 
     Data_Hora DATETIME DEFAULT CURRENT_TIMESTAMP, -- Data e hora em que os resultados foram computados
     FKSensor_LE INT, -- Componente da Chave Primaria que refere a Tabela Sensores
 		CONSTRAINT FKSensor_LE FOREIGN KEY (FKSensor_LE)
-			REFERENCES Sensores(idSensor),
-	CONSTRAINT PKComposta_Le PRIMARY KEY (idLeitura,FKSensor_LE) -- Chave Primaria composta de Dois elementos 
+			REFERENCES Sensores(idSensor)
+-- CONSTRAINT PKComposta_Le PRIMARY KEY (idLeitura,FKSensor_LE) -- Chave Primaria composta de Dois elementos 
 );
 
 -- SELECTS PARA TESTE
@@ -92,7 +93,7 @@ SELECT * FROM
 		ON FKLimite_L = idLimite ORDER BY idLimite ASC;
 
 INSERT INTO Usuario VALUES
-	(NULL, 'Davi Rodrigues', 'davirodrigues0506@gmail.com', '11959164441', 'myLOVEisthe0506', NULL, NULL);
+	(NULL, 'Davi', 'davirodrigues@gmail.com', '11959164441', 'davilegal', NULL, NULL);
   
 INSERT INTO Limite_Parametros VALUES 
 	(NULL, -4, 40, 'Temperatura', NULL),
@@ -120,62 +121,10 @@ INSERT INTO Sensores VALUES
     (NULL, 'DHT11', 'Umidade', 4),
 	(NULL, 'LM35', 'Temperatura', 4);
     
-INSERT INTO Leitura VALUES
-	(NULL, 20, DEFAULT, 2),
-	(NULL, 21, DEFAULT, 2),
-	(NULL, 22, DEFAULT, 2),
-	(NULL, 23, DEFAULT, 2),
-	(NULL, 24, DEFAULT, 2),
-	(NULL, 25, DEFAULT, 2),
-    (NULL, 55, DEFAULT, 1),
-    (NULL, 56, DEFAULT, 1),
-    (NULL, 57, DEFAULT, 1),
-    (NULL, 58, DEFAULT, 1),
-    (NULL, 59, DEFAULT, 1),
-    (NULL, 60, DEFAULT, 1);
+TRUNCATE TABLE Leitura;
+    
+SELECT * FROM bolinha;    
 
-INSERT INTO Leitura VALUES
-	(NULL, 20, DEFAULT, 4),
-	(NULL, 21, DEFAULT, 4),
-	(NULL, 22, DEFAULT, 4),
-	(NULL, 23, DEFAULT, 4),
-	(NULL, 24, DEFAULT, 4),
-	(NULL, 25, DEFAULT, 4),
-    (NULL, 55, DEFAULT, 3),
-    (NULL, 56, DEFAULT, 3),
-    (NULL, 57, DEFAULT, 3),
-    (NULL, 58, DEFAULT, 3),
-    (NULL, 59, DEFAULT, 3),
-    (NULL, 60, DEFAULT, 3);
-    
-INSERT INTO Leitura VALUES
-	(NULL, 20, DEFAULT, 6),
-	(NULL, 21, DEFAULT, 6),
-	(NULL, 22, DEFAULT, 6),
-	(NULL, 23, DEFAULT, 6),
-	(NULL, 24, DEFAULT, 6),
-	(NULL, 25, DEFAULT, 6),
-    (NULL, 55, DEFAULT, 5),
-    (NULL, 56, DEFAULT, 5),
-    (NULL, 57, DEFAULT, 5),
-    (NULL, 58, DEFAULT, 5),
-    (NULL, 59, DEFAULT, 5),
-    (NULL, 60, DEFAULT, 5);
-    
-INSERT INTO Leitura VALUES
-	(NULL, 20, DEFAULT, 8),
-	(NULL, 21, DEFAULT, 8),
-	(NULL, 22, DEFAULT, 8),
-	(NULL, 23, DEFAULT, 8),
-	(NULL, 24, DEFAULT, 8),
-	(NULL, 25, DEFAULT, 8),
-    (NULL, 55, DEFAULT, 7),
-    (NULL, 56, DEFAULT, 7),
-    (NULL, 57, DEFAULT, 7),
-    (NULL, 58, DEFAULT, 7),
-    (NULL, 59, DEFAULT, 7),
-    (NULL, 60, DEFAULT, 7);
-    
 SELECT * FROM Leitura;
 
 SELECT * FROM Sensores;
@@ -185,27 +134,3 @@ SELECT * FROM Empresa;
 SELECT * FROM Usuario;
 
 SELECT Nome FROM Usuario;
-
-SELECT Leitura AS medida, 
-		DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
-        FROM Leitura JOIN Sensores 
-			ON FKSensor_LE = idSensor 
-				JOIN Localização 
-					ON FKLocal_S = idLocal 
-						WHERE idLocal = 1 AND idSensor = 1;
-                        
-SELECT Leitura AS medida, 
-                        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
-                        FROM Leitura JOIN Sensores 
-                        ON FKSensor_LE = idSensor 
-                        JOIN Localização 
-                        ON FKLocal_S = 1
-                        WHERE idSensor = 1;
-                        
-SELECT Leitura AS medida, 
-                        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
-                        FROM Leitura JOIN Sensores 
-                        ON FKSensor_LE = idSensor 
-                        JOIN Localização 
-                        ON FKLocal_S = idLocal 
-                        WHERE idLocal = 1 AND FKSensor_LE = 1;
