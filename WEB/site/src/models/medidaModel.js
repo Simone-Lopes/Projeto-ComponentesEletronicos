@@ -3,18 +3,6 @@ var database = require("../database/config");
 function buscarUltimasMedidas_Umi(idLocal, limite_linhas, idSensor) {
 
     var limite_linhas = 10;
-    var idSensor = 0;
-
-    if (idLocal == 1) 
-    {
-        idSensor = 2;  
-    }else if ( idLocal == 2) {
-        idSensor = 4;
-    }else if ( idLocal == 3){
-        idSensor = 6;
-    }else if ( idLocal == 4) {
-        idSensor = 8;
-    }
 
     instrucaoSql = ''
 
@@ -30,17 +18,14 @@ function buscarUltimasMedidas_Umi(idLocal, limite_linhas, idSensor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Leitura_Umi AS umidade, 
-        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
+        Distinct(Leitura_Umi) AS umidade, 
+        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
         FROM 
         Leitura 
-        JOIN 
-        Sensores 
-        ON FKSensor_LE = idSensor 
         JOIN Localização 
-        ON FKLocal_S = idLocal
-        WHERE idLocal = ${idLocal} 
-        AND idSensor = ${idSensor}
+        ON FKLocal_LE = idLocal
+        WHERE idLocal = ${idLocal}
+        ORDER BY momento_grafico DESC
         LIMIT ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -54,18 +39,6 @@ function buscarUltimasMedidas_Umi(idLocal, limite_linhas, idSensor) {
 function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas, idSensor) {
 
     var limite_linhas = 10;
-    var idSensor = 0;
-
-    if (idLocal == 1) 
-    {
-        idSensor = 2;  
-    }else if ( idLocal == 2) {
-        idSensor = 4;
-    }else if ( idLocal == 3){
-        idSensor = 6;
-    }else if ( idLocal == 4) {
-        idSensor = 8;
-    }
 
     instrucaoSql = '';
 
@@ -81,17 +54,14 @@ function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas, idSensor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Leitura_Umi AS umidade, 
-        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
+        Distinct(Leitura_Umi) AS umidade, 
+        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
         FROM 
         Leitura 
-        JOIN 
-        Sensores 
-        ON FKSensor_LE = idSensor 
         JOIN Localização 
-        ON FKLocal_S = idLocal
-        WHERE idLocal = ${idLocal} 
-        AND idSensor = ${idSensor}
+        ON FKLocal_LE = idLocal
+        WHERE idLocal = ${idLocal}
+        ORDER BY momento_grafico DESC
         LIMIT ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -105,18 +75,7 @@ function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas, idSensor) {
 function buscarUltimasMedidas_Temp(idLocal, limite_linhas, idSensor) {
 
     var limite_linhas = 10;
-    var idSensor = 0;
 
-    if (idLocal == 1) 
-    {
-        idSensor = 1;  
-    }else if ( idLocal == 2) {
-        idSensor = 3;
-    }else if ( idLocal == 3){
-        idSensor = 5;
-    }else if ( idLocal == 4) {
-        idSensor = 7;
-    }
 
     instrucaoSql = ''
 
@@ -132,18 +91,15 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas, idSensor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Leitura_Temp AS temperatura, 
-        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
+        Distinct(Leitura_Temp) AS temperatura, 
+        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
         FROM 
         Leitura 
-        JOIN 
-        Sensores 
-        ON FKSensor_LE = idSensor 
         JOIN Localização 
-        ON FKLocal_S = idLocal
-        WHERE idLocal = ${idLocal} 
-        AND idSensor = ${idSensor}
-        LIMIT ${limite_linhas};`;
+        ON FKLocal_LE = idLocal
+        WHERE idLocal = ${idLocal}
+        ORDER BY momento_grafico DESC
+        LIMIT ${limite_linhas}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -155,19 +111,8 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas, idSensor) {
 
 function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
 
-    var limite_linhas = 10;
-    var idSensor = 0;
+    var limite_linhas = 15;
 
-    if (idLocal == 1) 
-    {
-        idSensor = 1;  
-    }else if ( idLocal == 2) {
-        idSensor = 3;
-    }else if ( idLocal == 3){
-        idSensor = 5;
-    }else if ( idLocal == 4) {
-        idSensor = 7;
-    }
 
     instrucaoSql = '';
 
@@ -183,18 +128,15 @@ function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Leitura_Temp AS temperatura, 
-        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
+        Distinct(Leitura_Temp) AS temperatura, 
+        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
         FROM 
         Leitura 
-        JOIN 
-        Sensores 
-        ON FKSensor_LE = idSensor 
         JOIN Localização 
-        ON FKLocal_S = idLocal
-        WHERE idLocal = ${idLocal} 
-        AND idSensor = ${idSensor}
-        LIMIT ${limite_linhas};`;
+        ON FKLocal_LE = idLocal
+        WHERE idLocal = ${idLocal}
+        ORDER BY momento_grafico DESC
+        LIMIT ${limite_linhas}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
