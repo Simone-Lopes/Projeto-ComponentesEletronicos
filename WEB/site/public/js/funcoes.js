@@ -41,7 +41,6 @@ function finalizarAguardar(texto) {
     }
 }
 
-
 // modal
 function mostrarModal() {
     var divModal = document.getElementById("div_modal");

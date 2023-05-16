@@ -6,10 +6,11 @@
     <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
-    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <!-- <script src="http://www.chartjs.org/samples/latest/utils.js"></script> -->
+    <script src="../js/funcoes.js"></script>
 </head>
 
-<body>
+<body onload="atualizarFeed()">
     <div class="geral">
         <div class="side-bar">
             <div class="container">
@@ -76,30 +77,26 @@
 
                 <div class="users-pesquisa">
                     <label for="input_pesquisa">Pesquisar por email:</label>
-                    <input type="text" class="input_pesquisa">
+                    <input type="text" id="input_pesquisa" class="input_pesquisa" oninput="buscar_usuario()">
                     <button class="btn-per" onclick="ir_cadastrar()">Adicionar Usuário</button>
                     <button class="btn-per" onclick="ir_deletar()">Remover Usuário</button>
                 </div>
                 <p class="h1-perm">Users</p>
-                <div class="lista-users">
-                    <ul>
-                        <li>Simone Lopes | simone@email.com</li>
-                        <li>Davi Rodrigues | davi@email.com</li>
-                        <li>Lívia Lanes | livia@email.com</li>
-                        <li>Guilherme Gonsalves | guilherme@email.com</li>
-                    </ul>
-                </div>
-                <p class="h1-perm">Permissões</p>
-                <div class="tipos-perm">
-                    <ul>
-                        <li>Visão Geral da Empresa</li>
-                        <li>Tela de Visão Geral dos Containers</li>
-                        <li>Visualização de Leitura Individual</li>
-                        <li>Configurações</li>
+                <div class="lista-users" id="lista_users">
+                    <ul id="lista_usuarios">
                     </ul>
                 </div>
                 
             </div>
+            <div id="div_erros_login">
+                <div class="alerta_erro">
+                  <div class="card_erro" id="cardErro">
+                      <span id="mensagem_erro"></span>
+                  </div>
+                </div>
+              </div>
+              <div id="div_aguardar" class="loading-div">
+              </div>
         </div>
     </div>
 </body>
@@ -116,6 +113,77 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function ir_deletar() {
             window.location = "deletar.html";
-        }
+    }
+
+    function atualizarFeed() {
+        aguardar();
+        fetch("/usuarios/listar")
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("lista_usuarios");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum resultado encontrado."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("lista_usuarios");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var usuario = document.createElement("li");
+
+                        usuario.innerHTML = "Nome: " + publicacao.Nome + " | Email: " + publicacao.Email + " | CPF: " + publicacao.Cpf;
+
+                        lista_users.appendChild(usuario);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    function buscar_usuario() {
+        aguardar();
+
+        var emailVar = input_pesquisa.value;
+
+        fetch("/usuarios/buscar_usuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                emailServer: emailVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar A pesquisa!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
 
 </script>

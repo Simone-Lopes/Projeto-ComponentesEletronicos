@@ -3,7 +3,20 @@ var database = require("../database/config")
 function listar() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-        SELECT * FROM Usuario;
+        SELECT Usuario.Nome AS Nome,
+                Usuario.Email AS Email,
+                    Usuario.CPF AS Cpf 
+        FROM Usuario;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscar_usuario(email) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()", email);
+    var instrucao = `
+        SELECT Usuario.Nome AS Nome
+        FROM Usuario WHERE Usuario.Email = '${email}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -18,7 +31,7 @@ function entrar(nome, email, senha) {
     return database.executar(instrucao);
 }
 
-function deletar_usuario(cpf) {
+function deletar(cpf) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", cpf)
     var instrucao = `
         DELETE FROM Usuario WHERE CPF = '${cpf}';
@@ -43,6 +56,7 @@ function cadastrar(nome, email, cpf, tell, senha) {
 module.exports = {
     entrar,
     cadastrar,
-    deletar_usuario,
+    buscar_usuario,
+    deletar,
     listar,
 };

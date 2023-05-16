@@ -24,6 +24,26 @@ function listar(req, res) {
         );
 }
 
+function buscar_usuario(req, res) {
+
+    var email = req.body.emailServer;
+
+    usuarioModel.buscar_usuario(email)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function entrar(req, res) {
 
     var nome = req.body.nomeServer;
@@ -64,32 +84,24 @@ function entrar(req, res) {
 
 }
 
-function deletar_usuario(req, res) {
+    function deletar(req, res) {
 
-    var cpf = req.body.cpfServer;
-
-    if (cpf == undefined) {
-        res.status(400).send("Seu Cpf está undefined!");
-    } else {
-        
-        usuarioModel.deletar_usuario(cpf)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log(
-                    "\nHouve um erro ao realizar a Remoção! Erro: ",
-                    erro.sqlMessage
-                );
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+        var cpf = req.body.cpfServer;
+    
+        usuarioModel.deletar(cpf)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao deletar o usuario: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
-
-}
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -134,7 +146,8 @@ function cadastrar(req, res) {
 module.exports = {
     entrar,
     cadastrar,
-    deletar_usuario,
+    deletar,
+    buscar_usuario,
     listar,
     testar
 }
