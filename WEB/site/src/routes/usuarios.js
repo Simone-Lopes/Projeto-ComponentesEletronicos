@@ -7,8 +7,12 @@ router.get("/", function (req, res) {
     usuarioController.testar(req, res);
 });
 
-router.get("/listar", function (req, res) {
-    usuarioController.listar(req, res);
+router.get("/listar_usuarios", function (req, res) {
+    usuarioController.listar_usuarios(req, res);
+});
+
+router.get("/listar_locais", function (req, res) {
+    usuarioController.listar_locais(req, res);
 });
 
 router.post("/buscar_usuario", function (req, res) {
@@ -18,6 +22,10 @@ router.post("/buscar_usuario", function (req, res) {
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
+})
+
+router.post("/cadastrar_local", function (req, res) {
+    usuarioController.cadastrar_local(req, res);
 })
 
 router.post("/autenticar", function (req, res) {

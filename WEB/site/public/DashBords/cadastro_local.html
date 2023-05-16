@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_cadastro.css">
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <script src="../js/funcoes.js"></script>
+    <title> Cadastro de local </title>
+
+</head>
+
+<body>
+    <div class="pagina">
+        <div class="container1">
+            <a href="containers.html"><img src="../assets/img/logo (3).png" alt="Logo" width="120px" height="100px"></a>
+        </div>
+        <div class="container2">
+          
+          <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+          </div>
+          
+            <div class="card">
+                <h1 class="titulo">Adicione Um local</h1>
+                <div class="nome">
+                  <label class="label" for="nome">Nome do Local</label>
+                  <input class="input" type="text" id="nome" name="nome" />
+                </div>
+                <!-- <div class="nome">
+                    <label class="label" id="label_limites" for="nome">Quais os Limites deste local?</label>
+                    <input class="input" type="number" id="limite_Temp_Min" name="limite" placeholder="Limite Minimo de Temperatura" />
+                    <input class="input" type="number" id="limite_Temp_Max" name="limite" placeholder="Limite Maximo de Temperatura" />
+                    <input class="input" type="number" id="limite_Umi_Min" name="limite"  placeholder="Limite Minimo de Umidade"/>
+                    <input class="input" type="number" id="limite_Umi_Max" name="limite"  placeholder="Limite Maximo de Temperatura"/>
+                </div> -->
+
+                <button onclick="cadastrar_local()" class="btn-login">Cadastrar</button>
+
+                <div id="div_aguardar" class="loading-div">
+                </div>
+      
+                <div id="div_erros_login"></div>
+                </div>
+    
+            </div>
+</body>
+
+</html>
+
+<script>
+
+  function cadastrar_local() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome.value;
+
+        if (nomeVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Por favor, preencha todos os campos.";
+
+            finalizarAguardar();
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar_local", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+
+                setTimeout(() => {
+                    window.location = "containers.html";
+                }, "2000")
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

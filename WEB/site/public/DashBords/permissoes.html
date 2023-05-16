@@ -10,7 +10,7 @@
     <script src="../js/funcoes.js"></script>
 </head>
 
-<body onload="atualizarFeed()">
+<body onload="atualizarFeed_usuarios(), atualizarFeed_locais()">
     <div class="geral">
         <div class="side-bar">
             <div class="container">
@@ -72,7 +72,7 @@
             <div class="container">
                 <div class="msg_inicio">
                     <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
-                    <p id="p-container">Resumo dos Containers</p>
+                    <p id="p-container">Resumo dos Funcionarios</p>
                 </div>
 
                 <div class="users-pesquisa">
@@ -87,6 +87,12 @@
                     </ul>
                 </div>
                 
+                <p class="h1-perm">Locais</p>
+                <div class="lista-users">
+                    <ul id="lista_locais">
+                    </ul>
+                </div>
+
             </div>
             <div id="div_erros_login">
                 <div class="alerta_erro">
@@ -115,9 +121,9 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             window.location = "deletar.html";
     }
 
-    function atualizarFeed() {
+    function atualizarFeed_usuarios() {
         aguardar();
-        fetch("/usuarios/listar")
+        fetch("/usuarios/listar_usuarios")
             .then(function (resposta) {
                 if (resposta.ok) {
                     if (resposta.status == 204) {
@@ -133,14 +139,53 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
                     var feed = document.getElementById("lista_usuarios");
                     feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+                    for (let contador_usuario = 0; contador_usuario < resposta.length; contador_usuario++) {
+                        var publicacao = resposta[contador_usuario];
                         // criando e manipulando elementos do HTML via JavaScript
                         var usuario = document.createElement("li");
 
-                        usuario.innerHTML = "Nome: " + publicacao.Nome + " | Email: " + publicacao.Email + " | CPF: " + publicacao.Cpf;
+                        usuario.innerHTML = publicacao.Nome + " | " + publicacao.Email + " " + publicacao.Cpf;
 
                         lista_users.appendChild(usuario);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    function atualizarFeed_locais() {
+        aguardar();
+        fetch("/usuarios/listar_locais")
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("lista_locais");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum resultado encontrado."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("lista_locais");
+                    feed.innerHTML = "";
+                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
+                        var publicacao_local = resposta[contador_local];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var local = document.createElement("li");
+
+                        local.innerHTML = publicacao_local.Nome;
+
+                        lista_locais.appendChild(local);    
                     }
 
                     finalizarAguardar();

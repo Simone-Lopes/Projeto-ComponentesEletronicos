@@ -9,7 +9,7 @@
     <script src="../js/funcoes.js"></script>
 </head>
 
-<body>
+<body onload="atualizarFeed_locais">
     <div class="geral">
         <div class="side-bar">
             <div class="container">
@@ -80,16 +80,10 @@
 
                     <button class="btn-per" onclick="ir_add_local()">Adicionar Local</button>
 
-                    <select class="select_local" onchange="exibirlocal(this.value)">
-                        <option></option>
-                        <option disabled>Selecione Um Local Para ver Os graficos</option>
-                        <option value="1" >Container 1</option>
-                        <option value="2" >Container 2</option>
-                        <option value="3" >Container 3</option>
-                        <option value="4" >Container 4</option>
+                    <select class="select_local" id="lista_locais" onchange="exibirlocal(this.value)">
                     </select>
                     
-                    <button class="btn-per" onclick="ir_del_local()">Remover Local</button>
+                    <button class="btn-per" onclick="ir_remove_local()">Remover Local</button>
 
                 </div>
                 <div id="graficos">
@@ -556,11 +550,50 @@ fetch(`/medidas/tempo-real_Temp/${idLocal}`, { cache: 'no-store' }).then(functio
 }
 
  function ir_add_local() {
-    window.open = 'cadastro_local.html';
+    window.location = 'cadastro_local.html';
 }
 
 function ir_remove_local() {
-    window.open = 'remover_local.html';
+    window.location = 'deletar_local.html';
 }
+
+function atualizarFeed_locais() {
+        aguardar();
+        fetch("/usuarios/listar_locais")
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("lista_locais");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum resultado encontrado."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("lista_locais");
+                    feed.innerHTML = "";
+                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
+                        var publicacao_local = resposta[contador_local];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var local = document.createElement("option");
+                        local.setAttribute("Value", `${contador_local}`)
+                        local.innerHTML = publicacao_local.Nome;
+
+                        lista_locais.appendChild(local);    
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
 
 </script>

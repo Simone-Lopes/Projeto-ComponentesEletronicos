@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/style_remover.css" />
+  <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+  <script src="../js/funcoes.js"></script>
+  <title> Remoção de usuario </title>
+</head>
+
+<body>
+  <div class="pagina">
+
+    
+    <div class="container1">
+      <a href="containers.html"><img src="../assets/img/logo (3).png" alt="Logo" width="120px" height="100px"></a>
+    </div>
+    <div class="container2">
+      <div class="card">
+        <form>
+          <h1 class="titulo">Remova o Usuario</h1>
+          <div class="nome">
+            <label class="label" for="Cpf">CPF</label>
+            <input class="input" type="text" id="cpf" maxlength="11" minlength="11" name="cpf" />
+          </div>
+        </form>
+        <button onclick="remover()" class="btn-login">Remover</button>
+        <!-- <div id="cadastro">
+          <h5>
+            Não tem uma conta?
+            <a href="./cadastro.html"><span class="cadastro" id="id_cadastro"> Cadastre-se </span></a>
+          </h5>
+        </div> -->
+      </div>
+      <div id="div_erros_login">
+        <div class="alerta_erro">
+          <div class="card_erro" id="cardErro">
+              <span id="mensagem_erro"></span>
+          </div>
+        </div>
+      </div>
+      <div id="div_aguardar" class="loading-div">
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+
+  function remover() {
+
+    aguardar();
+
+    var cpfVar = cpf.value;
+
+    if (cpfVar == "") {
+      cardErro.style.display = "block"
+      mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+      finalizarAguardar();
+      return false;
+    }
+    else {
+      setInterval(sumirMensagem, 5000)
+    }
+
+    console.log("FORM CPF: ", cpfVar);
+
+    fetch("/usuarios/deletar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cpfServer: cpfVar,
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
+          setTimeout(function () {
+            window.location = "permissoes.html";
+          }, 1000); // apenas para exibir o loading
+
+        });
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar a remoção!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
+function sumirMensagem() {
+  cardErro.style.display = "none";
+}
+  
+
+</script>
