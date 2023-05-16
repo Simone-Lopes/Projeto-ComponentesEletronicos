@@ -69,8 +69,10 @@
 
             </div>
             <div class="container">
-                <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
-                <p id="p-container">Permissões de Usuários</p>
+                <div class="msg_inicio">
+                    <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
+                    <p id="p-container">Resumo dos Containers</p>
+                </div>
 
                 <div class="users-pesquisa">
                     <label for="input_pesquisa">Pesquisar por email:</label>
@@ -105,6 +107,8 @@
 </html>
 
 <script>
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function ir_cadastrar() {
         window.location = "cadastro.html";

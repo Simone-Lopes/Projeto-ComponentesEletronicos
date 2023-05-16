@@ -37,6 +37,10 @@
                   <label class="label" for="email">Email</label>
                   <input class="input" type="email" id="email" name="senha" />
                 </div>
+                <div class="senha">
+                    <label class="label" for="cpf">CPF</label>
+                    <input class="input" type="text" id="cpf" maxlength="11" minlength="11" name="cpf" />
+                  </div>
                 <div class="telefone">
                   <label class="label" for="telefone">Telefone</label>
                   <input class="input" type="number" id="telefone" name="telefone" />
@@ -72,11 +76,12 @@
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nome.value;
         var emailVar = email.value;
+        var cpfVar = cpf.value;
         var tellVar = telefone.value;
         var senhaVar = senha.value;
         var confirmacaoSenhaVar = Confirmar_senha.value;
 
-        if (nomeVar == "" || tellVar == "" || emailVar == "" || senhaVar == "") {
+        if (nomeVar == "" || tellVar == "" || emailVar == "" || senhaVar == "" || cpfVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Por favor, preencha todos os campos.";
 
@@ -105,15 +110,6 @@
             setInterval(sumirMensagem, 5000)
         }
 
-        // else if (tellVar.length != 15){
-        //     cardErro.style.display = "block"
-        //     mensagem_erro.innerHTML = "Insira um telefone válido!";
-
-        //     finalizarAguardar();
-        //     return false;
-        // }
-
-
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -125,6 +121,7 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 emailServer: emailVar,
+                cpfServer: cpfVar,
                 tellServer: tellVar,
                 senhaServer: senhaVar
             })

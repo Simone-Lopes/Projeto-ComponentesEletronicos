@@ -69,17 +69,29 @@
 
             </div>
             <div class="container">
-                <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
-                <p id="p-container">Resumo dos Containers</p>
 
-                <select onchange="exibirlocal(this.value)">
-                    <option>Selecione Um Local Para ver Os graficos</option>
-                    <option value="1" >Container 1</option>
-                    <option value="2" >Container 2</option>
-                    <option value="3" >Container 3</option>
-                    <option value="4" >Container 4</option>
-                </select>
+                <div class="msg_inicio">
+                    <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
+                    <p id="p-container">Resumo dos Containers</p>
+                </div>
                 
+
+                <div class="locais">
+
+                    <button class="btn-per" onclick="ir_add_local()">Adicionar Local</button>
+
+                    <select class="select_local" onchange="exibirlocal(this.value)">
+                        <option></option>
+                        <option disabled>Selecione Um Local Para ver Os graficos</option>
+                        <option value="1" >Container 1</option>
+                        <option value="2" >Container 2</option>
+                        <option value="3" >Container 3</option>
+                        <option value="4" >Container 4</option>
+                    </select>
+                    
+                    <button class="btn-per" onclick="ir_del_local()">Remover Local</button>
+
+                </div>
                 <div id="graficos">
                     <div id="grafico1" class="display-block">
                         <h3 class="tituloGraficos">
@@ -541,6 +553,14 @@ fetch(`/medidas/tempo-real_Temp/${idLocal}`, { cache: 'no-store' }).then(functio
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
     });
 
+}
+
+ function ir_add_local() {
+    window.open = 'cadastro_local.html';
+}
+
+function ir_remove_local() {
+    window.open = 'remover_local.html';
 }
 
 </script>

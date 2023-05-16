@@ -24,15 +24,11 @@
         <form>
           <h1 class="titulo">Remova o Usuario</h1>
           <div class="nome">
-            <label class="label" for="Nome">Nome</label>
-            <input class="input" type="text" id="nome" name="nome" />
-          </div>
-          <div class="email">
-            <label class="label" for="email">Email</label>
-            <input class="input" type="email" id="email" name="email" />
+            <label class="label" for="Cpf">CPF</label>
+            <input class="input" type="text" id="cpf" maxlength="11" minlength="11" name="cpf" />
           </div>
         </form>
-        <button onclick="buscar()" class="btn-login">Remover</button>
+        <button onclick="remover()" class="btn-login">Remover</button>
         <!-- <div id="cadastro">
           <h5>
             Não tem uma conta?
@@ -58,14 +54,13 @@
 
 <script>
 
-  function buscar() {
+  function remover() {
 
     aguardar();
 
-    var nomeVar = nome.value;
-    var emailVar = email.value;
+    var cpfVar = cpf.value;
 
-    if (emailVar == "" || nomeVar == "") {
+    if (cpfVar == "") {
       cardErro.style.display = "block"
       mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
       finalizarAguardar();
@@ -75,17 +70,15 @@
       setInterval(sumirMensagem, 5000)
     }
 
-    console.log("FORM NAME: ", nomeVar);
-    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM CPF: ", cpfVar);
 
-    fetch("/usuarios/buscarID", {
+    fetch("/usuarios/deletar_usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        nomeServer: nomeVar,
-        emailServer: emailVar,
+        cpfServer: cpfVar,
       })
     }).then(function (resposta) {
       console.log("ESTOU NO THEN DO entrar()!")
@@ -97,10 +90,8 @@
           console.log(json);
           console.log(JSON.stringify(json));
 
-          
-
           setTimeout(function () {
-            window.location = "DashBords/permissoes.html";
+            window.location = "permissoes.html";
           }, 1000); // apenas para exibir o loading
 
         });
@@ -121,69 +112,6 @@
 
     return false;
   }
-
-  function remover(idUsuario) {
-
-  aguardar();
-
-  var nomeVar = idUsuario.value
-
-  if (emailVar == "" || nomeVar == "") {
-    cardErro.style.display = "block"
-    mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-    finalizarAguardar();
-    return false;
-  }
-  else {
-    setInterval(sumirMensagem, 5000)
-  }
-
-  console.log("FORM NAME: ", nomeVar);
-  console.log("FORM LOGIN: ", emailVar);
-
-  fetch("/usuarios/buscarID", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      nomeServer: nomeVar,
-      emailServer: emailVar,
-    })
-  }).then(function (resposta) {
-    console.log("ESTOU NO THEN DO entrar()!")
-
-    if (resposta.ok) {
-      console.log(resposta);
-
-      resposta.json().then(json => {
-        console.log(json);
-        console.log(JSON.stringify(json));
-
-
-
-        setTimeout(function () {
-          window.location = "DashBords/permissoes.html";
-        }, 1000); // apenas para exibir o loading
-
-      });
-
-    } else {
-
-      console.log("Houve um erro ao tentar realizar a remoção!");
-
-      resposta.text().then(texto => {
-        console.error(texto);
-        finalizarAguardar(texto);
-      });
-    }
-
-}).catch(function (erro) {
-  console.log(erro);
-})
-
-return false;
-}
 
 function sumirMensagem() {
   cardErro.style.display = "none";

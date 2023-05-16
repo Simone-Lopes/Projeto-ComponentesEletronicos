@@ -19,7 +19,7 @@ function buscarUltimasMedidas_Umi(idLocal, limite_linhas, idSensor) {
         instrucaoSql = `
         SELECT 
         Distinct(Leitura_Umi) AS umidade, 
-        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
         JOIN Localização 
@@ -55,7 +55,7 @@ function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas, idSensor) {
         instrucaoSql = `
         SELECT 
         Distinct(Leitura_Umi) AS umidade, 
-        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
         JOIN Localização 
@@ -92,7 +92,7 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas, idSensor) {
         instrucaoSql = `
         SELECT 
         Distinct(Leitura_Temp) AS temperatura, 
-        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
         JOIN Localização 
@@ -129,7 +129,7 @@ function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
         instrucaoSql = `
         SELECT 
         Distinct(Leitura_Temp) AS temperatura, 
-        DATE_FORMAT(Data_Hora,'%H:%i:%s') AS momento_grafico 
+        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
         JOIN Localização 
