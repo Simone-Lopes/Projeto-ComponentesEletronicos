@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/style_helpdesk.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../public/js/funcoes.js"></script>
-    <title> HelpDesk - Umitech </title>
+    <title> HelpDesk - SecureShip </title>
 
 </head>
 
@@ -25,6 +25,7 @@
                     <li><a href="sobreNos.html">Sobre Nós</a></li>
                     <li><a href="faleConosco.html">Fale Conosco</a></li>
                     <li><a href="loginEmpresa.html">Administrador</a></li>
+                    <li><a href="./helpdesk.html">Suporte</a></li>
                 </ul>
                 <img src="./assets/img/login_icon_151220.png" alt="login" class="login_icon">
                 <span class="login"><a href="./login.html">Login/</a></span>
@@ -45,9 +46,6 @@
             <h2>Como podemos ajudar?</h2>
         </div>
         <div class="container">
-
-
-
             <div class="card">
                 <img class="icon-helpdesk" src="./assets/img/icons8-contrato-50.png" alt="icon de contrato">
                 <div class="card-text">
@@ -86,15 +84,60 @@
         </div>
     </div>
 
-
-    <div class="container">
-        <div class="helpdesk">
-            <h1>Nos deixe te ajudar!</h1>
-            <h3>aqui não vai ficar assim, temos que pensar em estilização</h3>
+    <div class="banner-also">
+        <div class="header-banner">
+            <h1>Para mais dúvidas, contate-nos!</h1>
+            <p>Acesse aqui outras formas de contato para suporte</p>
+        </div>
+        <div class="banner-socials">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img src="assets/img/icons8-whatsapp-96.png" alt="Avatar" >
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>Whatsapp</h1> 
+                    <p>(11) 91234-5678</p> 
+                  </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img src="assets/img/icons8-telefone-96.png" alt="Avatar" >
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>Telefone</h1> 
+                    <p>(11) 21234-5678</p> 
+                  </div>
+                </div>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img src="assets/img/icons8-mensagem-96.png" alt="Avatar" >
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>Email</h1> 
+                    <p>secure_ship@outlook.com</p> 
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
 
-
+    <div class="container">
+        <div class="msg-problema" id="msg-associados">
+            <div class="msg-left">
+                <h1>Já é associado? </h1>
+                Abra um chamado através da nossa plataforma de HelpDesk
+            </div>
+            <div class="btn-right">
+                <a href="http://secureship-support.freshdesk.com"><button>Acesse Aqui</button></a>
+            </div>
+        </div>
+    </div>
+    
     <!-- Iniciando footer -->
     <div class="footer">
         <div class="footer-content">
@@ -138,7 +181,7 @@
                                     <h1>Renovação do contrato</h1>
                                 </div>
                                 <div class="texto-problema">
-                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                    <p>SOLUÇÃO DO PROBLEMA. Normalmente, enviamos um aviso prévio por e-mail ou correspondência física para informar sobre a proximidade da data de vencimento do contrato. Isso permite que você tenha tempo suficiente para considerar as opções de renovação e entrar em contato conosco caso tenha dúvidas ou precise de esclarecimentos. Durante as conversas com nossa equipe de vendas, você será informado sobre as diferentes opções de renovação disponíveis.</p>
                                 </div>`;
     }
 
@@ -148,7 +191,7 @@
                                     <h1>Preciso de uma segunda via</h1>
                                 </div>
                                 <div class="texto-problema">
-                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                    <p>SOLUÇÃO DO PROBLEMA. Caso você tenha perdido, extraviado ou necessite de uma cópia adicional do seu contrato, você pode solicitar uma segunda via entrando em contato com nossa equipe de atendimento ao cliente. Explique a situação e forneça as informações relevantes, como o nome completo do contrato, número do contrato (se aplicável) e qualquer informação adicional que possa ser útil para localizar seus dados.</p>
                                 </div>`;
     }
 
@@ -158,7 +201,9 @@
                                     <h1>Erro no login/cadastro</h1>
                                 </div>
                                 <div class="texto-problema">
-                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                    <p>SOLUÇÃO DO PROBLEMA. Se você está enfrentando dificuldades para fazer login na plataforma, há algumas etapas que você pode seguir para solucionar o problema. Primeiro, verifique se você está inserindo corretamente suas credenciais de login, incluindo seu nome de usuário e senha. Se esqueceu sua senha, você pode solicitar uma redefinição de senha seguindo as instruções fornecidas na página de login. Além disso, certifique-se de que seu navegador esteja atualizado e tente limpar o cache e os cookies para eliminar possíveis conflitos.
+
+</p>
                                 </div>`;
     }
     function helpdeskPlataforma2() {
@@ -167,7 +212,7 @@
                                     <h1>Problema nos gráficos</h1>
                                 </div>
                                 <div class="texto-problema">
-                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                    <p>SOLUÇÃO DO PROBLEMA. Se você está com problemas na exibição dos gráficos certifique-se de que seus sensores estão captando as informações de forma correta. Caso estejam, certifique-se de que sua conexão com a internet está estável. Em casos adversos, contate nosso suporte abrindo um chamado na plataforma de Help Desk.</p>
                                 </div>`;
     }
     function helpdeskManutencao1() {
@@ -176,7 +221,7 @@
                                     <h1>Novos sensores</h1>
                                 </div>
                                 <div class="texto-problema">
-                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                    <p>SOLUÇÃO DO PROBLEMA. Para adquirir novos sensores, entre em contato com o nosso suporte para avaliações de ambiente e negociações de contrato.</p>
                                 </div>`;
     }
     function helpdeskManutencao2() {
@@ -185,7 +230,7 @@
                                     <h1>Manutenção de sensores (troca)</h1>
                                 </div>
                                 <div class="texto-problema">
-                                    <p>SOLUÇÃO DO PROBLEMA. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia placeat, tempore aspernatur eum quis nemo rerum illo amet nam quos aut aliquam, totam beatae quidem odit consequatur officiis, adipisci error. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dignissimos blanditiis recusandae aperiam fugit molestias. Voluptates harum voluptas, possimus aliquam earum porro ad aliquid, quas inventore pariatur at perspiciatis nam.</p>
+                                    <p>SOLUÇÃO DO PROBLEMA. Para a troca dos sensores, a garantia será revisada e em caso de ainda estar no período, a troca será gratuita. Em caso de danificações, a troca será avaliada por nossos técnicos e o valor será negociado.</p>
                                 </div>`;
     }
 </script>

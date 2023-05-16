@@ -8,12 +8,12 @@ body {
     background-color: #E7E7E9;
 }
 
-.container{
+/* .container{
     display: flex;
     height: 120px;
     width: 90%;
     margin: auto;
-}
+} */
 
 .header .header-group{
     margin: 0;
@@ -146,12 +146,12 @@ a{
 
 /* Mensagem do problema */
 .msg-problema{
-    width: 70vw;
+    width: 82%;
     height: auto;
     border-radius: 20px;
     box-shadow: 0.5px 0.5px 9px rgb(106, 106, 106);
     background-color: white;
-
+    margin-bottom: 3%;
 }
 .titulo-problema{
     width: 100%;
@@ -265,3 +265,104 @@ a{
     font-size: 16px;
     color: white;
 }
+
+.banner-also{
+    width: 100%;
+    height: 60vh;
+    background-color: white;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.banner-socials{
+    height: 30vh;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+#msg-associados{
+    align-self: center;
+    height: 20vh;
+    padding: 3%;
+    background-color: #009EA3;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.btn-right{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.btn-right button{
+    border-style: none;
+    height: 10vh;
+    width: 20vw;
+    font-size: large;
+    border-radius: 30px;
+    color: #009EA3;
+}
+
+.btn-right button:hover{
+    background-color: #009ea300;
+    border: 2px solid white;
+    color: white;
+    transition: 0.2s ease-in-out;
+}
+
+
+
+.flip-card {
+    background-color: transparent;
+    width: 30%;
+    height: 19vh;
+    perspective: 1000px;
+    border-radius: 15px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: rgb(249, 249, 249);
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color: #009EA3;
+    color: white;
+    transform: rotateY(180deg);
+    font-size: smaller;
+  }
+
