@@ -76,8 +76,9 @@
                 </div>
 
                 <div class="users-pesquisa">
-                    <label for="input_pesquisa">Pesquisar por email:</label>
-                    <input type="text" id="input_pesquisa" class="input_pesquisa" oninput="buscar_usuario()">
+                    <!-- <label for="input_pesquisa">Pesquisar por email:</label> -->
+                    <input type="text" id="input_pesquisa" class="input_pesquisa" placeholder="Pesquisar por Email">
+                    <button onclick="buscar_usuario()">Pesquisar</button>
                     <button class="btn-per" onclick="ir_cadastrar()">Adicionar Usuário</button>
                     <button class="btn-per" onclick="ir_deletar()">Remover Usuário</button>
                 </div>
@@ -144,7 +145,7 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
                         // criando e manipulando elementos do HTML via JavaScript
                         var usuario = document.createElement("li");
 
-                        usuario.innerHTML = publicacao.Nome + " | " + publicacao.Email + " " + publicacao.Cpf;
+                        usuario.innerHTML = publicacao.Nome + " | " + publicacao.Email + " | " + publicacao.Cpf;
 
                         lista_users.appendChild(usuario);
                     }
@@ -182,6 +183,8 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
                         var publicacao_local = resposta[contador_local];
                         // criando e manipulando elementos do HTML via JavaScript
                         var local = document.createElement("li");
+
+                        local.setAttribute("id", "Usuario");
 
                         local.innerHTML = publicacao_local.Nome;
 
@@ -228,7 +231,7 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             finalizarAguardar();
         });
 
-        return false;
+        return false;z
     }
 
 </script>

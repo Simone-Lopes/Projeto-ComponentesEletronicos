@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas_Umi(idLocal, limite_linhas, idSensor) {
+function buscarUltimasMedidas_Umi(idLocal, limite_linhas) {
 
     var limite_linhas = 10;
 
@@ -36,7 +36,7 @@ function buscarUltimasMedidas_Umi(idLocal, limite_linhas, idSensor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas, idSensor) {
+function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas) {
 
     var limite_linhas = 10;
 
@@ -72,7 +72,7 @@ function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas, idSensor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimasMedidas_Temp(idLocal, limite_linhas, idSensor) {
+function buscarUltimasMedidas_Temp(idLocal, limite_linhas) {
 
     var limite_linhas = 10;
 
@@ -111,7 +111,7 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas, idSensor) {
 
 function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
 
-    var limite_linhas = 15;
+    var limite_linhas = 10;
 
 
     instrucaoSql = '';
