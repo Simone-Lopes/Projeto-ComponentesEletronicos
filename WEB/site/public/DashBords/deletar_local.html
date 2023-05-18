@@ -21,13 +21,19 @@
     </div>
     <div class="container2">
       <div class="card">
-        <form>
-          <h1 class="titulo">Remova o Usuario</h1>
+          <h1 class="titulo">Remova o Local</h1>
           <div class="nome">
-            <label class="label" for="Cpf">CPF</label>
-            <input class="input" type="text" id="cpf" maxlength="11" minlength="11" name="cpf" />
+            <label class="label" for="id">Numero do Container</label>
+            <input class="input" type="number" id="id" name="id" />
+            <label class="label" for="id">Nome da Empresa</label>
+            <select class="select_local" id="lista_Empresas">
+            </select>
+            <label class="label" for="id">Tipo de Limite</label>
+            <select class="select_local" name="listaLimites" id="listaLimites">
+              <option value="1">Temperatura</option>
+              <option value="2">Humidade</option>
+            </select>
           </div>
-        </form>
         <button onclick="remover()" class="btn-login">Remover</button>
         <!-- <div id="cadastro">
           <h5>
@@ -54,13 +60,58 @@
 
 <script>
 
+  window.onload = atualizarFeed_empresas();
+
+function atualizarFeed_empresas() {
+        aguardar();
+        fetch("/usuarios/listar_empresas")
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("lista_Empresas");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhuma empresa encontrada!!"
+                        feed.appendChild(mensagem);
+                        throw "Nenhuma empresa encontrada!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("lista_Empresas");
+                    feed.innerHTML = "";  
+                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
+                        var publicacao_local = resposta[contador_local];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        
+                        var empresa = document.createElement("option");
+
+                        empresa.setAttribute("value", `${publicacao_local.id}`);
+                        empresa.innerHTML = publicacao_local.Nome;
+
+                        feed.appendChild(empresa);
+                      }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+}
+
   function remover() {
 
     aguardar();
 
-    var cpfVar = cpf.value;
+    var idVar = id.value;
+    var FKEmpresaVar = lista_Empresas.value;
+    var FKLimiteVar = listaLimites.value;
 
-    if (cpfVar == "") {
+    if (idVar == ""|| FKEmpresaVar == ""|| FKLimiteVar == "") {
       cardErro.style.display = "block"
       mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
       finalizarAguardar();
@@ -70,15 +121,18 @@
       setInterval(sumirMensagem, 5000)
     }
 
-    console.log("FORM CPF: ", cpfVar);
+    // console.log("FORM ID: ", idVar);
+    // console.log("FORM FK: ", FKEmpresaVar);
 
-    fetch("/usuarios/deletar", {
+    fetch("/usuarios/deletar_local", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        cpfServer: cpfVar,
+        idServer: idVar,
+        FKEmpresaServer: FKEmpresaVar,
+        FKLimiteVar: FKLimiteVar,
       })
     }).then(function (resposta) {
       console.log("ESTOU NO THEN DO entrar()!")
@@ -91,7 +145,7 @@
           console.log(JSON.stringify(json));
 
           setTimeout(function () {
-            window.location = "permissoes.html";
+            window.location = "containers.html";
           }, 1000); // apenas para exibir o loading
 
         });

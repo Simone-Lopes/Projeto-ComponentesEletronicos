@@ -15,10 +15,23 @@ function listar_usuarios() {
 function listar_locais() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_local()");
     var instrucao = `
-        SELECT 
+        SELECT
             DISTINCT(Localização.Nome),
+            idLocal,
             Localização.FKEmpresa
 	    	    FROM Localização;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listar_empresas() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar_local()");
+    var instrucao = `
+    SELECT 
+    idEmpresa AS id,
+    Nome_Fantasia AS Nome
+    FROM Empresa;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -47,6 +60,15 @@ function deletar(cpf) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", cpf)
     var instrucao = `
         DELETE FROM Usuario WHERE CPF = '${cpf}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletar_local(id, FKEmp, FKLimi) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id, FKEmp, FKLimi)
+    var instrucao = `
+        DELETE FROM Localização WHERE idLocal = '${id}' AND FKEmpresa = '${FKEmp}' AND FKLimite = '${FKLimi}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -81,8 +103,10 @@ module.exports = {
     entrar,
     cadastrar,
     buscar_usuario,
-    deletar,
     listar_usuarios,
+    deletar,
+    deletar_local,
     listar_locais,
+    listar_empresas,
     cadastrar_local
 };

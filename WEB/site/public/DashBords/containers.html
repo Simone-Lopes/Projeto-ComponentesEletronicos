@@ -9,7 +9,7 @@
     <script src="../js/funcoes.js"></script>
 </head>
 
-<body onload="atualizarFeed_locais">
+<body>
     <div class="geral">
         <div class="side-bar">
             <div class="container">
@@ -86,60 +86,11 @@
                     <button class="btn-per" onclick="ir_remove_local()">Remover Local</button>
 
                 </div>
+
                 <div id="graficos">
-                    <div id="grafico1" class="display-block">
-                        <h3 class="tituloGraficos">
-                            <span id="tituloLocal1"></span>
-                        </h3>
-                            <div class="graph">
-                                <canvas id="myChartCanvas_Umi1"></canvas>
-                                <canvas id="myChartCanvas_Temp1"></canvas>
-                            </div>
-                            <div class="label-captura">
-                            <p id="avisoCaptura1" style="color: rgb(0, 0, 0)"></p>
-                        </div>
-                    </div>
-    
-                    <div id="grafico2" class="display-block">
-                        <h3 class="tituloGraficos">
-                            <span id="tituloLocal2"></span>
-                        </h3>
-                            <div class="graph">
-                                <canvas id="myChartCanvas_Umi2"></canvas>
-                                <canvas id="myChartCanvas_Temp2"></canvas>
-                            </div>
-                            <div class="label-captura">
-                            <p id="avisoCaptura2" style="color: rgb(0, 0, 0)"></p>
-                        </div>
-                    </div>
-
-                    <div id="grafico3" class="display-block">
-                        <h3 class="tituloGraficos">
-                            <span id="tituloLocal3"></span>
-                        </h3>
-                            <div class="graph">
-                                <canvas id="myChartCanvas_Umi3"></canvas>
-                                <canvas id="myChartCanvas_Temp3"></canvas>
-                            </div>
-                            <div class="label-captura">
-                            <p id="avisoCaptura3" style="color: rgb(0, 0, 0)"></p>
-                        </div>
-                    </div>
-
-                    <div id="grafico4" class="display-block">
-                        <h3 class="tituloGraficos">
-                            <span id="tituloLocal4"></span>
-                        </h3>
-                            <div class="graph">
-                                <canvas id="myChartCanvas_Umi4"></canvas>
-                                <canvas id="myChartCanvas_Temp4"></canvas>
-                            </div>
-                            <div class="label-captura">
-                            <p id="avisoCaptura4" style="color: rgb(0, 0, 0)"></p>
-                        </div>
-                    </div>
-                    
                 </div>
+
+
             </div>
         </div>
         <div id="div_aguardar" class="loading-div">
@@ -156,28 +107,109 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 let proximaAtualizacao_Umi;
 let proximaAtualizacao_Temp;
 
-window.onload = obterDadosGraficos_Umi();
-window.onload = obterDadosGraficos_Temp();
+window.onload = atualizarFeed_locais();
+// window.onload = obterDadosGraficos_umi();
+// window.onload = obterDadosGraficos_Temp();
 
-function obterDadosGraficos_Umi() {
-    obterDadosGrafico_Umi(1)
-    obterDadosGrafico_Umi(2)
-    obterDadosGrafico_Umi(3)
-    obterDadosGrafico_Umi(4)
+var LISTA_DIVS_GRAFICOS = [];
+
+function atualizarFeed_locais() {
+        aguardar();
+        fetch("/usuarios/listar_locais")
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        var feed = document.getElementById("lista_locais");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum Local encontrado."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum Local encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById
+                    ("lista_locais");
+                    var graficos = document.getElementById("graficos");
+                    feed.innerHTML = "";
+                    graficos.innerHTML = "";    
+                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
+                        var publicacao_local = resposta[contador_local];
+                        // criando e manipulando elementos do HTML via JavaScript
+
+                        var grafico = document.createElement("div");
+                        grafico.setAttribute("id", `grafico${publicacao_local.idLocal}`);
+                        grafico.className = "display-block";
+                        graficos.appendChild(grafico);
+
+                        var tituloGraficos = document.createElement("h3");
+                        tituloGraficos.className = "tituloGraficos";
+                        grafico.appendChild(tituloGraficos);
+
+                        var titulografico = document.createElement("span");
+                        titulografico.setAttribute("id", `tituloLocal${publicacao_local.idLocal}`);
+                        tituloGraficos.appendChild(titulografico);
+
+                        var div_graph = document.createElement("div");
+                        div_graph.className = "graph";
+                        grafico.appendChild(div_graph);
+
+                        var graf_umi = document.createElement("canvas");
+                        graf_umi.setAttribute("id", `myChartCanvas_Umi${publicacao_local.idLocal}`);
+                        div_graph.appendChild(graf_umi);
+
+                        var graf_temp = document.createElement("canvas");
+                        graf_temp.setAttribute("id", `myChartCanvas_Temp${publicacao_local.idLocal}`);
+                        div_graph.appendChild(graf_temp);
+
+                        var label_captura = document.createElement("div");
+                        label_captura.className = "label-captura";
+                        grafico.appendChild(label_captura);
+
+                        var param_captura = document.createElement("p");
+                        param_captura.setAttribute("id", `avisoCaptura${publicacao_local.idLocal}`);
+                        param_captura.setAttribute("style", `color: rgb(0, 0, 0)`);
+                        label_captura.appendChild(param_captura);
+
+                        var local = document.createElement("option");
+                        local.setAttribute("Value", publicacao_local.idLocal)
+                        local.innerHTML = publicacao_local.Nome;
+                        lista_locais.appendChild(local);    
+
+                        var idLocal = publicacao_local.idLocal;
+
+                        function obterDadosGraficos_umi() {
+                            obterDadosGrafico_Umi(idLocal);       
+                        }
+
+                        function obterDadosGraficos_Temp() {
+                            obterDadosGrafico_Temp(idLocal); 
+                        }
+                        
+                        obterDadosGraficos_Temp();
+                        obterDadosGraficos_umi();
+
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
 }
 
-function obterDadosGraficos_Temp() {
-    obterDadosGrafico_Temp(1)
-    obterDadosGrafico_Temp(2)
-    obterDadosGrafico_Temp(3)
-    obterDadosGrafico_Temp(4)
-}
+
 
 validarSessao();
 
 function alterarTitulo(idLocal) {
     var tituloLocal = document.getElementById(`tituloLocal${idLocal}`)
-    tituloLocal.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #009EA3'>Container " + idLocal + "</span>"
+    tituloLocal.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #009EA3'>Local Numero: " + idLocal + "</span>"
 }
 
 function exibirlocal(idLocal) {
@@ -556,44 +588,5 @@ fetch(`/medidas/tempo-real_Temp/${idLocal}`, { cache: 'no-store' }).then(functio
 function ir_remove_local() {
     window.location = 'deletar_local.html';
 }
-
-function atualizarFeed_locais() {
-        aguardar();
-        fetch("/usuarios/listar_locais")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var feed = document.getElementById("lista_locais");
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado."
-                        feed.appendChild(mensagem);
-                        throw "Nenhum resultado encontrado!!";
-                    }
-
-                    resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("lista_locais");
-                    feed.innerHTML = "";
-                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
-                        var publicacao_local = resposta[contador_local];
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var local = document.createElement("option");
-                        local.setAttribute("Value", `${contador_local}`)
-                        local.innerHTML = publicacao_local.Nome;
-
-                        lista_locais.appendChild(local);    
-                    }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
 
 </script>

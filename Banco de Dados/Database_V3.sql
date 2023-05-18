@@ -43,15 +43,15 @@ CREATE TABLE Limite_Parametros(
 
 -- Criação da tabela onde ficara as informações do local onde será retirada as leituras
 CREATE TABLE Localização(
-	idLocal INT AUTO_INCREMENT, -- Chave Primaria
+	idLocal INT PRIMARY KEY AUTO_INCREMENT, -- Chave Primaria
     Nome VARCHAR(80), -- Nome do Local EX(Sala 01,Sala 02)
     FKEmpresa INT, -- Chave Estrangeira da Tabela Empresa
 		CONSTRAINT FKEmpresa_L FOREIGN KEY (FKEmpresa)
 			REFERENCES Empresa(idEmpresa),
 	FKLimite INT, -- Chave Estrangeira da parametrização de limites (1-n)
 		CONSTRAINT FKLimite_L FOREIGN KEY (FKLimite) 
-			REFERENCES Limite_Parametros(idLimite),
-	CONSTRAINT PKComposta_Li PRIMARY KEY (idLocal, FKLimite)
+			REFERENCES Limite_Parametros(idLimite)
+	-- CONSTRAINT PKComposta_Li PRIMARY KEY (idLocal, FKLimite)
 );
 
 -- Criação de uma tabela exclusiva para os sensores (não para os resultados somente para os sensores)
@@ -88,13 +88,9 @@ INSERT INTO Limite_Parametros VALUES
   
 INSERT INTO Localização VALUES
 	(1, 'Container 1', NULL, 1),
-	(1, 'Container 1', NULL, 2),
 	(2, 'Container 2', NULL, 1),
-	(2, 'Container 2', NULL, 2),
     (3, 'Container 3', NULL, 1),
-	(3, 'Container 3', NULL, 2),
-    (4, 'Container 4', NULL, 1),
-	(4, 'Container 4', NULL, 2);
+    (4, 'Container 4', NULL, 1);
   
 INSERT INTO Sensores VALUES
 	(NULL, 'DHT11', 'Umidade', 1),
@@ -115,7 +111,6 @@ SELECT * FROM Sensores;
 SELECT * FROM Empresa;
 
 SELECT * FROM Usuario;
-
 
 SELECT 
         Leitura_Temp AS temperatura, 
@@ -149,5 +144,10 @@ INSERT INTO Leitura VALUES
 	(NULL, 32.00, 62.00, DEFAULT, 1, NULL),
 	(NULL, 33.00, 63.00, DEFAULT, 1, NULL),
 	(NULL, 34.00, 64.00, DEFAULT, 1, NULL);
-    
-DELETE FROM Usuario WHERE CPF = '';
+
+SELECT 
+	DISTINCT(Localização.Nome),
+    Localização.FKEmpresa
+		FROM Localização;
+        
+TRUNCATE Table Leitura;

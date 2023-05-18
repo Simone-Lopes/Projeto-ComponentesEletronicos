@@ -41,6 +41,23 @@ function listar_locais(req, res) {
         );
 }
 
+function listar_empresas(req, res) {
+    usuarioModel.listar_empresas()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function buscar_usuario(req, res) {
 
     var email = req.body.emailServer;
@@ -106,6 +123,27 @@ function entrar(req, res) {
         var cpf = req.body.cpfServer;
     
         usuarioModel.deletar(cpf)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao deletar o usuario: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+    function deletar_local(req, res) {
+
+        var id = req.body.idServer;
+        var FKEmp = req.body.FKEmpresaServer;
+        var FKLimi = req.body.FKLimiteVar;
+    
+        usuarioModel.deletar_local(id, FKEmp, FKLimi)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -192,9 +230,11 @@ module.exports = {
     entrar,
     cadastrar,
     deletar,
+    deletar_local,
     buscar_usuario,
     listar_usuarios,
     listar_locais,
+    listar_empresas,
     cadastrar_local,
     testar
 }

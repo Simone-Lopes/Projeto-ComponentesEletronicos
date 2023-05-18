@@ -9,7 +9,7 @@
 #include "DHT.h"
  
 #define DHTPIN A0
-#define LM35PIN A5
+#define LM35PIN A1
 //#define LUMIPIN A2
 //#define CHAVPIN 7
  
@@ -56,5 +56,5 @@ void loop()
 
   Serial.println();
 
-  delay(1500);
+  delay(3000);
 }
