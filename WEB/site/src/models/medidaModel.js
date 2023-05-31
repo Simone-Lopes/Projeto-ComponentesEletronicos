@@ -18,7 +18,7 @@ function buscarUltimasMedidas_Umi(idLocal, limite_linhas) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Distinct(Leitura_Umi) AS umidade, 
+        Leitura_Umi AS umidade, 
         DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
@@ -54,7 +54,44 @@ function buscarMedidasEmTempoReal_Umi(idLocal, limite_linhas) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Distinct(Leitura_Umi) AS umidade, 
+        Leitura_Umi AS umidade, 
+        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
+        FROM 
+        Leitura 
+        JOIN Localização 
+        ON FKLocal_LE = idLocal
+        WHERE idLocal = ${idLocal}
+        ORDER BY momento_grafico DESC
+        LIMIT ${limite_linhas};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoReal(idLocal, limite_linhas) {
+
+    var limite_linhas = 10;
+
+    instrucaoSql = '';
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top 1
+        dht11_temperatura as temperatura, 
+        dht11_umidade as umidade,  
+                        CONVERT(varchar, momento, 108) as momento_grafico, 
+                        fk_aquario 
+                        from medida where fk_aquario = ${idAquario} 
+                    order by id desc`;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `
+        SELECT 
+        Leitura_Temp AS temperatura,
+        Leitura_Umi AS umidade, 
         DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
@@ -91,7 +128,7 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Distinct(Leitura_Temp) AS temperatura, 
+        Leitura_Temp AS temperatura, 
         DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
@@ -99,7 +136,7 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas) {
         ON FKLocal_LE = idLocal
         WHERE idLocal = ${idLocal}
         ORDER BY momento_grafico DESC
-        LIMIT ${limite_linhas}`;
+        LIMIT ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -112,7 +149,6 @@ function buscarUltimasMedidas_Temp(idLocal, limite_linhas) {
 function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
 
     var limite_linhas = 10;
-
 
     instrucaoSql = '';
 
@@ -128,7 +164,7 @@ function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
         SELECT 
-        Distinct(Leitura_Temp) AS temperatura, 
+        Leitura_Temp AS temperatura, 
         DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
         FROM 
         Leitura 
@@ -136,7 +172,7 @@ function buscarMedidasEmTempoReal_Temp(idLocal, limite_linhas, idSensor) {
         ON FKLocal_LE = idLocal
         WHERE idLocal = ${idLocal}
         ORDER BY momento_grafico DESC
-        LIMIT ${limite_linhas}`;
+        LIMIT ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -151,4 +187,5 @@ module.exports = {
     buscarMedidasEmTempoReal_Umi,
     buscarUltimasMedidas_Temp,
     buscarMedidasEmTempoReal_Temp,
+    buscarMedidasEmTempoReal
 }

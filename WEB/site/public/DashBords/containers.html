@@ -108,17 +108,29 @@ let proximaAtualizacao_Umi;
 let proximaAtualizacao_Temp;
 
 window.onload = atualizarFeed_locais();
-// window.onload = obterDadosGraficos_umi();
-// window.onload = obterDadosGraficos_Temp();
-
-var LISTA_DIVS_GRAFICOS = [];
 
 function atualizarFeed_locais() {
         aguardar();
-        fetch("/usuarios/listar_locais")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
+
+        var IDEmpresaVar = sessionStorage.FKEmpresa;
+
+        fetch("/usuarios/listar_locais", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idEmpServer: IDEmpresaVar,
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                if (resposta.status == 204) {
                         var feed = document.getElementById("lista_locais");
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum Local encontrado."
@@ -194,16 +206,17 @@ function atualizarFeed_locais() {
 
                     finalizarAguardar();
                 });
+
             } else {
-                throw ('Houve um erro na API!');
+                throw ("Houve um erro ao tentar realizar A pesquisa!");
             }
         }).catch(function (resposta) {
-            console.error(resposta);
+            console.log(`#ERRO: ${resposta}`);
             finalizarAguardar();
         });
-}
 
-
+        return false;
+    }
 
 validarSessao();
 
@@ -361,7 +374,7 @@ function plotarGrafico_Umi(resposta, idLocal) {
         config
     );
 
-    setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Umi), 1000);
+    setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Umi), 3000);
 
 }
 
@@ -383,7 +396,6 @@ function atualizarGrafico_Umi(idLocal, dados, myChart_Umi) {
 
                 let avisoCaptura = document.getElementById(`avisoCaptura${idLocal}`)
                 avisoCaptura.innerHTML = ""
-
 
                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
@@ -409,12 +421,12 @@ function atualizarGrafico_Umi(idLocal, dados, myChart_Umi) {
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao_Umi = setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Umi), 500);
+                proximaAtualizacao_Umi = setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Umi), 3000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao_Umi = setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Umi), 1000);
+            proximaAtualizacao_Umi = setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Umi), 3000);
         }
     })
         .catch(function (error) {
@@ -520,7 +532,7 @@ let myChart_Temp = new Chart(
     config
 );
 
-setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Temp), 1000);
+setTimeout(() => atualizarGrafico_Umi(idLocal, dados, myChart_Temp), 3000);
 }
 
 
@@ -567,12 +579,12 @@ fetch(`/medidas/tempo-real_Temp/${idLocal}`, { cache: 'no-store' }).then(functio
             }
 
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao_Temp = setTimeout(() => atualizarGrafico_Temp(idLocal, dados, myChart_Temp), 500);
+            proximaAtualizacao_Temp = setTimeout(() => atualizarGrafico_Temp(idLocal, dados, myChart_Temp), 3000);
         });
     } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao_Temp = setTimeout(() => atualizarGrafico_Temp(idLocal, dados, myChart_Temp), 2000);
+        proximaAtualizacao_Temp = setTimeout(() => atualizarGrafico_Temp(idLocal, dados, myChart_Temp), 3000);
     }
 })
     .catch(function (error) {

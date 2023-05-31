@@ -51,7 +51,6 @@ CREATE TABLE Localização(
 	FKLimite INT, -- Chave Estrangeira da parametrização de limites (1-n)
 		CONSTRAINT FKLimite_L FOREIGN KEY (FKLimite) 
 			REFERENCES Limite_Parametros(idLimite)
-	-- CONSTRAINT PKComposta_Li PRIMARY KEY (idLocal, FKLimite)
 );
 
 -- Criação de uma tabela exclusiva para os sensores (não para os resultados somente para os sensores)
@@ -76,78 +75,24 @@ CREATE TABLE Leitura (
 			REFERENCES Localização(idLocal),
 		CONSTRAINT FKLimite_LE FOREIGN KEY (FKLimite_LE)
 			REFERENCES Limite_Parametros(idLimite)
-	-- CONSTRAINT PKComposta_Le PRIMARY KEY (idLeitura,FKLocal_LE,FKLimite_LE) -- Chave Primaria composta de Dois elementos 
 );
 
+INSERT INTO Empresa VALUES
+	(NULL, "Teste01", '53.393.263/0001-74', 
+    'Hadock Lobo', '595', 'Paulista', 'SP', '11959164441', 'teste01@gmail.com'),
+	(NULL, "Teste02", '52.393.263/0001-74', 
+    'Hadock Lobo', '595', 'Paulista', 'SP', '11959164441', 'teste02@gmail.com'),
+	(NULL, "Teste03", '51.393.263/0001-74', 
+    'Hadock Lobo', '595', 'Paulista', 'SP', '11959164441', 'teste03@gmail.com');
+
 INSERT INTO Usuario VALUES
-	(NULL, 'Davi Rodrigues', 'davirodrigues0506@gmail.com', '48372073830','11959164441', '@myLOVEisthe0506', NULL, NULL);
-  
-INSERT INTO Limite_Parametros VALUES 
-	(NULL, -4, 40, 'Temperatura', NULL),
-	(NULL, 20, 80, 'Umidade', NULL);
-  
-INSERT INTO Localização VALUES
-	(1, 'Container 1', NULL, 1),
-	(2, 'Container 2', NULL, 1),
-    (3, 'Container 3', NULL, 1),
-    (4, 'Container 4', NULL, 1);
-  
-INSERT INTO Sensores VALUES
-	(NULL, 'DHT11', 'Umidade', 1),
-	(NULL, 'LM35', 'Temperatura', 1),
-	(NULL, 'DHT11', 'Umidade', 2),
-	(NULL, 'LM35', 'Temperatura', 2),
-	(NULL, 'DHT11', 'Umidade', 3),
-	(NULL, 'LM35', 'Temperatura', 3),
-    (NULL, 'DHT11', 'Umidade', 4),
-	(NULL, 'LM35', 'Temperatura', 4);
-
-SELECT * FROM Localização;
-
-SELECT * FROM Leitura;
-
-SELECT * FROM Sensores;
-
-SELECT * FROM Empresa;
-
-SELECT * FROM Usuario;
-
-SELECT 
-        Leitura_Temp AS temperatura, 
-        DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
-        FROM 
-        Leitura 
-        JOIN Localização 
-        ON idLocal = FKLocal_LE
-        WHERE idLocal = 1 
-        LIMIT 10;
-
-INSERT INTO Leitura VALUES
-	(null, 25.00, 55.00,DEFAULT, 1, NULL),
-	(null, 24.00, 54.00,DEFAULT, 1, NULL),
-	(null, 23.00, 53.00,DEFAULT, 1, NULL),
-	(null, 22.00, 52.00,DEFAULT, 1, NULL),
-	(null, 21.00, 51.00,DEFAULT, 1, NULL);
+	(NULL, 'Davi Rodrigues', 'davirodrigues0506@gmail.com', 
+		'48372073830','11959164441', '@myLOVEisthe0506', 1, NULL),
+	(NULL, 'Cesar Martins', 'cesarmartins@gmail.com', 
+		'12345678901', '11959164441', 'teste011234', 2, NULL),
+	(NULL, 'Simone Lopes', 'simonelopes@gmail.com', 
+		'98765432109', '11959164441', 'teste021234', 3, NULL);
     
-SELECT 
-	Distinct(Leitura_Umi) AS umidade, 
-	DATE_FORMAT(Data_Hora,'%H:%i') AS momento_grafico 
-	FROM 
-	Leitura 
-	JOIN Localização 
-	ON FKLocal_LE = idLocal
-	WHERE idLocal = 1
-    ORDER BY momento_grafico DESC
-    LIMIT 10;
+    SELECT * FROM Usuario;
     
-INSERT INTO Leitura VALUES
-	(NULL, 32.00, 62.00, DEFAULT, 1, NULL),
-	(NULL, 33.00, 63.00, DEFAULT, 1, NULL),
-	(NULL, 34.00, 64.00, DEFAULT, 1, NULL);
-
-SELECT 
-	DISTINCT(Localização.Nome),
-    Localização.FKEmpresa
-		FROM Localização;
-        
-TRUNCATE Table Leitura;
+    SELECT * FROM Localização;

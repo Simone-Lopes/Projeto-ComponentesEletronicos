@@ -8,7 +8,10 @@ function testar(req, res) {
 }
 
 function listar_usuarios(req, res) {
-    usuarioModel.listar_usuarios()
+
+    var IDEmpresa = req.body.idEmpServer;
+
+    usuarioModel.listar_usuarios(IDEmpresa)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -25,7 +28,31 @@ function listar_usuarios(req, res) {
 }
 
 function listar_locais(req, res) {
-    usuarioModel.listar_locais()
+
+    var IDEmpresa = req.body.idEmpServer;
+
+    usuarioModel.listar_locais(IDEmpresa)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function pegar_id_usuario(req, res) {
+
+    var IDEmpresa = req.body.idEmpServer;
+    var nome = req.body.nomeServer;
+
+    usuarioModel.pegar_id_usuario(nome,IDEmpresa)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -56,7 +83,7 @@ function listar_empresas(req, res) {
                 res.status(500).json(erro.sqlMessage);
             }
         );
-}
+    }
 
 function buscar_usuario(req, res) {
 
@@ -83,6 +110,7 @@ function entrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    // var FKEmp = req.body.fkEmpServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu Nome está undefined!");
@@ -165,6 +193,7 @@ function cadastrar(req, res) {
     var cpf = req.body.cpfServer;
     var tell = req.body.tellServer;
     var senha = req.body.senhaServer;
+    var idEmpresa = req.body.fkempresaServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -177,10 +206,12 @@ function cadastrar(req, res) {
         res.status(400).send("Seu CPF está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Seu senha está undefined!");
-    } else {
+    }  else if (idEmpresa == undefined) {
+        res.status(400).send("Sua Empresa está undefined!");
+    }else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, cpf, tell, senha)
+        usuarioModel.cadastrar(nome, email, cpf, tell, senha, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -201,6 +232,7 @@ function cadastrar(req, res) {
 function cadastrar_local(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
+    var IDEmp = req.body.IDEmpServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -208,7 +240,7 @@ function cadastrar_local(req, res) {
     }else {
         
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar_local(nome)
+        usuarioModel.cadastrar_local(nome, IDEmp)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -236,5 +268,6 @@ module.exports = {
     listar_locais,
     listar_empresas,
     cadastrar_local,
+    pegar_id_usuario,
     testar
 }

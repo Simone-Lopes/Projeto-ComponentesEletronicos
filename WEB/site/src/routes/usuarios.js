@@ -7,11 +7,11 @@ router.get("/", function (req, res) {
     usuarioController.testar(req, res);
 });
 
-router.get("/listar_usuarios", function (req, res) {
+router.post("/listar_usuarios", function (req, res) {
     usuarioController.listar_usuarios(req, res);
 });
 
-router.get("/listar_locais", function (req, res) {
+router.post("/listar_locais", function (req, res) {
     usuarioController.listar_locais(req, res);
 });
 
@@ -30,6 +30,10 @@ router.post("/cadastrar", function (req, res) {
 
 router.post("/cadastrar_local", function (req, res) {
     usuarioController.cadastrar_local(req, res);
+})
+
+router.post("/pegar_id_usuario", function (req, res) {
+    usuarioController.pegar_id_usuario(req, res);
 })
 
 router.post("/autenticar", function (req, res) {

@@ -80,8 +80,9 @@
         var tellVar = telefone.value;
         var senhaVar = senha.value;
         var confirmacaoSenhaVar = Confirmar_senha.value;
+        var fkEmpresavar = sessionStorage.FKEmpresa;
 
-        if (nomeVar == "" || tellVar == "" || emailVar == "" || senhaVar == "" || cpfVar == "") {
+        if (nomeVar == "" || tellVar == "" || emailVar == "" || senhaVar == "" || cpfVar == ""|| fkEmpresavar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Por favor, preencha todos os campos.";
 
@@ -123,7 +124,8 @@
                 emailServer: emailVar,
                 cpfServer: cpfVar,
                 tellServer: tellVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                fkempresaServer: fkEmpresavar
             })
         }).then(function (resposta) {
 
