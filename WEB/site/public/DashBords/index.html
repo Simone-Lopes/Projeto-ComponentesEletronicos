@@ -9,9 +9,10 @@
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <!-- <script src="http://www.chartjs.org/samples/latest/utils.js"></script> -->
     <script src="../js/funcoes.js"></script>
+    <script src="alerta.js"></script>
 </head>
 
-<body onload="validarSessao(), alertar_temp(), atualizacaoPeriodica_temp(), atualizacaoPeriodica_umi(), alertar_umi()">
+<body>
 
     <div class="geral">
                 
@@ -32,28 +33,30 @@
                         <li class="lista">
                             <a href="index.html">
                                 <img class="icons" src="imgs/icons8-casa-16.png" alt="">
-                            
-                        </a>
+                            </a>
                         </li>
                             
                         <li class="lista">
                             <a href="containers.html">
-                                <img class="icons" src="imgs/icons8-cardápio-16.png" alt="">
-                                
+                                <img class="icons" src="imgs/icons8-cardápio-16.png" alt="">  
                             </a>
                         </li>
                         
                         <li class="lista">
                             <a href="#">
                                 <img class="icons" src="imgs/icons8-configurações-16.png" alt="">
-                                
                             </a>
                         </li>
                         
                         <li class="lista">
                             <a href="permissoes.html">
                                 <img class="icons" src="imgs/icons8-desbloquear-16.png" alt="">
-                                
+                            </a>
+                        </li>
+
+                        <li class="lista">
+                            <a onclick="deslogar()" href="../index.html">
+                                <img class="icons" src="imgs/icons8-desbloquear-16.png" alt="">
                             </a>
                         </li>
                     
@@ -85,63 +88,39 @@
                 <p id="p-container">Resumo Geral</p>
     
                 <div class="dash">
+                    <div id="alerta_Temp">
+                    </div>
+                    <div id="alerta_Umi">
+                    </div>
                     <div class="regua">
                         <div class="item-regua perigo-frio">
                             <h4>Perigo</h4>
-                            <h2>0°C</h2>
+                            <h2>&lt;0°C</h2>
                         </div>
                         <div class="item-regua alerta-frio">
                             <h4>Alerta</h4>
-                            <h2>0°C</h2>
+                            <h2>&lt;=10°C</h2>
                         </div>
                         <div class="item-regua ideal">
                             <h4>Ideal</h4>
-                            <h2>0°C</h2>
+                            <h2>20°C</h2>
                         </div>
                         <div class="item-regua alerta-quente">
                             <h4>Alerta</h4>
-                            <h2>0°C</h2>
+                            <h2>&gt;25°C</h2>
                         </div>
                         <div class="item-regua perigo-quente">
                             <h4>Perigo</h4>
-                            <h2>0°C</h2>
+                            <h2>&gt;30°C</h2>
                         </div>
                     </div>
         
-                    <div class="cards">
-                        <div class="card">
-                            <h1>Container 1</h1>
-                            <div class="temperatura">
-                                <p id="temp_local_1">-°C</p>
-                            </div>
-                            <div class="cor-alerta" id="card_1"></div>
-                        </div>
-                        <div class="card">
-                            <h1>Container 1</h1>
-                            <div class="temperatura">
-                                <p id="temp_local_2">-°C</p>
-                            </div>
-                            <div class="cor-alerta" id="card_2"></div>
-                        </div>
-                        <div class="card">
-                            <h1>Container 1</h1>
-                            <div class="temperatura">
-                                <p id="temp_local_3">-°C</p>
-                            </div>
-                            <div class="cor-alerta ideal" id="card_3"></div>
-                        </div>
-                        <div class="card">
-                            <h1>Container 1</h1>
-                            <div class="temperatura">
-                                <p id="temp_local_4">-°C</p>
-                            </div>
-                            <div class="cor-alerta" id="card_4"></div>
-                        </div>
-        
+                    <div class="cards" id="cards">
                     </div>
         
                 </div>
-                
+                <div id="div_aguardar" class="loading-div">
+                </div>
             </div>
         
         </div>
@@ -157,147 +136,120 @@
 
 <script>
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;  
 
-    function atualizacaoPeriodica_umi() {
-        obterdados_umi(1);
-        obterdados_umi(2);
-        obterdados_umi(3);
-        obterdados_umi(4);
+    window.onload = atualizarFeed_Cards();
+    window.onload = validarSessao();
 
-        function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
-			http.send(null);
-		}
+    function atualizarFeed_Cards() {
+        aguardar();
 
-        setInterval(() => {
-			sendData();
-		}, 2000);
-        setTimeout(atualizacaoPeriodica_umi, 5000);
-    }
+        var IDEmpresaVar = sessionStorage.FKEmpresa;
 
-    function atualizacaoPeriodica_temp() {
-        obterdados_temp(1);
-        obterdados_temp(2);
-        obterdados_temp(3);
-        obterdados_temp(4);
-
-        function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
-			http.send(null);
-		}
-
-        setInterval(() => {
-			sendData();
-		}, 2000);
-        setTimeout(atualizacaoPeriodica_temp, 5000);
-    }
-
-    function obterdados_umi(idLocal) {
-        fetch(`/medidas/tempo-real_umi/${idLocal}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            umidade: resposta[0].umidade,
-                        }
-
-                        alertar(resposta[0].umidade, idLocal);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
+        fetch("/usuarios/listar_locais", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idEmpServer: IDEmpresaVar,
             })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
+        }).then(function (resposta) {
 
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                if (resposta.status == 204) {
+                        var feed = document.getElementById("cards");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum Local encontrado.";
+                        feed.appendChild(mensagem);
+                        throw "Nenhum Local encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("cards");
+                    feed.innerHTML = "";    
+                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
+                        var publicacao_local = resposta[contador_local];
+                        // criando e manipulando elementos do HTML via JavaScript
+
+                        // Crad Temp 
+
+                        var card_temp = document.createElement("div");
+                        card_temp.className = "card";
+                        feed.appendChild(card_temp);
+
+                        var titulo = document.createElement("h1");
+                        titulo.innerHTML = `Local ${publicacao_local.Nome}: Temperatura`;
+                        card_temp.appendChild(titulo);
+
+                        var temperatura = document.createElement("div");
+                        temperatura.className = "temperatura";
+                        card_temp.appendChild(temperatura);
+
+                        var temp = document.createElement("p");
+                        temp.setAttribute("id", `temp_local_${publicacao_local.idLocal}`);
+                        temp.innerHTML = `-C°`;
+                        temperatura.appendChild(temp);
+
+                        var cor = document.createElement("div");
+                        cor.className = "cor-alerta";
+                        cor.setAttribute("id", `card_temp_${publicacao_local.idLocal}`);
+                        card_temp.appendChild(cor);
+
+                        //Card Umi
+
+                        var card_umi = document.createElement("div");
+                        card_umi.className = "card";
+                        feed.appendChild(card_umi);
+
+                        var titulo = document.createElement("h1");
+                        titulo.innerHTML = `Local ${publicacao_local.Nome}: Umidade`;
+                        card_umi.appendChild(titulo);
+
+                        var umidade = document.createElement("div");
+                        umidade.className = "temperatura";
+                        card_umi.appendChild(umidade);
+
+                        var Umi = document.createElement("p");
+                        Umi.setAttribute("id", `Umi_local_${publicacao_local.idLocal}`);
+                        Umi.innerHTML = `-C°`;
+                        umidade.appendChild(Umi);
+
+                        var cor = document.createElement("div");
+                        cor.className = "cor-alerta";
+                        cor.setAttribute("id", `card_umi_${publicacao_local.idLocal}`);
+                        card_umi.appendChild(cor);
+
+                        function atualizacaoPeriodica() {
+                            obterdados_Temp(publicacao_local.idLocal);
+                            obterdados_Umi(publicacao_local.idLocal);
+                            setTimeout(atualizacaoPeriodica, 5000);
+                        }   
+
+                        atualizacaoPeriodica();
+
+                    }
+
+                    finalizarAguardar();
+                });
+
+            } else {
+                throw ("Houve um erro ao tentar realizar A pesquisa!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
     }
-
-    function obterdados_temp(idLocal) {
-        fetch(`/medidas/tempo-real_temp/${idLocal}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            temperatura: resposta[0].temperatura,
-                        }
-
-                        alertar(resposta[0].temperatura, idLocal);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-
-    }
-
-    function alertar_temp(temperatura, idLocal) {
-        var limites = {
-            muito_quente: 23,
-            quente: 22,
-            ideal: 20,
-            frio: 10,
-            muito_frio: 5
-        };
-
-        var classe_temperatura = 'cor-alerta';
-
-        if (temperatura >= limites.muito_quente) {
-            classe_temperatura = 'cor-alerta perigo-quente';
-            console.log("caiu no 1")
-        }
-        else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-            classe_temperatura = 'cor-alerta alerta-quente';
-            console.log("caiu no 2")
-        }
-        else if (temperatura < limites.quente && temperatura > limites.frio) {
-            classe_temperatura = 'cor-alerta ideal';
-            console.log("caiu no 3")
-        }
-        else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-            classe_temperatura = 'cor-alerta alerta-frio';
-            console.log("caiu no 4")
-        }
-        else if (temperatura < limites.min_temperatura) {
-            classe_temperatura = 'cor-alerta perigo-frio';
-            console.log("caiu no 5")
-        }
-
-        var card;
-
-        if (idLocal == 1) {
-            temp_local_1.innerHTML = temperatura + "°C";
-            card = card_1
-        } else if (idLocal == 2) {
-            temp_local_2.innerHTML = temperatura + "°C";
-            card = card_2
-        } else if (idLocal == 3) {
-            temp_local_3.innerHTML = temperatura + "°C";
-            card = card_3
-        } else if (idLocal == 4) {
-            temp_local_4.innerHTML = temperatura + "°C";
-            card = card_4
-        }
-
-        // alterando
-        card.className = classe_temperatura;
-
-    }
+    
 
     </script>

@@ -78,7 +78,7 @@
                 <div class="users-pesquisa">
                     <!-- <label for="input_pesquisa">Pesquisar por email:</label> -->
                     <input type="text" id="input_pesquisa" class="input_pesquisa" placeholder="Pesquisar por Email">
-                    <button onclick="buscar_usuario()">Pesquisar</button>
+                    <!-- <button onclick="buscar_usuario()">Pesquisar</button> -->
                     <button class="btn-per" onclick="ir_cadastrar()">Adicionar Usuário</button>
                     <button class="btn-per" onclick="ir_deletar()">Remover Usuário</button>
                 </div>
@@ -114,6 +114,8 @@
 
 b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
+// var IDEmpresa = sessionStorage.IDEmpresa;
+
     function ir_cadastrar() {
         window.location = "cadastro.html";
     }
@@ -122,12 +124,85 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             window.location = "deletar.html";
     }
 
+    function atualizarFeed_locais() {
+        aguardar();
+
+        var IDEmpresaVar = sessionStorage.FKEmpresa;
+
+        fetch("/usuarios/listar_locais", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idEmpServer: IDEmpresaVar,
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                if (resposta.status == 204) {
+                        var feed = document.getElementById("lista_locais");
+                        var mensagem = document.createElement("span");
+                        mensagem.innerHTML = "Nenhum resultado encontrado."
+                        feed.appendChild(mensagem);
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("lista_locais");
+                    feed.innerHTML = "";
+                    for (let contador_usuario = 0; contador_usuario < resposta.length; contador_usuario++) {
+                        var publicacao = resposta[contador_usuario];
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var usuario = document.createElement("li");
+
+                        usuario.innerHTML = publicacao.Nome;
+
+                        feed.appendChild(usuario);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ("Houve um erro ao tentar realizar A pesquisa!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
     function atualizarFeed_usuarios() {
         aguardar();
-        fetch("/usuarios/listar_usuarios")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
+
+        var IDEmpresaVar = sessionStorage.FKEmpresa;
+
+        fetch("/usuarios/listar_usuarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idEmpServer: IDEmpresaVar,
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                if (resposta.status == 204) {
                         var feed = document.getElementById("lista_usuarios");
                         var mensagem = document.createElement("span");
                         mensagem.innerHTML = "Nenhum resultado encontrado."
@@ -147,82 +222,11 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
                         usuario.innerHTML = publicacao.Nome + " | " + publicacao.Email + " | " + publicacao.Cpf;
 
-                        lista_users.appendChild(usuario);
+                        feed.appendChild(usuario);
                     }
 
                     finalizarAguardar();
                 });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
-
-    function atualizarFeed_locais() {
-        aguardar();
-        fetch("/usuarios/listar_locais")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var feed = document.getElementById("lista_locais");
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhum resultado encontrado."
-                        feed.appendChild(mensagem);
-                        throw "Nenhum resultado encontrado!!";
-                    }
-
-                    resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("lista_locais");
-                    feed.innerHTML = "";
-                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
-                        var publicacao_local = resposta[contador_local];
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var local = document.createElement("li");
-
-                        local.setAttribute("id", "Usuario");
-
-                        local.innerHTML = publicacao_local.Nome;
-
-                        lista_locais.appendChild(local);    
-                    }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
-
-    function buscar_usuario() {
-        aguardar();
-
-        var emailVar = input_pesquisa.value;
-
-        fetch("/usuarios/buscar_usuario", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                emailServer: emailVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar A pesquisa!");
             }
@@ -231,7 +235,7 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             finalizarAguardar();
         });
 
-        return false;z
+        return false;
     }
 
 </script>

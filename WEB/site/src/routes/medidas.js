@@ -19,4 +19,8 @@ router.get("/tempo-real_Temp/:idLocal", function (req, res) {
     medidaController.buscarMedidasEmTempoReal_Temp(req, res);
 })
 
+router.get("/tempo-real/:idLocal", function (req, res) {
+    medidaController.buscarMedidasEmTempoReal(req, res);
+})
+
 module.exports = router;
