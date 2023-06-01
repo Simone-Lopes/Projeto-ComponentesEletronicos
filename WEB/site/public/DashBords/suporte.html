@@ -1,0 +1,131 @@
+<!doctype html>
+
+<head>
+    <title>Suporte | Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="../js/funcoes.js"></script>
+</head>
+
+<body>
+    <div class="geral">
+        <div class="side-bar">
+            <div class="container">
+                <span class="container-logo">
+                    <img src="imgs/logo (3).png" alt="Logo" class="logo" />
+                </span>
+                <span class="container-opçoes">
+                
+                    <ul class="opções_visualização">
+                    
+                        <li class="lista">
+                            <a href="index.html">
+                                <img class="icons" src="imgs/icons8-casa-16.png" alt="">
+                            
+                        </a>
+                        </li>
+                            
+                        <li class="lista">
+                            <a href="containers.html">
+                                <img class="icons" src="imgs/icons8-cardápio-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="#">
+                                <img class="icons" src="imgs/icons8-configurações-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                        
+                        <li class="lista">
+                            <a href="permissoes.html">
+                                <img class="icons" src="imgs/icons8-desbloquear-16.png" alt="">
+                                
+                            </a>
+                        </li>
+                    
+                    </ul>
+                
+                </span>
+            </div>
+        </div>
+        <div class="dashbords" style="height: 150vh;">
+            <div class="header">
+
+                <div class="select">
+                    Dashboards/<b>Suporte</b>
+                </div>
+
+                <div class="icon">
+
+                    <img id="icone_sino" src="imgs/icons8-lembrete-de-compromissos-32.png" alt="Icone de Sinalização">
+                    <img src="imgs/icons8-usuário-32 (1).png" alt=""> <p id="admin">Admin</p> 
+                                                
+                </div>
+
+            </div>
+            <div class="container" >
+
+                <div class="msg_inicio">
+                    <h1 class="h1-container">Bem vindo de volta,<span id="b_usuario">usuario</span>!</h1>
+                   
+                </div>
+                
+
+            
+                <div class="content_suporte">
+                    <div class="header_suporte">
+                        <p>Para problemas ou dúvidas relacionadas à plataforma, entre em contato com o nosso email: <b>secure_ship@outlook.com</b></p>
+                    </div>
+                    <div class="container">
+
+                        <h2>Agilize o processo preenchendo o formulário abaixo</h2>
+
+                        <div class="form_suporte">
+                            <div class="inputs-left">
+                                Nome:
+                                <input id="ipt_nome" placeholder="Digite seu nome" type="text" name="">
+                                Email: 
+                                <input id="ipt_email" placeholder="Digite seu email" type="text">
+                            </div>
+                            <div class="inputs-right">
+                                Mensagem: <textarea id="ipt_mensagem" placeholder="Digite sua mensagem" type="text"></textarea>
+                                <button onclick="enviar()" id="enviar_sup">Enviar</button>
+                            </div>
+                        </div>
+
+                        <div class="msg-problema" id="msg-associados">
+                            <div class="msg-left">
+                                <h1>Abra um chamado </h1>
+                                Acesse a plataforma de helpdesk para abertura de um chamado direto
+                            </div>
+                            <div class="btn-right">
+                                <a href="http://secureship-support.freshdesk.com"><button>Acesse Aqui</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div id="div_aguardar" class="loading-div">
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    function enviar() {
+        var email = "secure_ship@hotmail.com";
+        var assunto = `Olá, meu nome é ` + ipt_nome.value;
+        var corpo = ipt_mensagem.value;
+        window.open("mailto:" + email + "?subject=" + assunto + "&body=" + corpo);
+    }
+</script>
