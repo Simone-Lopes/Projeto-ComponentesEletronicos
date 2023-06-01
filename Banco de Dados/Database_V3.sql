@@ -33,13 +33,13 @@ CREATE TABLE Usuario (
 );
 
 -- Criação da tabela onde ficara guardado os limites(min e max) dos sensores
-CREATE TABLE Limite_Parametros(
-	idLimite INT PRIMARY KEY AUTO_INCREMENT, -- Primeiro componente da Chave Primaria
-    Minimo FLOAT, -- Valor minimo de temp. que pode receber da leitura sem danificar o produto 
-    Maximo FLOAT, -- Valor maximo de temp. que pode receber da leitura sem danificar o produto 
-    Tipo VARCHAR(50),
-    Componente VARCHAR(80)
-);
+-- CREATE TABLE Limite_Parametros(
+-- 	idLimite INT PRIMARY KEY AUTO_INCREMENT, -- Primeiro componente da Chave Primaria
+--     Minimo FLOAT, -- Valor minimo de temp. que pode receber da leitura sem danificar o produto 
+--     Maximo FLOAT, -- Valor maximo de temp. que pode receber da leitura sem danificar o produto 
+--     Tipo VARCHAR(50),
+--     Componente VARCHAR(80)
+-- );
 
 -- Criação da tabela onde ficara as informações do local onde será retirada as leituras
 CREATE TABLE Localização(
@@ -47,10 +47,10 @@ CREATE TABLE Localização(
     Nome VARCHAR(80), -- Nome do Local EX(Sala 01,Sala 02)
     FKEmpresa INT, -- Chave Estrangeira da Tabela Empresa
 		CONSTRAINT FKEmpresa_L FOREIGN KEY (FKEmpresa)
-			REFERENCES Empresa(idEmpresa),
-	FKLimite INT, -- Chave Estrangeira da parametrização de limites (1-n)
-		CONSTRAINT FKLimite_L FOREIGN KEY (FKLimite) 
-			REFERENCES Limite_Parametros(idLimite)
+			REFERENCES Empresa(idEmpresa)
+	-- FKLimite INT, -- Chave Estrangeira da parametrização de limites (1-n)
+	-- 	CONSTRAINT FKLimite_L FOREIGN KEY (FKLimite) 
+	-- 		REFERENCES Limite_Parametros(idLimite)
 );
 
 -- Criação de uma tabela exclusiva para os sensores (não para os resultados somente para os sensores)
@@ -70,11 +70,11 @@ CREATE TABLE Leitura (
     Leitura_Umi FLOAT, 
     Data_Hora DATETIME DEFAULT CURRENT_TIMESTAMP, -- Data e hora em que os resultados foram computados
     FKLocal_LE INT, -- Componente da Chave Primaria que refere a Tabela Sensores
-    FKLimite_LE INT,
+    -- FKLimite_LE INT,
 		CONSTRAINT FKLocal_LE FOREIGN KEY (FKLocal_LE)
-			REFERENCES Localização(idLocal),
-		CONSTRAINT FKLimite_LE FOREIGN KEY (FKLimite_LE)
-			REFERENCES Limite_Parametros(idLimite)
+			REFERENCES Localização(idLocal)
+		-- CONSTRAINT FKLimite_LE FOREIGN KEY (FKLimite_LE)
+		-- 	REFERENCES Limite_Parametros(idLimite)
 );
 
 INSERT INTO Empresa VALUES
