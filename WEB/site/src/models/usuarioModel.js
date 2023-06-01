@@ -84,10 +84,19 @@ function deletar(cpf) {
     return database.executar(instrucao);
 }
 
-function deletar_local(id, FKEmp, FKLimi) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id, FKEmp, FKLimi)
+function deletar_local(id, FKEmp) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id, FKEmp)
     var instrucao = `
-        DELETE FROM Localização WHERE idLocal = '${id}' AND FKEmpresa = '${FKEmp}' AND FKLimite = '${FKLimi}';
+        DELETE FROM Localização WHERE idLocal = ${id} AND FKEmpresa = ${FKEmp};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function limpar_tabela(id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar(): ", id)
+    var instrucao = `
+	    DELETE FROM Leitura WHERE FKLocal_LE = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -128,5 +137,6 @@ module.exports = {
     listar_locais,
     listar_empresas,
     cadastrar_local,
-    pegar_id_usuario
+    pegar_id_usuario,
+    limpar_tabela
 };

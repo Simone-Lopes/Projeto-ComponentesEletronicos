@@ -169,9 +169,8 @@ function entrar(req, res) {
 
         var id = req.body.idServer;
         var FKEmp = req.body.FKEmpresaServer;
-        var FKLimi = req.body.FKLimiteVar;
     
-        usuarioModel.deletar_local(id, FKEmp, FKLimi)
+        usuarioModel.deletar_local(id, FKEmp)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -181,6 +180,25 @@ function entrar(req, res) {
                 function (erro) {
                     console.log(erro);
                     console.log("Houve um erro ao deletar o usuario: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+    function limpar_tabela(req, res) {
+
+        var id = req.body.idServer;
+    
+        usuarioModel.limpar_tabela(id)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao Limpar a Tabela: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );
@@ -269,5 +287,6 @@ module.exports = {
     listar_empresas,
     cadastrar_local,
     pegar_id_usuario,
-    testar
+    testar,
+    limpar_tabela
 }

@@ -48,4 +48,8 @@ router.post("/deletar_local", function (req, res) {
     usuarioController.deletar_local(req, res);
 });
 
+router.post("/limpar_tabela", function (req, res) {
+    usuarioController.limpar_tabela(req, res);
+});
+
 module.exports = router;

@@ -274,12 +274,12 @@ function exibirAlerta_Temp(temp, idLocal, grauDeAviso, grauDeAvisoCor) {
 }
 
 function removerAlerta_Umi(idLocal) {
-    alertas = alertas.filter(item => item.idLocal != idLocal);
+    alertas_Umi = alertas_Umi.filter(item => item.idLocal != idLocal);
     exibirCards_Umi();
 }
 
 function removerAlerta_Temp(idLocal) {
-    alertas = alertas.filter(item => item.idLocal != idLocal);
+    alertas_Temp = alertas_Temp.filter(item => item.idLocal != idLocal);
     exibirCards_Temp();
 }
  

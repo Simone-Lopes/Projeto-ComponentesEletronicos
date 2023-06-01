@@ -25,14 +25,9 @@
           <div class="nome">
             <label class="label" for="id">Numero do Container</label>
             <input class="input" type="number" id="id" name="id" />
-            <label class="label" for="id">Nome da Empresa</label>
-            <select class="select_local" id="lista_Empresas">
-            </select>
-            <label class="label" for="id">Tipo de Limite</label>
-            <select class="select_local" name="listaLimites" id="listaLimites">
-              <option value="1">Temperatura</option>
-              <option value="2">Humidade</option>
-            </select>
+            <!-- <label class="label" for="id">Nome da Empresa</label> -->
+            <!-- <select class="select_local" id="lista_Empresas">
+            </select> -->
           </div>
         <button onclick="remover()" class="btn-login">Remover</button>
         <!-- <div id="cadastro">
@@ -60,58 +55,99 @@
 
 <script>
 
-  window.onload = atualizarFeed_empresas();
+// window.onload = atualizarFeed_empresas();
 
-function atualizarFeed_empresas() {
-        aguardar();
-        fetch("/usuarios/listar_empresas")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var feed = document.getElementById("lista_Empresas");
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhuma empresa encontrada!!"
-                        feed.appendChild(mensagem);
-                        throw "Nenhuma empresa encontrada!!";
-                    }
+// function atualizarFeed_empresas() {
+//         aguardar();
+//         fetch("/usuarios/listar_empresas")
+//             .then(function (resposta) {
+//                 if (resposta.ok) {
+//                     if (resposta.status == 204) {
+//                         var feed = document.getElementById("lista_Empresas");
+//                         var mensagem = document.createElement("span");
+//                         mensagem.innerHTML = "Nenhuma empresa encontrada!!"
+//                         feed.appendChild(mensagem);
+//                         throw "Nenhuma empresa encontrada!!";
+//                     }
 
-                    resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+//                     resposta.json().then(function (resposta) {
+//                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("lista_Empresas");
-                    feed.innerHTML = "";  
-                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
-                        var publicacao_local = resposta[contador_local];
-                        // criando e manipulando elementos do HTML via JavaScript
+//                     var feed = document.getElementById("lista_Empresas");
+//                     feed.innerHTML = "";  
+//                     for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
+//                         var publicacao_local = resposta[contador_local];
+//                         // criando e manipulando elementos do HTML via JavaScript
                         
-                        var empresa = document.createElement("option");
+//                         var empresa = document.createElement("option");
 
-                        empresa.setAttribute("value", `${publicacao_local.id}`);
-                        empresa.innerHTML = publicacao_local.Nome;
+//                         empresa.setAttribute("value", `${publicacao_local.id}`);
+//                         empresa.innerHTML = publicacao_local.Nome;
 
-                        feed.appendChild(empresa);
-                      }
+//                         feed.appendChild(empresa);
+//                       }
 
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
+//                     finalizarAguardar();
+//                 });
+//             } else {
+//                 throw ('Houve um erro na API!');
+//             }
+//         }).catch(function (resposta) {
+//             console.error(resposta);
+//             finalizarAguardar();
+//         });
+// }
+
+ function limpar_tabela_local(idVar){
+
+  fetch("/usuarios/limpar_tabela", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        idServer: idVar,
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
         });
-}
+
+      } else {
+
+        console.log("Houve um erro ao tentar realizar a remoção!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
 
   function remover() {
-
+    
     aguardar();
-
+    
     var idVar = id.value;
-    var FKEmpresaVar = lista_Empresas.value;
-    var FKLimiteVar = listaLimites.value;
+    var FKEmpresaVar = sessionStorage.getItem("FKEmpresa");
+    
+    limpar_tabela_local(idVar);
 
-    if (idVar == ""|| FKEmpresaVar == ""|| FKLimiteVar == "") {
+    if (idVar == ""|| FKEmpresaVar == "") {
       cardErro.style.display = "block"
       mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
       finalizarAguardar();
@@ -132,7 +168,6 @@ function atualizarFeed_empresas() {
       body: JSON.stringify({
         idServer: idVar,
         FKEmpresaServer: FKEmpresaVar,
-        FKLimiteVar: FKLimiteVar,
       })
     }).then(function (resposta) {
       console.log("ESTOU NO THEN DO entrar()!")

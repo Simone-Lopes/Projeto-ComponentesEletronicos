@@ -205,11 +205,6 @@ body{
   .ideal {
     background-color: #9ccc65;
   }
-  
-  #alerta {
-    position: absolute;
-    right: 0px;
-  }
 
   .mensagem-alarme {
     background-color: white;
