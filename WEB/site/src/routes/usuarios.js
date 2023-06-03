@@ -32,10 +32,6 @@ router.post("/cadastrar_local", function (req, res) {
     usuarioController.cadastrar_local(req, res);
 })
 
-router.post("/pegar_id_usuario", function (req, res) {
-    usuarioController.pegar_id_usuario(req, res);
-})
-
 router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });

@@ -64,7 +64,7 @@
         var nomeVar = nome.value;
         var IDEmpresaVar = sessionStorage.FKEmpresa;
 
-        if (nomeVar == "") {
+        if (nomeVar == "" || IDEmpresaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Por favor, preencha todos os campos.";
 

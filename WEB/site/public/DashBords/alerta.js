@@ -1,6 +1,4 @@
 
-
-
 var alertas_Umi = [];
 var alertas_Temp = [];
 
@@ -101,35 +99,6 @@ function alertar_Umi(resposta, idLocal) {
         grauDeAvisoCor = 'cor-alerta perigo-frio'
         exibirAlerta_Umi(umi, idLocal, grauDeAviso, grauDeAvisoCor)
     }
-
-    // if (temp >= limites_temp.muito_quente) {
-    //     classe = 'cor-alerta perigo-quente';
-    //     grauDeAviso = 'perigo quente'
-    //     grauDeAvisoCor = 'cor-alerta perigo-quente'
-    //     exibirAlerta(temp, idLocal, grauDeAviso, grauDeAvisoCor)
-    // }
-    // else if (temp < limites_temp.muito_quente && temp >= limites_temp.quente) {
-    //     classe = 'cor-alerta alerta-quente';
-    //     grauDeAviso = 'alerta quente'
-    //     grauDeAvisoCor = 'cor-alerta alerta-quente'
-    //     exibirAlerta(temp, idLocal, grauDeAviso, grauDeAvisoCor)
-    // }
-    // else if (temp < limites_temp.quente && temp > limites_temp.frio) {
-    //     classe = 'cor-alerta ideal';
-    //     removerAlerta(idLocal);
-    // }
-    // else if (temp <= limites_temp.frio && temp > limites_temp.muito_frio) {
-    //     classe = 'cor-alerta alerta-frio';
-    //     grauDeAviso = 'alerta frio'
-    //     grauDeAvisoCor = 'cor-alerta alerta-frio'
-    //     exibirAlerta(temp, idLocal, grauDeAviso, grauDeAvisoCor)
-    // }
-    // else if (temp <= limites_temp.muito_frio) {
-    //     classe = 'cor-alerta perigo-frio';
-    //     grauDeAviso = 'perigo frio'
-    //     grauDeAvisoCor = 'cor-alerta perigo-frio'
-    //     exibirAlerta(temp, idLocal, grauDeAviso, grauDeAvisoCor)
-    // }
 
     var umi_local = document.getElementById(`Umi_local_${idLocal}`);
     var card_umi = document.getElementById(`card_umi_${idLocal}`);

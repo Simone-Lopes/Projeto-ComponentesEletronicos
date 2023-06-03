@@ -654,3 +654,7 @@ body{
   height: 4vh;
   color: white;
 }
+
+.permisão{
+  display: block;
+}

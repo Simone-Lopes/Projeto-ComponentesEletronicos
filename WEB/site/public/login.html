@@ -23,10 +23,6 @@
       <div class="card">
         <form>
           <h1 class="titulo">Login</h1>
-          <div class="nome">
-            <label class="label" for="Nome">Nome</label>
-            <input class="input" type="text" id="nome" name="nome" />
-          </div>
           <div class="email">
             <label class="label" for="email">Email</label>
             <input class="input" type="email" id="email" name="email" />
@@ -35,8 +31,6 @@
             <label class="label" for="senha">Senha</label>
             <input class="input" type="password" id="senha" name="senha" />
           </div>
-          <select name="select Empresas" id="lista_Empresas">
-          </select>
         </form>
         <button onclick="entrar()" class="btn-login">Entrar</button>
         <!-- <div id="cadastro">
@@ -64,59 +58,14 @@
 
 <script>
 
-window.onload = atualizarFeed_empresas();
-
-function atualizarFeed_empresas() {
-        aguardar();
-        fetch("/usuarios/listar_empresas")
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    if (resposta.status == 204) {
-                        var feed = document.getElementById("lista_Empresas");
-                        var mensagem = document.createElement("span");
-                        mensagem.innerHTML = "Nenhuma empresa encontrada!!"
-                        feed.appendChild(mensagem);
-                        throw "Nenhuma empresa encontrada!!";
-                    }
-
-                    resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("lista_Empresas");
-                    feed.innerHTML = "";  
-                    for (let contador_local = 0; contador_local < resposta.length; contador_local++) {
-                        
-                        var publicacao_local = resposta[contador_local];
-                        // criando e manipulando elementos do HTML via JavaScript
-
-                        var opção = document.createElement("option");
-                        opção.innerHTML = `${publicacao_local.Nome}`;
-                        opção.setAttribute("value", publicacao_local.id);
-                        feed.appendChild(opção);
-                      
-                      }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-}
-
   function entrar() {
 
     aguardar();
 
-    var nomeVar = nome.value;
     var emailVar = email.value;
     var senhaVar = senha.value;
-    var fkEmpresaVar = lista_Empresas.value;
 
-    if (emailVar == "" || senhaVar == "" || nomeVar == "" || fkEmpresaVar == "") {
+    if (emailVar == "" || senhaVar == "") {
       cardErro.style.display = "block"
       mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
       finalizarAguardar();
@@ -126,10 +75,8 @@ function atualizarFeed_empresas() {
       setInterval(sumirMensagem, 5000)
     }
 
-    console.log("FORM NAME: ", nomeVar);
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
-    console.log("FORM FKEmpresa: ", fkEmpresaVar);
 
     fetch("/usuarios/autenticar", {
       method: "POST",
@@ -137,10 +84,8 @@ function atualizarFeed_empresas() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        nomeServer: nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        fkEmpServer: fkEmpresaVar
       })
     }).then(function (resposta) {
       console.log("ESTOU NO THEN DO entrar()!")
@@ -148,30 +93,23 @@ function atualizarFeed_empresas() {
       console.log(resposta);
 
       if (resposta.ok) {
+        console.log(resposta);
 
-            //   resposta.json().then(function (resposta) {
-            //     console.log("Dados recebidos: ", JSON.stringify(resposta));
-                
-            //     for (var contador_local = 0; contador_local < resposta.length; contador_local++) {
-            //         var publicacao_local = resposta[contador_local];
-            //         // criando e manipulando elementos do HTML via JavaScript
-                    
-            //         sessionStorage.setItem(`idUsuario`, publicacao_local.id);  
-            //         sessionStorage.setItem(`NomeUsuario`, publicacao_local.Nome);
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          
+          sessionStorage.setItem("ID_USUARIO", json.id);
+          sessionStorage.setItem("NOME_USUARIO", json.Nome);
+          sessionStorage.setItem("EMAIL_USUARIO", json.Email);
+          sessionStorage.setItem("FKEmpresa", json.FKEmpresa);
+          sessionStorage.setItem("FKAdmin", json.FKAdmin);
 
-            //       }
+          setTimeout(function () {
+              window.location = "DashBords/index.html";
+          }, 1000); // apenas para exibir o loading
 
-
-                  
-            // });
-
-          sessionStorage.setItem("NOME_USUARIO", nomeVar);
-          sessionStorage.setItem("EMAIL_USUARIO", emailVar);
-          sessionStorage.setItem("FKEmpresa", fkEmpresaVar);
-
-        setTimeout(function () {
-            window.location = "DashBords/index.html";
-        }, 1000); // apenas para exibir o loading
+      });
 
       } else {
 
@@ -189,59 +127,6 @@ function atualizarFeed_empresas() {
 
     return false;
   }
-
-  // function pegar_idUsuario() {
-
-  //       aguardar();
-
-  //       var IDEmpresaVar = lista_Empresas.value;
-  //       var nomeVar = nome.value;
-
-  //       fetch("/usuarios/pegar_id_usuario", {
-  //           method: "POST",
-  //           headers: {
-  //               "Content-Type": "application/json"
-  //           },
-  //           body: JSON.stringify({
-  //               // crie um atributo que recebe o valor recuperado aqui
-  //               // Agora vá para o arquivo routes/usuario.js
-  //               idEmpServer: IDEmpresaVar,
-  //               nomeServer: nomeVar
-  //           })
-  //       }).then(function (resposta) {
-
-  //           console.log("resposta: ", resposta);
-
-  //           sessionStorage.setItem("IDUsuario", resposta.idUsuario);
-
-  //           if (resposta.ok) {
-  //               if (resposta.status == 204) {
-  //                       var feed = document.getElementById("div_erros_login");
-  //                       var mensagem = document.createElement("span");
-  //                       mensagem.innerHTML = "Nenhum resultado encontrado."
-  //                       feed.appendChild(mensagem);
-  //                       throw "Nenhum resultado encontrado!!";
-  //                   }
-
-  //                   resposta.json().then(function (resposta) {
-  //                   console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-  //                       var publicacao = resposta[0];
-
-  //                       sessionStorage.setItem("IDUsuario", publicacao.ID);
-                    
-  //                   }
-  //           );
-  //           } else {
-  //               throw ("Houve um erro ao tentar realizar A pesquisa!");
-  //           }
-  //       }).catch(function (resposta) {
-  //           console.log(`#ERRO: ${resposta}`);
-  //           finalizarAguardar();
-  //       });
-
-  //       return false;
-  //   }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
