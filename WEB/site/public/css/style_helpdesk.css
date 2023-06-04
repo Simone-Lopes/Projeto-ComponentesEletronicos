@@ -357,6 +357,9 @@ a{
   .flip-card-front {
     background-color: rgb(249, 249, 249);
     color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .flip-card-back {
